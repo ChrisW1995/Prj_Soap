@@ -26,8 +26,11 @@ namespace Prj_Soap.App_Start
             CreateMap<SoapWithFormattedDate, Soap>();
             CreateMap<Soap, SoapWithFormattedDate>();
 
-            CreateMap<NewestSoapViewModel, Soap>();
-            CreateMap<Soap, NewestSoapViewModel>();
+            CreateMap<SoapListViewModel, Soap>();
+            CreateMap<Soap, SoapListViewModel>();
+
+            CreateMap<AdminSoapListViewModel, Soap>();
+            CreateMap<Soap, AdminSoapListViewModel>();
         }
     }
 }

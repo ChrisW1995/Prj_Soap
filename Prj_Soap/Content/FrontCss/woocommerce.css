@@ -380,7 +380,7 @@ p.demo_store {
     color: rgba(145, 145, 145, 0.5);
 }
 .woocommerce ul.products li.first, .woocommerce-page ul.products li.first {
-    clear: both;
+    
 }
 .woocommerce ul.products li.last, .woocommerce-page ul.products li.last {
     margin-right: 0;
@@ -1367,7 +1367,7 @@ table.shop_table .checkout_table_item td {
     list-style: none;
     margin-left: 0;
     padding-left: 1.5em;
-    background: url(data:image/png;
+    background: url(data:image/png);
     base64, iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAQUlEQVQIHWP8//8/AwgwMjLWgxlQAijeCGIyIQtiYxNUwAjUhWI0uilMMLvQJUB8kBzYCmyKYGJwN8AEYDphJgIAPtccffZCsOoAAAAASUVORK5CYII=) left no-repeat;
 }
 .woocommerce ul.digital-downloads li .count, .woocommerce-page ul.digital-downloads li .count {
@@ -1518,8 +1518,8 @@ table.shop_table .checkout_table_item td {
 
 /*****************************************************/
 .woocommerce .three-col-product ul.products li.product, .woocommerce-page .three-col-product ul.products li.product {
-    margin: 0 4.25% 4.25% 0;
-    width: 30.5%;
+    margin: 0 2.5% 4.25% 2.5%;
+    width: 20%;
 }
 .woocommerce ul.products li.product a img, .woocommerce-page ul.products li.product a img {
     margin:0px;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prj_Soap.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,13 @@ namespace Prj_Soap.Controllers
 {
     public class ProductController : Controller
     {
+        SoapService soapService = new SoapService();
+
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            var list = soapService.GetList();
+            return View(list);
         }
     }
 }

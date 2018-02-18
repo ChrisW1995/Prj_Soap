@@ -26,7 +26,7 @@ namespace Prj_Soap.Areas.Admin.Models
         public HttpPostedFileBase ImageFile { get; set; }
     }
     
-    public class SoapListViewModel
+    public class AdminSoapListViewModel
     {
         public IEnumerable<SoapWithFormattedDate> Soaps;
 

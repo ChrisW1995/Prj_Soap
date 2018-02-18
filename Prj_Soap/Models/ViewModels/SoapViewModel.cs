@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Prj_Soap.Models.ViewModels
 {
-    public class NewestSoapViewModel
+    public class SoapListViewModel
     {
         public string Id { get; set; }
 
@@ -16,4 +16,5 @@ namespace Prj_Soap.Models.ViewModels
         public string ImageUrl { get; set; }
 
     }
+
 }

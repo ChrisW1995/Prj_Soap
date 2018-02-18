@@ -17,11 +17,11 @@ namespace Prj_Soap.Service
         IRepository<Soap> repository = new GenericRepository<Soap>(new ApplicationDbContext());
         LocalDateTimeService timeService = new LocalDateTimeService();
 
-        public SoapListViewModel GetList(int page)
+        public AdminSoapListViewModel GetList(int page)
         {
             var list = repository.GetList().OrderByDescending(x => x.UploadTime).ToList().Skip(3 * (page-1)).Take(3).Select(Mapper.Map<Soap, SoapWithFormattedDate>);
             var total = repository.GetList().Count();
-            var soapListViewModel = new SoapListViewModel
+            var soapListViewModel = new AdminSoapListViewModel
             {
                 Soaps = list,
                 Total = total
@@ -29,9 +29,16 @@ namespace Prj_Soap.Service
             return soapListViewModel;
         }
 
-        public IEnumerable<NewestSoapViewModel> GetNewest4Items()
+        public IEnumerable<SoapListViewModel> GetList()
         {
-            var list = repository.GetList().OrderByDescending(x => x.UploadTime).ToList().Take(4).Select(Mapper.Map<Soap, NewestSoapViewModel>);
+            var list = repository.GetList().OrderByDescending(x => x.UploadTime).ToList().Select(Mapper.Map<Soap, SoapListViewModel>);
+
+            return list;
+        }
+
+        public IEnumerable<SoapListViewModel> GetNewest4Items()
+        {
+            var list = repository.GetList().OrderByDescending(x => x.UploadTime).ToList().Take(4).Select(Mapper.Map<Soap, SoapListViewModel>);
 
             return list;
         }
