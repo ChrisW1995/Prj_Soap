@@ -1,0 +1,23 @@
+﻿td {
+    border: 0;
+   
+}
+
+#login-div *, #register-div * {
+    margin: 0 auto;
+}
+
+#login-div input, #register-div * {
+    margin-bottom: 20px;
+}
+
+.field-validation-error {
+    padding-bottom: 30px;
+    display: inline-block;
+}
+
+.nav-member {
+    line-height: 90px !important;
+    padding: 0 10px !important;
+}
+

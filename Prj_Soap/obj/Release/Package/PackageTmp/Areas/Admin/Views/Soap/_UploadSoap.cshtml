@@ -1,0 +1,60 @@
+﻿
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <h3 class="box-title">新增</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+       
+        <form role="form" id="upload-soap-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>商品名稱</label>
+                <input id="txt-soap-name" name="ItemName" type="text" class="form-control" placeholder="商品名稱 ...">
+            </div>
+                
+            <div class="form-group">
+                <label>商品內容</label>
+                <textarea id="txt-soap-content" name="ItemContent" class="form-control" rows="3" placeholder="商品內容 ..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>售價</label>
+                <input id="txt-soap-price" name="Price" class="form-control" rows="3" placeholder="商品售價"/>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="chk-soap-instock" checked> 可購買
+                </label>
+            </div>
+            <br/>
+
+            <div class="">
+                <label>商品內容</label>
+                <input id="image-file" name="ImageFile" type="file" class="">
+            </div>
+            
+          
+            <div id="imgPreview" class="thumbnail" style="display: none;">
+                <img class="img-responsive" id="targetImg"/>
+                <div class="caption">
+                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                    <span id="image-description"></span>
+                </div>
+            </div>
+        </form>
+        <!-- /.row -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" id="btn-soap-upload" class="btn btn-warning" onclick="">新增</button>
+    </div>
+</div>
+

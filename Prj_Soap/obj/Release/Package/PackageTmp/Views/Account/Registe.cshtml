@@ -1,0 +1,60 @@
+﻿@model Prj_Soap.Models.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "註冊";
+}
+<div class="be-section clearfix" data-headerscheme="background--light" style="">
+    <div class="be-section-pad clearfix" style="padding-top: 50px; padding-bottom: 50px;">
+        @using (Html.BeginForm("Registe", "Account", FormMethod.Post, new {@style = "width:100%"}))
+        {
+            <div class="be-row be-wrap clearfix">
+
+
+                <div class="one-third column-block" data-animation="" style="width: 40%; margin-left: 80px;">
+                    <div class="be-custom-column-inner">
+                        <h5>個人資料</h5>
+                        <div class="linebreak " style="height: 30px;"></div>
+                        @Html.TextBoxFor(model => model.Account, new {@class = "form-control", @placeholder = "登入帳號", @style = "margin-bottom: 15px;" })
+                        @Html.ValidationMessageFor(model => model.Account, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(model => model.Password, new {@class = "form-control", @placeholder = "登入密碼", @type = "password", @style = "margin-bottom: 15px;" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(model => model.CheckPassword, new {@class = "form-control", @placeholder = "確認密碼", @type = "password", @style = "margin-bottom: 15px;" })
+                        @Html.ValidationMessageFor(model => model.CheckPassword, "", new {@class = "text-danger"})
+                        @*<ul class="custom-list">
+                        <li class="custom-list-content"><i class="font-icon icon-icon_house circled" style="background-color:#ff4d00;color:#ffffff;"></i><span class="custom-list-content-inner">66 Nicholson Street, Buffalo,&nbsp;NY 14214</span></li>
+                        <li class="custom-list-content"><i class="font-icon icon-mobile circled" style="background-color:#ff4d00;color:#ffffff;"></i><span class="custom-list-content-inner">001-123-456-7890</span></li>
+                        <li class="custom-list-content"><i class="font-icon icon-email circled" style="background-color:#ff4d00;color:#ffffff;"></i><span class="custom-list-content-inner">swami@brandexponents.com</span></li>
+                    </ul>*@
+
+                    </div>
+                </div>
+
+                <div class="two-third column-block    " data-animation="" style="width: 40%;">
+                    <div class="be-custom-column-inner">
+                        <h5>帳戶資訊</h5>
+                        <div class="linebreak " style="height: 30px;"></div>
+                        <div class="contact_form contact_form_module style1-input">
+
+
+                            @Html.TextBoxFor(model => model.Name, new {@class = "form-control", @placeholder = "姓名", @style="margin-bottom: 15px;"})
+                            @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                            @Html.TextBoxFor(model => model.Email, new {@class = "form-control", @placeholder = "Email", @style = "margin-bottom: 15px;" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                            @Html.TextBoxFor(model => model.DetailAddress, new {@class = "form-control", @placeholder = "通訊地址", @style = "margin-bottom: 15px;" })
+                            @Html.ValidationMessageFor(model => model.DetailAddress, "", new {@class = "text-danger"})
+                            @Html.TextBoxFor(model => model.Phone, new {@class = "form-control", @placeholder = "電話號碼",  @style = "margin-bottom: 15px;" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new {@class = "text-danger"})
+
+
+                        </div>
+                        <input type="submit" value="註冊" class="" style="border: none; display: block;"/>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    @Html.Raw(TempData["RegisteError"])
+}

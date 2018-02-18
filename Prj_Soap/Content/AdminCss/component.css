@@ -1,0 +1,13 @@
+﻿.pagination > .active > a,
+.pagination > .active > a:hover {
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+.crop-soap-img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display:table-cell;
+    vertical-align:middle;
+}

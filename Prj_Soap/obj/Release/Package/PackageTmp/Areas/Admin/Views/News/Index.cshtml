@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "公告管理";
+}
+<section class="content-header">
+    <h1>
+        <b>公告管理</b>
+    </h1>
+ 
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-8">
+            @Html.Partial("_NewsList")
+        </div>
+        <div class="col-md-4">
+            @Html.Partial("_CreateNews")
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("_NewsContent")
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        @Html.Raw(TempData["msg"]);
+        
+        $(document).ready(function() {
+            $('#tb-news').find('tr').click( function(){
+        var id = $(this).find('td:first').attr("news-id");
+
+                $.ajax({
+            method: "Get",
+                        url: "/api/News/GetNews/" + id
+                    })
+                    .done(function( json ) {
+                        $("#txt-update-title").val(json.Title);
+                        $("#txt-update-content").val(json.Content);
+                    var date = json.AddTime.replace('T', " ");
+                        $("#txt-news-date").text(date);
+                        $("#news-id").val(json.Id);
+                })
+                    .fail(function() {
+                    alert("Error");
+                });
+            });
+        });
+    </script>
+}

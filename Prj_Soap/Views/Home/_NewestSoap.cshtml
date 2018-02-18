@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Prj_Soap.Models.ViewModels.NewestSoapViewModel>
+<div class="be-section clearfix" data-headerscheme="background--light" style="">
+    <div class="be-section-pad clearfix" style="padding-top:0px;padding-bottom:0px;">
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="special-heading-wrap style1 0" data-animation="fadeIn">
+                        <div class="special-heading align-center">
+                            <h4 class="special-h-tag" style="color: ">最新商品</h4>
+                            <div class="sep-with-icon-wrap margin-bottom"><span class="sep-with-icon" style="background-color:#e8e8e8;border-color:#e8e8e8;color:#e8e8e8;height:2px;width:20px;"></span><i class="sep-icon font-icon icon-dimond" style="background-color:#ff4d00;"></i><span class="sep-with-icon" style="background-color:#e8e8e8;border-color:#e8e8e8;color:#e8e8e8;height:2px;width:20px;"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="woocommerce columns-4">
+                        <ul class="products">
+
+                          @if (Model.Count() != 0)
+                          {
+                               int count = 0; 
+                                  foreach (var item in Model)
+                                  {
+                                      count++;
+                                      if (count < 4)
+                                      {
+                                        <li class="post-2755 product type-product status-publish has-post-thumbnail product_cat-accessories product_cat-footwear shipping-taxable purchasable product-type-simple product-cat-accessories product-cat-footwear instock">
+
+
+                                            <a href="#">
+
+                                            </a>
+                                            <div class="product-thumbnail-image-wrap">
+                                                <a href="#"><img width="255" height="360" src="@item.ImageUrl" class="attachment-shop_catalog wp-post-image" alt="oshin-shop-0009"></a>
+                                            </div>
+                                            <div class="product-meta-data clearfix">
+                                                <a href="#">
+                                                    <h3>@item.ItemName</h3>
+
+
+
+                                                    <span class="price"><span class="amount">NTD @item.Price</span></span>
+                                                </a>
+                                                <div class="button_ajax_wrapper clearfix">
+                                                    <a href="#" rel="nofollow" data-product_id="@item.Id" data-product_sku="" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
+                                                </div>
+                                                <a href="#">
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                      }
+                                      else
+                                      {
+                                        <li style="margin-right:0;" class="post-2755 product type-product status-publish has-post-thumbnail product_cat-accessories product_cat-footwear shipping-taxable purchasable product-type-simple product-cat-accessories product-cat-footwear instock">
+
+
+                                            <a href="#">
+
+                                            </a>
+                                            <div class="product-thumbnail-image-wrap">
+                                                <a href="#"><img width="255" height="360" src="@item.ImageUrl" class="attachment-shop_catalog wp-post-image" alt="oshin-shop-0009"></a>
+                                            </div>
+                                            <div class="product-meta-data clearfix">
+                                                <a href="#">
+                                                    <h3> @item.ItemName</h3>
+
+
+
+                                                    <span class="price"><span class="amount">NTD @item.Price</span></span>
+                                                </a>
+                                                <div class="button_ajax_wrapper clearfix">
+                                                    <a href="#" rel="nofollow" data-product_id="@item.Id" data-product_sku="" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
+                                                </div>
+                                                <a href="#">
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                          }
+
+                                      }
+
+                                  }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

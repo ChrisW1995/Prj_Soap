@@ -1,0 +1,380 @@
+﻿<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!-->
+<!-- Orange -->
+
+<html class="no-js" lang="en-US">
+ <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+    <![endif]-->
+
+    <title>Soap</title>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    @Styles.Render("~/Content/css")
+    <link rel='stylesheet' id='redux-google-fonts-be_themes_data-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A700%2C400%7CCrimson+Text%3A400italic%7CRaleway%3A400%2C600%7CSource+Sans+Pro%3A400&#038;subset=latin&#038;ver=1428407938' type='text/css' media='all' />
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/frontmain")
+    @*<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">*@
+
+</head>
+
+<body class="home page page-id-2694 page-template-default _masterslider _msp_version_2.7.2 no-section-scroll no-smooth-scroll top-header top-right-sliding-menu be-themes-layout-layout-wide">
+
+    <div id="main-wrapper">
+        <div id="main" class="ajaxable layout-wide">
+            <header id="header">
+                <div id="header-inner-wrap" class=" style2">
+
+                    <div id="left-header-mobile" class="clearfix">
+                        <div class="logo">
+                            <a href="index.html"><img class="normal-logo" src="~/Images/nature-logo.png" alt="Logo" /><img class="sticky-logo" src="~/Images/nature-logo.png" alt="Logo" /></a>
+                        </div>
+                        <div class="header-cart-controls">
+                            <a class="cart-contents" href="#" title="View your shopping cart">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            <div class="widget_shopping_cart_wrap">
+                                <div class="widget woocommerce widget_shopping_cart">
+                                    <h2 class="widgettitle">Cart</h2>
+                                    <div class="widget_shopping_cart_content"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-cart-controls">
+                            <a class="cart-contents" href="#" title="View your shopping cart">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            <div class="widget_shopping_cart_wrap">
+                                <div class="widget woocommerce widget_shopping_cart">
+                                    <h2 class="widgettitle">Cart</h2>
+                                    <div class="widget_shopping_cart_content"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav-controller-wrap">
+                            <div class="menu-controls mobile-nav-controller" title="Mobile Menu Controller"><i class="font-icon icon-list2"></i></div>
+                        </div>
+                    </div>
+
+                    <div id="header-wrap" class=" clearfix" data-default-height="100" data-sticky-height="100">
+                        <div id="header-controls-left">
+                            <div class="header-code-widgets">
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle" data-animation="fadeIn"><i class="font-icon icon-facebook tiny circle" style="border-style: solid; border-width: 0px; border-color: #323232; background-color: #3b5998; color: #fff;" data-animation="fadeIn" data-bg-color="#3b5998" data-hover-bg-color="#323232" data-color="#fff" data-hover-color="#ffffff" data-border-color="#323232" data-hover-border-color="#323232"></i></a></div>
+
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle" data-animation="fadeIn"><i class="font-icon icon-twitter tiny circle" style="border-style: solid; border-width: 0px; border-color: #323232; background-color: #0c9aca; color: #fff;" data-animation="fadeIn" data-bg-color="#0c9aca" data-hover-bg-color="#323232" data-color="#fff" data-hover-color="#ffffff" data-border-color="#323232" data-hover-border-color="#323232"></i></a></div>
+
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle" data-animation="fadeIn"><i class="font-icon icon-pinterest tiny circle" style="border-style: solid; border-width: 0px; border-color: #323232; background-color: #e4100f; color: #fff;" data-animation="fadeIn" data-bg-color="#e4100f" data-hover-bg-color="#323232" data-color="#fff" data-hover-color="#ffffff" data-border-color="#323232" data-hover-border-color="#323232"></i></a></div>
+                            </div>
+                        </div>
+
+                        <div class="logo">
+                            <a href="index.html"><img class="normal-logo" style="width: 200px;" src="~/Images/nature-logo.png" alt="Logo" /><img class="sticky-logo" src="~/Images/nature-logo.png" alt="Logo" /></a>
+                        </div>
+
+                        <div id="header-controls-right">
+                           
+                            <div class="header-cart-controls">
+                                
+                                   
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav navbar-right" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
+                                                <li><!--User.Identity.Name-->
+                                                    @Html.ActionLink("會員專區", "Info", "Account", routeValues: null, htmlAttributes: new {@class = "nav-member", title = "Manage", style="display:block;" })
+                                                </li>
+                                                <li><a class="nav-member" href="javascript:document.getElementById('logoutForm').submit()" title="會員專區">登出</a></li>
+                                            </ul>
+                                        }
+                                    }    
+                                    else
+                                    {
+                                        <ul class="nav-hover">
+                                            <li style="list-style: none; font-size: 14px;">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                        </ul>
+                                    }
+                               
+                                <div class="widget_shopping_cart_wrap">
+                                    <div class="widget woocommerce widget_shopping_cart">
+                                        <h2 class="widgettitle">Cart</h2>
+                                        <div class="widget_shopping_cart_content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="header-cart-controls">
+                                <a class="cart-contents" href="#" title="View your shopping cart">
+                                    <i class="font-icon icon-icon_bag_alt"></i>
+                                </a>
+                                <div class="widget_shopping_cart_wrap">
+                                    <div class="widget woocommerce widget_shopping_cart">
+                                        <h2 class="widgettitle">Cart</h2>
+                                        <div class="widget_shopping_cart_content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-nav-controller-wrap">
+                                <div class="menu-controls mobile-nav-controller">
+                                    <div class="font-icon custom-font-icon"><span class="menu-icon menu-icon-first"></span><span class="menu-icon menu-icon-second"></span><span class="menu-icon menu-icon-third"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <span class="header-border "></span>
+                    <div id="header-bottom-bar">
+                        <div id="header-bottom-bar-wrap" class=" clearfix">
+                            <nav id="navigation" class="clearfix">
+                                <div class="menu">
+                                    <ul id="menu" class="clearfix">
+                                        <li id="menu-item-2895" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2694 current_page_item menu-item-has-children menu-item-2895">
+                                            <a href="/Home">首頁</a>
+                                            <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                            
+                                        </li>
+                                        <li id="menu-item-2896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2896">
+                                            <a href="#">商品列表</a>
+                                            <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                            <ul class="sub-menu clearfix">
+                                                <li id="menu-item-2898" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
+                                                <li id="menu-item-2897" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
+                                            </ul>
+                                        </li>
+                                        @*<li id="menu-item-2904" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2904">
+                                            <a href="#">Shop Categories</a>
+                                            <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                            <ul class="sub-menu clearfix">
+                                                <li id="menu-item-2902" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2902"><a href="product-category/men.html">Men</a></li>
+                                                <li id="menu-item-2903" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2903"><a href="product-category/women.html">Women</a></li>
+                                                <li id="menu-item-2901" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2901"><a href="product-category/casuals.html">Casuals</a></li>
+                                                <li id="menu-item-2900" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2900"><a href="product-category/accessories.html">Accessories</a></li>
+                                                <li id="menu-item-2943" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2943">
+                                                    <a href="#">Product Variations</a>
+                                                    <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                                    <ul class="sub-menu clearfix">
+                                                        <li id="menu-item-2942" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2942"><a href="product/blue-lenin-shirt.html">Simple</a></li>
+                                                        <li id="menu-item-2941" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2941"><a href="product/black-leather.html">Variable</a></li>
+                                                        <li id="menu-item-2947" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2947"><a href="product/sporty-wear.html">Grouped</a></li>
+                                                        <li id="menu-item-2948" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2948"><a href="product/leather-card-case.html">External/Affiliate</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>*@
+                                        <li id="menu-item-2735" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2735"><a href="#">關於我們</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!-- End Navigation -->
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="mobile-menu">
+                            <ul id="mobile-menu" class="clearfix">
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2694 current_page_item menu-item-has-children menu-item-2895">
+                                    <a href="index.html">Home</a>
+                                    <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                    <ul class="sub-menu clearfix">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2894"><a href="home-modern.html">Home Modern</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2896">
+                                    <a href="shop.html">Shop</a>
+                                    <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                    <ul class="sub-menu clearfix">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2904">
+                                    <a href="#">Shop Categories</a>
+                                    <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                    <ul class="sub-menu clearfix">
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2902"><a href="product-category/men.html">Men</a></li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2903"><a href="product-category/women.html">Women</a></li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2901"><a href="product-category/casuals.html">Casuals</a></li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2900"><a href="product-category/accessories.html">Accessories</a></li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2943">
+                                            <a href="#">Product Variations</a>
+                                            <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                            <ul class="sub-menu clearfix">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2942"><a href="product/blue-lenin-shirt.html">Simple</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2941"><a href="product/black-leather.html">Variable</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2947"><a href="product/sporty-wear.html">Grouped</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2948"><a href="product/leather-card-case.html">External/Affiliate</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2735"><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- END HEADER -->
+
+            <div class="header-hero-section"></div>
+            <div id="content" class="no-sidebar-page">
+                <div id="content-wrap" class="page-builder">
+                    <section id="page-content">
+                    
+                    
+                    @RenderBody()
+                        <!--  End Page Content -->
+                    </section>
+                </div>
+            </div>
+            <footer id="bottom-widgets">
+                <div id="bottom-widgets-wrap" class="be-wrap be-row clearfix">
+                    <div class="one-fourth column-block clearfix">
+                        <div class="widget_text widget">
+                            <h6 style="color:#fff;">OSHIN</h6>
+                            <div class="textwidget">A Digital Creative agency building next generation products to inspire the world</div>
+                        </div>
+                    </div>
+                    <div class="one-fourth column-block clearfix">
+                        <div class="widget_text widget">
+                            <h6 style="color:#fff;">聯絡我們</h6>
+                            <div class="textwidget">
+                                <p>
+                                    地址地址地址地址地址地址
+                                    <br /> 地址地址地址
+                                </p>
+                                <p>
+                                    02-12345678
+                                    <br /> soap@help.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one-fourth column-block clearfix">
+                        <div class="widget_text widget">
+                            <h6 style="color:#fff;">粉絲專頁</h6>
+                            <div class="textwidget">
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-square  " data-animation="fadeIn"><i class="font-icon icon-facebook2 tiny square" style="border-style: solid; border-width: 1px; border-color: #a2a2a2; background-color: inherit; color: #a2a2a2;" data-animation="fadeIn" data-bg-color="inherit" data-hover-bg-color="#ff4d00" data-color="#a2a2a2" data-hover-color="#ffffff" data-border-color="#a2a2a2" data-hover-border-color="#ff4d00"></i></a></div>
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-square  " data-animation="fadeIn"><i class="font-icon icon-twitter2 tiny square" style="border-style: solid; border-width: 1px; border-color: #a2a2a2; background-color: inherit; color: #a2a2a2;" data-animation="fadeIn" data-bg-color="inherit" data-hover-bg-color="#ff4d00" data-color="#a2a2a2" data-hover-color="#ffffff" data-border-color="#a2a2a2" data-hover-border-color="#ff4d00"></i></a></div>
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-square  " data-animation="fadeIn"><i class="font-icon icon-pinterest2 tiny square" style="border-style: solid; border-width: 1px; border-color: #a2a2a2; background-color: inherit; color: #a2a2a2;" data-animation="fadeIn" data-bg-color="inherit" data-hover-bg-color="#ff4d00" data-color="#a2a2a2" data-hover-color="#ffffff" data-border-color="#a2a2a2" data-hover-border-color="#ff4d00"></i></a></div>
+                                <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-square  " data-animation="fadeIn"><i class="font-icon icon-behance tiny square" style="border-style: solid; border-width: 1px; border-color: #a2a2a2; background-color: inherit; color: #a2a2a2;" data-animation="fadeIn" data-bg-color="inherit" data-hover-bg-color="#ff4d00" data-color="#a2a2a2" data-hover-color="#ffffff" data-border-color="#a2a2a2" data-hover-border-color="#ff4d00"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one-fourth column-block clearfix">
+                        <div class="widget_nav_menu widget">
+                            <h6 style="color:#fff;">友善連結</h6>
+                            <div class="menu-widget-area-container">
+                                <ul id="menu-widget-area" class="menu">
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2877"><a href="#">Terms and Conditions</a></li>
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2878"><a href="#">Shipping Information</a></li>
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2879"><a href="#">Returns and Refunds</a></li>
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2880"><a href="#">Privacy Policy</a></li>
+                                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2881"><a href="#">Frequently Asked Questions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </footer>
+            <footer id="footer" class="layout-wide">
+                <span class="footer-border be-wrap "></span>
+                <div id="footer-wrap" class=" style1 be-wrap clearfix">
+                    <div class="footer-left-area">
+                        <div class="footer-content-inner-left"> Copyright Brand Exponents 2014. All Rights Reserved </div>
+                    </div>
+                    <div class="footer-center-area"> </div>
+                    <div class="footer-right-area">
+                        <div class="footer-content-inner-right">
+                            <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle  " data-animation="fadeIn"><i class="font-icon icon-googleplus tiny circle" style="border-style: solid; border-width: 0px; border-color: #ffffff; background-color: #464646; color: #ffffff;" data-animation="fadeIn" data-bg-color="#464646" data-hover-bg-color="#ff4d00" data-color="#ffffff" data-hover-color="#ffffff" data-border-color="#ffffff" data-hover-border-color="#ff4d00"></i></a></div>
+                            <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle  " data-animation="fadeIn"><i class="font-icon icon-social_facebook tiny circle" style="border-style: solid; border-width: 0px; border-color: #ffffff; background-color: #464646; color: #ffffff;" data-animation="fadeIn" data-bg-color="#464646" data-hover-bg-color="#ff4d00" data-color="#ffffff" data-hover-color="#ffffff" data-border-color="#ffffff" data-hover-border-color="#ff4d00"></i></a></div>
+                            <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle  " data-animation="fadeIn"><i class="font-icon icon-social_linkedin tiny circle" style="border-style: solid; border-width: 0px; border-color: #ffffff; background-color: #464646; color: #ffffff;" data-animation="fadeIn" data-bg-color="#464646" data-hover-bg-color="#ff4d00" data-color="#ffffff" data-hover-color="#ffffff" data-border-color="#ffffff" data-hover-border-color="#ff4d00"></i></a></div>
+                            <div class="icon-shortcode align-none"><a href="#" class="icon-shortcode icon-circle  " data-animation="fadeIn"><i class="font-icon icon-social_twitter tiny circle" style="border-style: solid; border-width: 0px; border-color: #ffffff; background-color: #464646; color: #ffffff;" data-animation="fadeIn" data-bg-color="#464646" data-hover-bg-color="#ff4d00" data-color="#ffffff" data-hover-color="#ffffff" data-border-color="#ffffff" data-hover-border-color="#ff4d00"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="loader page-loader">
+            <div class="loader-style1-wrap">
+                <div class="loader-style1-double-bounce1"></div>
+                <div class="loader-style1-double-bounce2"></div>
+            </div>
+        </div>
+        <a href="#" id="back-to-top" class="layout-wide"><i class="font-icon icon-arrow_carrot-up"></i></a>
+    </div>
+
+
+    <input type="hidden" id="all_ajax_exclude_links" value="" />
+    <script>
+        var no_ajax_pages = [];
+    </script>
+    @Scripts.Render("~/bundles/frontmain2")
+    @RenderSection("scripts", required: false)
+        <script>
+        (function($) {
+            "use strict";
+
+            $(function() {
+                var masterslider_af9f = new MasterSlider();
+
+                // slider controls
+
+                // slider setup
+                masterslider_af9f.setup("slider_7", {
+                    width: 2000,
+                    height: 600,
+                    space: 0,
+                    start: 1,
+                    grabCursor: true,
+                    swipe: true,
+                    mouse: true,
+                    layout: "fullwidth",
+                    wheel: false,
+                    autoplay: false,
+                    instantStartLayers: false,
+                    loop: false,
+                    shuffle: false,
+                    preload: 0,
+                    heightLimit: true,
+                    autoHeight: false,
+                    smoothHeight: true,
+                    endPause: false,
+                    overPause: true,
+                    fillMode: "fill",
+                    centerControls: true,
+                    layersMode: "center",
+                    hideLayers: false,
+                    fullscreenMargin: 0,
+                    speed: 20,
+                    dir: "h",
+                    parallaxMode: 'swipe',
+                    view: "basic"
+                });
+
+
+
+                $("head").append("<link rel='stylesheet' id='ms-fonts'  href='http://fonts.googleapis.com/css?family=Montserrat:700%7CRaleway:regular' type='text/css' media='all' />");
+
+                window.masterslider_instances = window.masterslider_instances || {};
+                window.masterslider_instances["1_af9f"] = masterslider_af9f;
+            });
+
+        })(jQuery);
+    </script>
+
+
+</body>
+</html>

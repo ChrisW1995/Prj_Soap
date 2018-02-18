@@ -1,0 +1,49 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Prj_Soap.Models.ViewModels.NewsListViewModel>
+
+@{
+    ViewBag.Title = "title";
+}
+<div class="be-section clearfix" data-headerscheme="background--light" style="">
+    <div class="be-section-pad clearfix" style="padding-top:50px;padding-bottom:50px;">
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="special-heading-wrap style1 0" data-animation="fadeIn">
+                        <div class="special-heading align-center">
+                            <h5 class="special-h-tag" style="margin-bottom: 10px;">最新消息</h5>
+                            <hr class="separator margin-bottom " style="background-color:#919191;border-color:#919191;color:#919191;height:2px;width:70px;">
+                        </div>
+                    </div>
+                    <div class="special-subtitle-wrap  0" style="width: 80%; margin: 0 auto; margin-bottom: 30px;" data-animation="fadeIn">
+                        <table class="table table-hover" style="">
+                            @if (Model == null)
+                            {
+                                <tr>
+                                    <td colspan="2" style="text-align: center;">無公告!</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="width: 50%; padding: 12px 0px;">@Html.ActionLink(item.Title, "NewsDetail", new{ @id = item.Id})</td>
+                                        <td>@item.AddTime</td>
+                                    </tr>
+                                }
+                            }
+
+                        </table>
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--old-->
+
+

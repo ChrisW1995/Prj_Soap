@@ -1,0 +1,39 @@
+﻿
+<div class="be-section clearfix" data-headerscheme="background--light" style="">
+    <div class="be-section-pad clearfix" style="padding-top:90px;padding-bottom:80px;">
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="special-heading-wrap style1 0" data-animation="fadeIn">
+                        <div class="special-heading align-center">
+                            <h5 class="special-h-tag" style="margin-bottom: 10px;">會員登入</h5>
+                            <hr class="separator margin-bottom " style="background-color:#919191;border-color:#919191;color:#919191;height:2px;width:70px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <di class="woocommerce columns-4">
+                        <div id="login-div" style="">
+                            <p style="text-align: center;"><a style="display: block" href="/Account/Login">註冊成功, 三秒後會自動轉向登入畫面(如沒跳轉可點此轉向)</a></p>
+
+                        </div>
+                    </di>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        window.setTimeout(function(){
+            window.location.href="/Account/Login";
+        }, 3000);
+    </script>
+  
+
+}
