@@ -29,6 +29,11 @@ namespace Prj_Soap.Service
             return soapListViewModel;
         }
 
+        public Soap GetSoap(string id)
+        {
+            return repository.Get(x => x.Id == id);
+        }
+
         public IEnumerable<SoapListViewModel> GetList()
         {
             var list = repository.GetList().OrderByDescending(x => x.UploadTime).ToList().Select(Mapper.Map<Soap, SoapListViewModel>);

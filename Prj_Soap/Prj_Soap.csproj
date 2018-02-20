@@ -357,6 +357,7 @@
     <Content Include="Areas\Admin\Views\Soap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Soap\_UploadSoap.cshtml" />
     <Content Include="Areas\Admin\Views\Soap\_SoapList.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\prj-soap - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\prj-soap - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />

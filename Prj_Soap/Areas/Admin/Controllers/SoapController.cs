@@ -34,6 +34,10 @@ namespace Prj_Soap.Areas.Admin.Controllers
         {
          
             var serverPath = Server.MapPath("/Upload/Soap/");
+            if (!Directory.Exists(serverPath))
+            {
+                Directory.CreateDirectory(serverPath);
+            }
             var soap = soapService.SaveItem(model, serverPath);
             
             if(soap == null)

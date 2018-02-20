@@ -17,5 +17,11 @@ namespace Prj_Soap.Controllers
             var list = soapService.GetList();
             return View(list);
         }
+
+        public ActionResult Detail(string id)
+        {
+            var instance = soapService.GetSoap(id);
+            return View(instance);
+        }
     }
 }
