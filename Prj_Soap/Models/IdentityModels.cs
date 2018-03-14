@@ -32,6 +32,8 @@ namespace Prj_Soap.Models
 
         public DbSet<News> News { get; set; }
 
+        public DbSet<Carts> Carts { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -40,6 +42,15 @@ namespace Prj_Soap.Models
                 .WithMany(a => a.Areas)
                 .HasForeignKey(f => f.CountyId);
 
+            modelBuilder.Entity<Carts>()
+                .HasRequired(c => c.Customer)
+                .WithMany(a => a.Carts)
+                .HasForeignKey(f => f.CustomerId);
+
+            modelBuilder.Entity<Carts>()
+              .HasRequired(c => c.Soap)
+              .WithMany(a => a.Carts)
+              .HasForeignKey(f => f.SoapId);
             //modelBuilder.Entity<Customers>()
             //    .HasRequired(c => c.Counties)
             //    .WithMany(c => c.Customers)

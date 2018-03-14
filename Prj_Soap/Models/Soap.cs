@@ -28,5 +28,7 @@ namespace Prj_Soap.Models
         public string ImageUrl { get; set; }
 
         public DateTime UploadTime { get; set; }
+
+        public ICollection<Carts> Carts { get; set; }
     }
 }

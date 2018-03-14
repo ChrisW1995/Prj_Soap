@@ -23,7 +23,7 @@
 
                             </a>
                             <div class="product-thumbnail-image-wrap">
-                                <a href="#"><img width="255" height="360" src="@item.ImageUrl" class="attachment-shop_catalog wp-post-image" alt="oshin_shop_images-0013-comp copy"></a>
+                                <a href="/Product/Detail/@item.Id"><img width="255" height="360" src="@item.ImageUrl" class="attachment-shop_catalog wp-post-image" alt="oshin_shop_images-0013-comp copy"></a>
                             </div>
                             <div class="product-meta-data clearfix">
                                 <a href="#">
@@ -34,7 +34,7 @@
                                     <span class="price"><span class="amount">NTD @item.Price</span></span>
                                 </a>
                                 <div class="button_ajax_wrapper clearfix">
-                                    <a href="#" rel="nofollow" data-product_id="@item.Id" data-product_sku="" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
+                                    <a href="/Product/Detail/@item.Id" rel="nofollow" data-product_id="@item.Id" data-product_sku="" data-quantity="1" class=""></a>
                                 </div>
                                 <a href="#">
                                 </a>
@@ -47,14 +47,14 @@
               
 
             </ul>
-            <nav class="woocommerce-pagination">
+            @*<nav class="woocommerce-pagination">
                 <ul class="page-numbers">
                     <li><span class="page-numbers current">1</span></li>
                     <li><a class="page-numbers" href="#">2</a></li>
                     <li><a class="page-numbers" href="#">3</a></li>
                     <li><a class="next page-numbers" href="#">→</a></li>
                 </ul>
-            </nav>
+            </nav>*@
         </div>
 
 

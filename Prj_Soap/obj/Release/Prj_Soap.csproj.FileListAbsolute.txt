@@ -161,3 +161,4 @@ C:\Users\user\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Releas
 C:\Users\user\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.ChangePasswordMaxLength.resources
 C:\Users\user\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddSoapTable.resources
 C:\Users\user\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddImageUrlColumn.resources
+C:\Users\user\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddCartTb.resources

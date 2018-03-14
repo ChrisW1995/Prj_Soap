@@ -221,6 +221,7 @@
     <Compile Include="Areas\Admin\Models\SoapViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\NewsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -250,10 +251,18 @@
     <Compile Include="Migrations\201801270744153_AddImageUrlColumn.Designer.cs">
       <DependentUpon>201801270744153_AddImageUrlColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802221424155_AddCartTb.cs" />
+    <Compile Include="Migrations\201802221424155_AddCartTb.Designer.cs">
+      <DependentUpon>201802221424155_AddCartTb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803111552415_AddColumn_AddCount_InCartsTable.cs" />
+    <Compile Include="Migrations\201803111552415_AddColumn_AddCount_InCartsTable.Designer.cs">
+      <DependentUpon>201803111552415_AddColumn_AddCount_InCartsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Areas.cs" />
+    <Compile Include="Models\Carts.cs" />
     <Compile Include="Models\Counties.cs" />
-    <Compile Include="Models\CustomerChart.cs" />
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\DTO\NewsDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -261,6 +270,7 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Soap.cs" />
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\CartViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel.cs" />
     <Compile Include="Models\ViewModels\SoapViewModel.cs" />
@@ -268,10 +278,12 @@
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\SetTimeRepository.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\CustomAuthorization.cs" />
     <Compile Include="Service\LocalDateTimeService.cs" />
     <Compile Include="Service\NewsService.cs" />
     <Compile Include="Service\Result.cs" />
+    <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\SoapService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -293,6 +305,7 @@
     <Content Include="Content\FrontCss\animate-custom.css" />
     <Content Include="Content\FrontCss\bb-press.css" />
     <Content Include="Content\FrontCss\be-slider.css" />
+    <Content Include="Content\FrontCss\carts.css" />
     <Content Include="Content\FrontCss\chosen.css" />
     <Content Include="Content\FrontCss\custom.css" />
     <Content Include="Content\FrontCss\flexslider.css" />
@@ -465,6 +478,7 @@
     <Content Include="Views\Account\RegisteResult.cshtml" />
     <Content Include="Views\Home\_NewestSoap.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -490,6 +504,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801270744153_AddImageUrlColumn.resx">
       <DependentUpon>201801270744153_AddImageUrlColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221424155_AddCartTb.resx">
+      <DependentUpon>201802221424155_AddCartTb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803111552415_AddColumn_AddCount_InCartsTable.resx">
+      <DependentUpon>201803111552415_AddColumn_AddCount_InCartsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

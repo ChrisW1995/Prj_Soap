@@ -64,6 +64,7 @@ namespace Prj_Soap
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
+                "~/Content/FrontCss/carts.css",
                       "~/Content/FrontCss/layout.css",
                       "~/Content/FrontCss/shortcodes.css",
                       "~/Content/FrontCss/settings.css",
@@ -82,6 +83,7 @@ namespace Prj_Soap
                       "~/Content/FrontCss/prettyPhoto.css",
                       "~/Content/FrontCss/font-awesome.css",
                 "~/Content/FrontCss/view-component.css"
+                
 
                 ));
 

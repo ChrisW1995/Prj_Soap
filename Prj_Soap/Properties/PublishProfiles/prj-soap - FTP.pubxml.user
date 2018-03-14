@@ -146,10 +146,10 @@
       <publishTime>09/30/2013 18:15:20</publishTime>
     </File>
     <File Include="bin/Prj_Soap.dll">
-      <publishTime>02/18/2018 16:46:00</publishTime>
+      <publishTime>02/22/2018 23:35:56</publishTime>
     </File>
     <File Include="bin/Prj_Soap.pdb">
-      <publishTime>02/18/2018 16:46:00</publishTime>
+      <publishTime>02/22/2018 23:35:56</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>12/13/2017 22:09:38</publishTime>
@@ -459,6 +459,9 @@
     </File>
     <File Include="Content/FrontCss/be-slider.css">
       <publishTime>01/19/2018 19:58:51</publishTime>
+    </File>
+    <File Include="Content/FrontCss/carts.css">
+      <publishTime>02/22/2018 23:24:51</publishTime>
     </File>
     <File Include="Content/FrontCss/chosen.css">
       <publishTime>01/19/2018 19:58:51</publishTime>
@@ -826,11 +829,14 @@
     <File Include="Views/Account/RegisteResult.cshtml">
       <publishTime>01/25/2018 15:44:21</publishTime>
     </File>
+    <File Include="Views/Cart/Index.cshtml">
+      <publishTime>02/22/2018 23:35:03</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>02/18/2018 15:40:33</publishTime>
     </File>
     <File Include="Views/Home/_NewestSoap.cshtml">
-      <publishTime>02/18/2018 15:59:09</publishTime>
+      <publishTime>02/22/2018 22:51:10</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>01/16/2018 16:10:24</publishTime>
@@ -853,8 +859,11 @@
     <File Include="Views/News/Index.cshtml">
       <publishTime>01/19/2018 23:22:31</publishTime>
     </File>
+    <File Include="Views/Product/Detail.cshtml">
+      <publishTime>02/22/2018 23:16:06</publishTime>
+    </File>
     <File Include="Views/Product/Index.cshtml">
-      <publishTime>02/18/2018 15:59:08</publishTime>
+      <publishTime>02/20/2018 09:57:06</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/16/2018 16:10:26</publishTime>
@@ -866,7 +875,7 @@
       <publishTime>01/16/2018 16:10:26</publishTime>
     </File>
     <File Include="Views/Shared/_FrontLayout2.cshtml">
-      <publishTime>02/18/2018 13:07:11</publishTime>
+      <publishTime>02/22/2018 23:28:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>01/16/2018 16:10:26</publishTime>

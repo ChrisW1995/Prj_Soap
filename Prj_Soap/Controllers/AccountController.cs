@@ -105,7 +105,14 @@ namespace Prj_Soap.Controllers
         [CustomAuthorization(LoginPage = "/Account/Login")]
         public ActionResult SignOut()
         {
+            Response.Cookies.Clear();
             FormsAuthentication.SignOut();
+            if (Request.Cookies["IdCookie"] != null)
+            {
+                var c = new HttpCookie("IdCookie");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
             return RedirectToAction("Login");
         }
 

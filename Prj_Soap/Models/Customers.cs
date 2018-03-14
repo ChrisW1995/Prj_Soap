@@ -42,5 +42,7 @@ namespace Prj_Soap.Models
         [Required]
         public DateTime SignUpTime { get; set; }
 
+        public ICollection<Carts> Carts { get; set; }
+
     }
 }
