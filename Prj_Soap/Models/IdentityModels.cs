@@ -26,6 +26,8 @@ namespace Prj_Soap.Models
         {
         }
 
+        public DbSet<Admin> Admin { get; set; }
+
         public DbSet<Customers> Customers { get; set; }
 
         public DbSet<Soap> Soaps { get; set; }

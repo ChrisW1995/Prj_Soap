@@ -7,13 +7,13 @@ namespace Prj_Soap.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddColumn_AddCount_InCartsTable : IMigrationMetadata
+    public sealed partial class AddAdminTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddColumn_AddCount_InCartsTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAdminTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803111552415_AddColumn_AddCount_InCartsTable"; }
+            get { return "201803141348316_AddAdminTable"; }
         }
         
         string IMigrationMetadata.Source

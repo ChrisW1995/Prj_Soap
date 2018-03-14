@@ -12,13 +12,25 @@
                <li>Remove</li>
             </ul>-->
         <ul class="cartWrap">
+            @{ int sum = 0;}
             @if (Model.Count() != 0)
             {
                 int count = 0;
+
                 foreach (var item in Model)
                 {
-
-
+                    sum += item.TotoalPrice;
+                    bool isInStock = item.IsInStock == true;
+                    string color = "", stockStatus;
+                    if (isInStock)
+                    {
+                        stockStatus = "有庫存";
+                    }
+                    else
+                    {
+                        stockStatus = "無庫存";
+                        color = "red";
+                    }
                     string className = "";
                     if (count % 2 != 0)
                     {
@@ -37,14 +49,14 @@
                                 <p class="itemNumber">@item.Id</p>
                                 <h3>@item.ItemName</h3>
 
-                                <p> <input type="text" class="qty" placeholder="3" /> x @item.Price</p>
+                                <p> <input type="text" class="qty" placeholder="" style="width:100%" value="@item.AddCount"/> x @item.Price</p>
 
-                                <p class="stockStatus"> In Stock</p>
+                                <p class="stockStatus" style="color:@color"> @stockStatus</p>
                             </div>
 
 
                             <div class="prodTotal cartSection">
-                                <p>$15.00</p>
+                                <p>NT @item.TotoalPrice</p>
                             </div>
                             <div class="cartSection removeWrap">
                                 <a href="#" class="remove">x</a>
@@ -66,12 +78,12 @@
 
     <div class="subtotal cf">
         <ul>
-            <li class="totalRow"><span class="label">Subtotal</span><span class="value">$35.00</span></li>
+            @*<li class="totalRow"><span class="label">Subtotal</span><span class="value">$35.00</span></li>*@
 
           <!--  <li class="totalRow"><span class="label">Shipping</span><span class="value">$5.00</span></li>
 
             <li class="totalRow"><span class="label">Tax</span><span class="value">$4.00</span></li>-->
-            <li class="totalRow final"><span class="label">Total</span><span class="value">$44.00</span></li>
+            <li class="totalRow final"><span class="label">總金額</span><span class="value">@sum</span></li>
             <li class="totalRow"><a href="#" class="btn continue">結帳去</a></li>
         </ul>
     </div>

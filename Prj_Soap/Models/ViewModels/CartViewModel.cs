@@ -20,5 +20,7 @@ namespace Prj_Soap.Models.ViewModels
 
         public int AddCount { get; set; }
 
+        public int TotoalPrice { get; set; }
+
     }
 }

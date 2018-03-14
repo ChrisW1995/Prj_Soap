@@ -28,6 +28,20 @@ namespace Prj_Soap
                 "~/Scripts/AdminJS/dashboard2.js",
                 "~/Scripts/AdminJS/demo.js"
             ));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin/login").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/AdminLogin/animsition.js",
+                "~/Scripts/AdminLogin/popper.js",
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/AdminLogin/select2.js",
+                "~/Scripts/AdminLogin/moment.js",
+                "~/Scripts/AdminLogin/daterangepicker.js",
+                "~/Scripts/AdminLogin/countdowntime.js",
+                "~/Scripts/AdminLogin/main.js"
+
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/frontmain").Include(
                 "~/Scripts/FrontJS/jquery.js",
                 "~/Scripts/FrontJS/jquery-migrate.min.js",
@@ -93,6 +107,20 @@ namespace Prj_Soap
                 "~/Content/AdminCss/AdminLTE.css",
                 "~/Content/AdminCss/skin-yellow-light.css",
                 "~/Content/AdminCss/component.css"
+            ));
+
+            bundles.Add(new StyleBundle("~/Content/css/adminlogin").Include(
+                "~/Content/AdminLogin/favicon.ico",
+                "~/Content/bootstrap.css",
+                "~/Content/FrontCss/font-awesome.css",
+                "~/Content/AdminLogin/icon-font.min.css",
+                "~/Content/AdminLogin/animate.css",
+                "~/Content/AdminLogin/hamburgers.css",
+                "~/Content/AdminLogin/animsition.css",
+                "~/Content/AdminLogin/select2.css",
+                "~/Content/AdminLogin/daterangepicker.css",
+                 "~/Content/AdminLogin/util.css",
+                  "~/Content/AdminLogin/main.css"
             ));
 
             BundleTable.EnableOptimizations = false;

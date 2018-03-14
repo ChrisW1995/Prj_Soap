@@ -24,7 +24,9 @@ namespace Prj_Soap.Service
                    ImageUrl = s.ImageUrl,
                    IsInStock = s.IsInStock,
                    Price = s.Price,
-                   ItemName = s.ItemName
+                   ItemName = s.ItemName,
+                   AddCount = c.AddCount,
+                   TotoalPrice = c.AddCount*s.Price
                 });
             return list;
         }

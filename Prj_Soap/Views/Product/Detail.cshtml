@@ -240,6 +240,7 @@
             $("#btn-add-item").on("click", function () {
                 var id = $(this).data("product_id");
                 AddToCart(id);
+                return false;
             });
         });
 

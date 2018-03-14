@@ -17,6 +17,13 @@ namespace Prj_Soap.Service
     {
         private IRepository<Customers> repository = new GenericRepository<Customers>(new ApplicationDbContext());
         private LocalDateTimeService timeService = new LocalDateTimeService();
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public Admin AdminLogin(string acc, string pass)
+        {
+            var admin = db.Admin.Where(x => x.Account.Equals(acc) && x.Passowrd.Equals(pass)).SingleOrDefault();
+            return admin;
+        }
 
         public Customers Login(LoginViewModel vm)
         {

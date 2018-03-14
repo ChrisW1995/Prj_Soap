@@ -10,6 +10,7 @@ using System.Net;
 
 namespace Prj_Soap.Areas.Admin.Controllers
 {
+    [CustomAuthorization(LoginPage = "~/Admin/Home/Login", Roles = "Admin")]
     public class SoapController : Controller
     {
         SoapService soapService = new SoapService();

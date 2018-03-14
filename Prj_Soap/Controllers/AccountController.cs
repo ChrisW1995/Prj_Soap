@@ -54,8 +54,7 @@ namespace Prj_Soap.Controllers
                     today,
                     DateTime.Now.AddHours(24),
                     false,
-                    "User",
-                    FormsAuthentication.FormsCookiePath
+                    "User"
                     );
 
                 var idCookie = new HttpCookie("IdCookie");
