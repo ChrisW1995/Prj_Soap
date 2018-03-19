@@ -10,6 +10,46 @@
  
 </section>
 
+
+    @using (Html.BeginForm("Edit", "Soap", FormMethod.Post, new { @id = "dialog_div", @title="編輯", @enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" id="edit-soap-id" name="Id">
+        <div class="form-group">
+            <label>商品名稱</label>
+            <input id="edt-soap-name" name="ItemName" type="text" class="form-control" placeholder="商品名稱 ...">
+        </div>
+
+        <div class="form-group">
+            <label>商品內容</label>
+            <textarea id="edt-soap-content" name="ItemContent" class="form-control" rows="3" placeholder="商品內容 ..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>售價</label>
+            <input id="edt-soap-price" name="Price" class="form-control" rows="3" placeholder="商品售價" />
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="edt-chk-soap-instock"> 可購買
+            </label>
+        </div>
+        <br />
+
+        <div class="">
+            <label>商品圖片</label>
+            <input id="edit-image-file" name="ImageFile" type="file" class="">
+        </div>
+
+
+        <div id="edt-imgPreview" class="thumbnail">
+            <img class="edit-img-responsive" id="edit-targetImg" />
+            <div class="caption">
+                <span id="edit-image-description"></span>
+            </div>
+        </div>
+    }
+
 <section class="content">
     <div class="row">
         <div class="col-md-3">
@@ -30,14 +70,38 @@
 @section scripts
 {
     <script>
+        @Html.Raw(TempData["editStatus"]);
         $(document).ready(function () {
-            $("#image-file").change(function () {
+            $("#image-file, #edit-image-file").change(function () {
                 var _file = this.files;
-
+                var fileId = $(this).attr('id');
                 if (_file && _file[0]) {
-                    ReadImage(_file[0]);
+                    ReadImage(_file[0], fileId);
                 }
             });
+
+            $("#dialog_div").dialog({
+                autoOpen: false,
+                show: "blind",
+                modal: true,
+                dialogClass: "dlg-no-close",
+                buttons: [
+                    {
+                        text: "修改",
+                        type: "submit",
+                        click: function () {
+                            $("#dialog_div").submit();
+                        }
+                    },
+                    {
+                        text: "取消",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            }); 
+
             $("#btn-soap-upload").on("click", function () {
                 var file = $("#image-file").get(0).files;
                 var data = new FormData();
@@ -66,10 +130,13 @@
             
         });
 
-        var ReadImage = function(file) {
+        var ReadImage = function(file, fileId) {
             var reader = new FileReader();
             var image = new Image();
-
+            var editString = "";
+            if (fileId.includes("edit")) {
+                editString = "edit-";
+            }
             reader.readAsDataURL(file);
             reader.onload = function(file2) {
 
@@ -81,9 +148,9 @@
                     var type = file.type;
                     var size = ~~(file.size / 1024) + "KB";
 
-                    $("#targetImg").attr("src", file2.target.result);
-                    $("#image-description").text("圖片大小: " + size + ", " + height + "x" + width + ", " + type + "");
-                    $("#imgPreview").show();
+                    $("#" + editString+"targetImg").attr("src", file2.target.result);
+                    $("#" + editString+"image-description").text("圖片大小: " + size + ", " + height + "x" + width + ", " + type + "");
+                    $("#" + editString+"imgPreview").show();
                 }
             }
         }
@@ -125,7 +192,7 @@
                                </div>\
                             </td>\
                             <td>\
-                                <a href='#'>" + data.ItemName + "</a>\
+                                <a class='item-soap' href='#' data-id='"+ data.Id + "'>" + data.ItemName + "</a>\
                             </td>\
                             <td>" + data.FormattedDate + "</td>\
                             <td><button class='btn-soap-delete btn btn-xs btn-danger' data-id='"+ data.Id +"'><i style='font-size:22px' class='fa fa-remove'></button></i></td>\
@@ -136,7 +203,35 @@
                     $(".btn-soap-delete").on("click", function () {
                         var soapId = $(this).data('id');
                         DeleteSoap(soapId);
+                        return false;
                     });
+
+                    $(".item-soap").on("click", function () {
+                        $("#dialog_div").dialog("open");
+                        $("#edit-image-description").text("");
+                        var id = $(this).data('id');
+                        $.ajax({
+                            method: "GET",
+                            url: "/Soap/GetSoap/" + id
+                        })
+                            .done(function (data) {
+                                $("#edit-soap-id").val(data.Id);
+                                $("#edt-soap-name").val(data.ItemName);
+                                $("#edt-soap-content").val(data.ItemContent);
+                                $("#edt-soap-price").val(data.Price);
+                                $("#edit-targetImg").attr("src", data.ImageUrl);
+                                var isInStock = data.IsInStock;
+                                if (isInStock) {
+                                    $("#edt-chk-soap-instock").prop("checked", true);
+                                } else {
+                                    $("#edt-chk-soap-instock").prop("checked", false);
+                                }
+
+                            });
+
+                        return false; 
+                    });
+
                     GetPagination(data.Total, page);
                     
                 });

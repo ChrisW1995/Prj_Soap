@@ -58,5 +58,32 @@ namespace Prj_Soap.Areas.Admin.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
         }
+
+        [HttpGet]
+        public JsonResult GetSoap(string id)
+        {
+            var instance = soapService.GetSoap(id);
+            return Json(instance, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Edit(SoapUploadViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["editStatus"] = "alert('請確認欄位是否有遺漏');";
+                return RedirectToAction("Index");
+            }
+
+            var result = soapService.Edit(model);
+            if (result.Success != true)
+            {
+                TempData["editStatus"] = "alert('Error');";
+            }
+            else
+            {
+                TempData["editStatus"] = "alert('修改成功');";
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

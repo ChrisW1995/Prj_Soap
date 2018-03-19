@@ -7,6 +7,8 @@ using System.Web.Security;
 using System.Web.UI.WebControls;
 using Prj_Soap.Models.ViewModels;
 using Prj_Soap.Service;
+using AutoMapper;
+using Prj_Soap.Models;
 
 namespace Prj_Soap.Controllers
 {
@@ -101,7 +103,7 @@ namespace Prj_Soap.Controllers
             return View();
         }
 
-        [CustomAuthorization(LoginPage = "/Account/Login")]
+        [CustomAuthorization(LoginPage = "/Account/Login", Roles = "User")]
         public ActionResult SignOut()
         {
             Response.Cookies.Clear();
@@ -115,10 +117,61 @@ namespace Prj_Soap.Controllers
             return RedirectToAction("Login");
         }
 
-        [CustomAuthorization(LoginPage = "/Account/Login")]
-        public ActionResult Info()
+        [CustomAuthorization(LoginPage = "/Account/Login", Roles = "User")]
+        public ActionResult Profile()
         {
-            return View();
+            var c_id = Request.Cookies["IdCookie"].Values["customer_id"];
+            var account = Mapper.Map<Customers, EditProfileViewModel>(accountService.GetAccount(c_id));
+            return View(account);
         }
+
+        public ActionResult EditProfile(EditProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Profile");
+            }
+            var result = accountService.UpdateProfile(model);
+            if (!result.Success)
+            {
+                TempData["profileStatus"] = "alert('修改失敗，請稍後再試');";
+            }
+            else
+            {
+                TempData["profileStatus"] = "alert('修改完成');";
+            }
+
+
+
+            return RedirectToAction("Profile");
+        }
+
+        public ActionResult AccountInfo()
+        {
+            var c_id = Request.Cookies["IdCookie"].Values["customer_id"];
+            var account = Mapper.Map<Customers, EditAccountViewModel>(accountService.GetAccount(c_id));
+            return View(account);
+
+        }
+
+        public ActionResult SaveAccountChange(EditAccountViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("AccountInfo");
+
+            }
+
+            var result = accountService.SaveAccountChange(model);
+            if (!result.Success)
+            {
+                TempData["accStatus"] = "alert('修改失敗')";
+            }
+
+            TempData["accStatus"] = "alert('修改完成，下次請以新密碼登入')";
+
+            return RedirectToAction("AccountInfo");
+        }
+        
     }
 }

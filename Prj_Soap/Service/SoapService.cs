@@ -69,6 +69,38 @@ namespace Prj_Soap.Service
             return result;
         }
 
+        public IResult Edit(SoapUploadViewModel model)
+        {
+            IResult result = new Result();
+            try
+            {
+                var instance = GetSoap(model.Id);
+                var imageUrl = "";              
+                var file = model.ImageFile;
+                if (file != null) //there is no new image
+                {
+                    var fileName = Path.GetFileName(file.FileName);                
+                    var savePath = HttpContext.Current.Server.MapPath("/Upload/Soap/") + fileName;
+                    file.SaveAs(savePath);
+                    imageUrl = "/Upload/Soap/" +fileName;
+                }
+                else
+                {
+                    imageUrl = instance.ImageUrl;
+                }
+                Mapper.Map(model, instance);
+                instance.ImageUrl = imageUrl;
+                repository.Update(instance);
+                result.Success = true;
+
+            }
+            catch(Exception e)
+            {
+                result.Message = e.ToString();
+            }
+            return result;
+        }
+
         public Soap SaveItem(SoapUploadViewModel model, string serverPath)
         {
             var file = model.ImageFile;

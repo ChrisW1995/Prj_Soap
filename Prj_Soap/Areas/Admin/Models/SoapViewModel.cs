@@ -9,6 +9,8 @@ namespace Prj_Soap.Areas.Admin.Models
 {
     public class SoapUploadViewModel
     {
+        public string Id { get; set; }
+
         [Required]
         [StringLength(50)]
         [Display(Name = "商品名稱")]

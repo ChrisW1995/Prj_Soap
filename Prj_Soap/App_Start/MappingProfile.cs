@@ -20,6 +20,12 @@ namespace Prj_Soap.App_Start
             CreateMap<RegisterViewModel, Customers>();
             CreateMap<Customers, RegisterViewModel>();
 
+            CreateMap<EditProfileViewModel, Customers>();
+            CreateMap<Customers, EditProfileViewModel>();
+
+            CreateMap<EditAccountViewModel, Customers>();
+            CreateMap<Customers, EditAccountViewModel>();
+
             CreateMap<SoapUploadViewModel, Soap>();
             CreateMap<Soap, SoapUploadViewModel>();
 

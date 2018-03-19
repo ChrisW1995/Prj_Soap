@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1wXKwdhje0OmZaHgL2GqXgAAAAACAAAAAAAQZgAAAAEAACAAAABz3O+bsxlzov1AtA4zlwO7vE7tjslfqwr80czOVFslaQAAAAAOgAAAAAIAACAAAABovShp53qzk2umAJ1yqXlka8kyJWn87dUDP/K+4s4HXIAAAAAZddhJX5dhoIe6fr4OgVBPld4/NTADdz2ZuS382RgRpTccdvJ3aGj7LQDWe0hCwM846c/r1++8G/KQkuez/akhJk1maTauqtOKG1qR+qacf3IG8mfGPQVM6MmUe59MI0pq3oiuHKhXPdULwGTKj+nmH9kELZb0Sc1aqt/hGH0YqEAAAAAIdxLXGtpSTE3446tY9nAyRzVvErxU2k9cTmf3zG6WlsKvZwj0tvdLIDPiW6OyrSrXg6QAVDnQLcqAesXa0Hqr</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+ofPZMkx3UWolNbWekoSYgAAAAACAAAAAAAQZgAAAAEAACAAAAC1Ht2y2l4A5Njm7Gm9V/htDe7Wks60pQvhGqkjP1C5sQAAAAAOgAAAAAIAACAAAABEu7vgeNAjpJqx/6CV+X3lsGQnGJNUXKIPJo99E3R+wIAAAABeA/GspCM8MzA8gLYs3eJF0rLBqeLD3t8gYmBNXr5JNzA4LlsikUwMYVGxYtBQ3kNjUvkXVxJWCEbhllUdez9sE6X3g1qaCRCM/fJEtpU/G4spTMdoDKb1jE4Rvan6bIYnOLCpFcHUqIDrBIRMeuKk+6GJpiT8AiOeIV2Ihjhqx0AAAABxPlhO23arP4yzcXo+S+Sx6NRdYBm6PdUwH3M6VlUnzLlIDv1ms0PhZgoHjXpRl2QTOJL6+ZM/PVBFpyaqgWlK</EncryptedPassword>
     <_PublishTargetUrl>ftp://waws-prod-ty1-013.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>

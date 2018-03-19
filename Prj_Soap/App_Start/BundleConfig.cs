@@ -16,6 +16,7 @@ namespace Prj_Soap
 
             bundles.Add(new ScriptBundle("~/bundles/admin/lib").Include(
                 "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery-ui-{version}.js",
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/AdminJS/fastclick.min.js",
@@ -77,6 +78,7 @@ namespace Prj_Soap
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/themes/base/jquery-ui.css",
                 "~/Content/bootstrap.css",
                 "~/Content/FrontCss/carts.css",
                       "~/Content/FrontCss/layout.css",
@@ -102,6 +104,7 @@ namespace Prj_Soap
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css/admin").Include(
+                "~/Content/themes/base/jquery-ui.css",
                 "~/Content/bootstrap.css",
                 "~/Content/AdminCss/jquery-jvectormap-1.2.2.css",
                 "~/Content/AdminCss/AdminLTE.css",

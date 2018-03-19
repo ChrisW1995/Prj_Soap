@@ -32,6 +32,12 @@ namespace Prj_Soap.Service
             return customer;
         }
 
+        public Customers GetAccount(string id)
+        {
+            var acc = repository.Get(x => x.Id == id);
+            return acc;
+        }
+
         /// <summary>
         /// Registe as a new member
         /// </summary>
@@ -62,6 +68,24 @@ namespace Prj_Soap.Service
                 throw;
             }
 
+            return result;
+        }
+
+        public IResult UpdateProfile(EditProfileViewModel model)
+        {
+            IResult result = new Result();
+            try
+            {
+                var instance = repository.Get(x => x.Id.Equals(model.Id));
+                Mapper.Map(model, instance);
+                repository.Update(instance);
+                result.Success = true;
+
+            }
+            catch(Exception e)
+            {
+                result.Message = e.ToString();
+            }
             return result;
         }
 
@@ -96,6 +120,25 @@ namespace Prj_Soap.Service
         {
             var query = repository.Get(a => a.Account == Account);
             bool result = (query != null);
+            return result;
+        }
+
+        public IResult SaveAccountChange(EditAccountViewModel model)
+        {
+            IResult result = new Result();
+            try
+            {
+                var acc = repository.Get(x => x.Id.Equals(model.Id));
+                var hashPassword = HashPassword(model.Password);
+                acc.Password = hashPassword;
+                repository.Update(acc);
+                result.Success = true;
+            }
+            catch(Exception e)
+            {
+                result.Message = e.ToString();
+            }
+
             return result;
         }
     }

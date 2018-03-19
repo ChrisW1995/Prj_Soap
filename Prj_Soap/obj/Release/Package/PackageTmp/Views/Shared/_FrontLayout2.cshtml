@@ -27,7 +27,7 @@
 
 </head>
 
-<body class="home page page-id-2694 page-template-default _masterslider _msp_version_2.7.2 no-section-scroll no-smooth-scroll top-header top-right-sliding-menu be-themes-layout-layout-wide">
+<body class="woocommerce woocommerce-page home page page-id-2694 page-template-default _masterslider _msp_version_2.7.2 no-section-scroll no-smooth-scroll top-header top-right-sliding-menu be-themes-layout-layout-wide">
 
     <div id="main-wrapper">
         <div id="main" class="ajaxable layout-wide">
@@ -93,7 +93,7 @@
 
                                             <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
                                                 <li><!--User.Identity.Name-->
-                                                    @Html.ActionLink("會員專區", "Info", "Account", routeValues: null, htmlAttributes: new {@class = "nav-member", title = "Manage", style="display:block;" })
+                                                    @Html.ActionLink("會員專區", "Profile", "Account", routeValues: null, htmlAttributes: new {@class = "nav-member", title = "Manage", style="display:block;" })
                                                 </li>
                                                 <li><a class="nav-member" href="javascript:document.getElementById('logoutForm').submit()" title="會員專區">登出</a></li>
                                             </ul>
@@ -148,10 +148,10 @@
                                         <li id="menu-item-2896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2896">
                                             <a href="/Product">商品列表</a>
                                             <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
-                                            <ul class="sub-menu clearfix">
+                                            @*<ul class="sub-menu clearfix">
                                                 <li id="menu-item-2898" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
                                                 <li id="menu-item-2897" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
-                                            </ul>
+                                            </ul>*@
                                         </li>
                                         @*<li id="menu-item-2904" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2904">
                                             <a href="#">Shop Categories</a>
@@ -230,12 +230,11 @@
             <div class="header-hero-section"></div>
             <div id="content" class="no-sidebar-page">
                 <div id="content-wrap" class="page-builder">
-                    <section id="page-content">
+
                     
                     
                     @RenderBody()
-                        <!--  End Page Content -->
-                    </section>
+
                 </div>
             </div>
             <footer id="bottom-widgets">
