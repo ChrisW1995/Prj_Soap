@@ -21,3 +21,65 @@
     padding: 0 10px !important;
 }
 
+#product-tabs, .ui-tabs .ui-tabs-nav li.ui-tabs-active a,
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    border: 0;
+
+}
+.ui-widget-header .ui-state-active {
+    background-color: #ff763a;
+}
+
+
+    .ui-widget-header {
+        border: 0;
+        background-color: #000;
+    }
+
+.ui-tabs .ui-tabs-nav li{
+    margin-right:10px;
+}
+
+.full-width{
+    width:100%;
+}
+.tabs-review-div {
+    height: 265px;
+    position: relative;
+
+}
+
+.customer-reviews-name {
+    padding-left: 20px 20px;
+    font-size:16px;
+    font-weight:700;
+    float: left;
+}
+
+.customer-reviews-date {
+    text-align: right;
+    color: #989898;
+}
+
+.reviews-reply {
+    height: 110px;
+    background-color: #fff6e9;
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    right: 0;
+}
+
+.reviews-content{
+    padding:10px 20px;
+}
+
+.pagination > :first-child a, .pagination > :last-child a{
+    display: block;
+    width: auto;
+}
+.message-paged-div{
+    text-align:center;
+}
+
+

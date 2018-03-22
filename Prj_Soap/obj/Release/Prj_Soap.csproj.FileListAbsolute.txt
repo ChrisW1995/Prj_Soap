@@ -323,3 +323,4 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Relea
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.csproj.CopyComplete
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.dll
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.pdb
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddMessagesTable.resources

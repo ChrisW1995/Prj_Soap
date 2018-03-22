@@ -15,6 +15,7 @@ namespace Prj_Soap.Service
     public class ProductService
     {
         IRepository<Carts> repository = new GenericRepository<Carts>(new ApplicationDbContext());
+        IRepository<Messages> msgRepository = new GenericRepository<Messages>(new ApplicationDbContext());
         ApplicationDbContext db = new ApplicationDbContext();
         CartService cartService = new CartService();
         SoapService soapService = new SoapService();
@@ -76,5 +77,42 @@ namespace Prj_Soap.Service
             return instance != null;
         }
 
+        public IResult CreateMessage(string c_id, NewMessagesViewModel model)
+        {
+            IResult result = new Result();
+            try
+            {
+                var instance = new Messages
+                {
+                    C_Id = c_id,
+                    P_Id = model.P_Id,
+                    Content = model.Content,
+                    AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME)
+
+                };
+                msgRepository.Create(instance);
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = e.ToString();
+                throw;
+            }
+            return result;
+
+        }
+
+        public IEnumerable<MessageListViewModel> GetMessages(string p_id)
+        {
+            var list = db.Messages.Join(db.Customers,
+                m => m.C_Id, c => c.Id,
+                (m, c) => new MessageListViewModel() {
+                    AddTime = m.AddTime,
+                    Content = m.Content,
+                    C_Name = c.Name,
+                    ReplyContent = m.ReplyContent
+                }).OrderByDescending(x=>x.AddTime);
+            return list;
+        }
     }
 }

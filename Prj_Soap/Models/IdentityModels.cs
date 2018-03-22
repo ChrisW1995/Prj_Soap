@@ -26,6 +26,8 @@ namespace Prj_Soap.Models
         {
         }
 
+        public DbSet<Messages> Messages { get; set; }
+
         public DbSet<Admin> Admin { get; set; }
 
         public DbSet<Customers> Customers { get; set; }
@@ -53,6 +55,18 @@ namespace Prj_Soap.Models
               .HasRequired(c => c.Soap)
               .WithMany(a => a.Carts)
               .HasForeignKey(f => f.SoapId);
+
+            modelBuilder.Entity<Messages>()
+                .HasRequired(c => c.Customer)
+                .WithMany(a => a.Messages)
+                .HasForeignKey(f => f.C_Id);
+
+            modelBuilder.Entity<Messages>()
+                .HasRequired(c => c.Soap)
+                .WithMany(a => a.Messages)
+                .HasForeignKey(f => f.P_Id);
+
+
             //modelBuilder.Entity<Customers>()
             //    .HasRequired(c => c.Counties)
             //    .WithMany(c => c.Customers)

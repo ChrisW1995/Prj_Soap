@@ -1,0 +1,19 @@
+﻿@model Prj_Soap.Models.ViewModels.NewMessagesViewModel
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("AddMessage", "Product", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.P_Id)
+        @Html.TextAreaFor(m => m.Content, new { @placeholder = "提出問題(限200字以內).." })
+
+        <button type="submit" style="display:block; margin:0 auto;">送出</button>
+    }
+
+}
+else
+{
+    <div style="text-align:center">
+        請先 <a href="/Account/Login">登入</a> 後再進行留言
+    </div>
+}

@@ -30,5 +30,7 @@ namespace Prj_Soap.Models
         public DateTime UploadTime { get; set; }
 
         public ICollection<Carts> Carts { get; set; }
+
+        public ICollection<Messages> Messages { get; set; }
     }
 }

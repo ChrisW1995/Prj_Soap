@@ -1,4 +1,6 @@
-﻿@model Prj_Soap.Models.Soap
+﻿@model Prj_Soap.Models.ViewModels.SoapDetailViewModel
+@using PagedList.Mvc
+@using PagedList
 <!DOCTYPE html>
 
 <section class="clearfix">
@@ -7,15 +9,15 @@
 
         <div class="clearfix product-single-boxed-content">
             <div class="images">
-                <a href="@Model.ImageUrl" itemprop="image" class="woocommerce-main-image zoom" title="@Model.ItemName" data-rel="prettyPhoto"><img width="454" height="640" src="@Model.ImageUrl" class="attachment-shop_single wp-post-image" alt="@Model.ItemName" title="oshin-shop-0011"></a>
+                <a href="@Model.Soap.ImageUrl" itemprop="image" class="woocommerce-main-image zoom" title="@Model.Soap.ItemName" data-rel="prettyPhoto"><img width="454" height="640" src="@Model.Soap.ImageUrl" class="attachment-shop_single wp-post-image" alt="@Model.Soap.ItemName" title="oshin-shop-0011"></a>
             </div>
 
             <div class="summary entry-summary">
 
-                <h1 itemprop="name" class="product_title entry-title">@Model.ItemName</h1>
+                <h1 itemprop="name" class="product_title entry-title">@Model.Soap.ItemName</h1>
                 <div itemprop="offers" itemtype="http://schema.org/Offer">
 
-                    <p class="price"><span class="amount">NTD @Model.Price</span></p>
+                    <p class="price"><span class="amount">NTD @Model.Soap.Price</span></p>
 
                     <meta itemprop="price" content="34.99">
                     <meta itemprop="priceCurrency" content="GBP">
@@ -23,21 +25,21 @@
 
                 </div>
                 <div itemprop="description">
-                    <p>@Model.ItemContent</p>
+                    <p>@Model.Soap.ItemContent</p>
                 </div>
 
                 <form class="variations_form cart" method="post" enctype="multipart/form-data" data-product_id="2754">
                     <table class="variations" cellspacing="0">
                         <tbody>
                             <tr>
-                                
+
                                 <td class="value">
-                                    <button id="btn-add-item" data-product_id="@Model.Id" class=" btn-block">加入購買</button>
+                                    <button id="btn-add-item" data-product_id="@Model.Soap.Id" class=" btn-block">加入購買</button>
                                     @*<select id="color" name="attribute_color">
-                                        <option value="">Choose an option…</option>
-                                        <option value="black" selected="selected">Black</option>
-                                        <option value="brown">Brown</option>
-                                    </select>*@
+                                            <option value="">Choose an option…</option>
+                                            <option value="black" selected="selected">Black</option>
+                                            <option value="brown">Brown</option>
+                                        </select>*@
                                 </td>
                             </tr>
                         </tbody>
@@ -75,150 +77,76 @@
                         </li>
 
 
-           
+
                     </ul>
 
                     <div class="panel entry-content" id="tab-description" style="display: block;">
 
                         <h2>產品內容</h2>
 
-                        <p>@Model.ItemContent</p>
+                        <p>@Model.Soap.ItemContent</p>
                     </div>
-
-
-
-
-
-
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-
+                    <div class="clear"></div>
                 </div>
-
-
             </div>
-            <!-- .summary -->
 
-  
-        <div class="related products">
-
-            <h2>問與答</h2>
-
-            <ul class="products">
-                <li class="first post-2756 product type-product status-publish has-post-thumbnail product_cat-accessories product_cat-casuals product_cat-footwear sale shipping-taxable purchasable product-type-simple product-cat-accessories product-cat-casuals product-cat-footwear instock">
-                    <a href="#">
-
-                    </a>
-                    <div class="product-thumbnail-image-wrap">
-                        <a href="#">
-                            <span class="onsale">Sale!</span>
-                            <img width="255" height="360" src="../upload/oshin-shop-0012-255x360.jpg" class="attachment-shop_catalog wp-post-image" alt="oshin-shop-0012">
-                        </a>
-                    </div>
-                    <div class="product-meta-data clearfix">
-                        <a href="#">
-                            <h3>Brown Casual Velvet Shoe</h3>
-
-
-
-                            <span class="price"><del><span class="amount">£59.99</span></del> <ins><span class="amount">£44.99</span></ins></span>
-                        </a>
-                        <div class="button_ajax_wrapper clearfix">
-                            <a href="#" rel="nofollow" data-product_id="2756" data-product_sku="" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
-                        </div>
-                        <a href="#">
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="post-2758 product type-product status-publish has-post-thumbnail product_cat-accessories product_cat-casuals product_cat-footwear sale shipping-taxable purchasable product-type-simple product-cat-accessories product-cat-casuals product-cat-footwear instock">
-                    <a href="#">
-
-                    </a>
-                    <div class="product-thumbnail-image-wrap">
-                        <a href="#">
-                            <span class="onsale">Sale!</span>
-                            <img width="255" height="360" src="../upload/oshin-shop-0014-255x360.jpg" class="attachment-shop_catalog wp-post-image" alt="oshin-shop-0014">
-                        </a>
-                    </div>
-                    <div class="product-meta-data clearfix">
-                        <a href="#">
-                            <h3>Black Casual Velvet Shoe</h3>
-
-
-
-                            <span class="price"><del><span class="amount">£59.99</span></del> <ins><span class="amount">£44.99</span></ins></span>
-                        </a>
-                        <div class="button_ajax_wrapper clearfix">
-                            <a href="#" rel="nofollow" data-product_id="2758" data-product_sku="" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
-                        </div>
-                        <a href="#">
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="post-1470 product type-product status-publish has-post-thumbnail product_cat-accessories product_cat-casuals product_cat-footwear shipping-taxable purchasable product-type-simple product-cat-accessories product-cat-casuals product-cat-footwear instock">
-
-
-                    <a href="#">
-
-                    </a>
-                    <div class="product-thumbnail-image-wrap">
-                        <a href="#"><img width="255" height="360" src="../upload/oshin-shop-0022-255x360.jpg" class="attachment-shop_catalog wp-post-image" alt="oshin-shop-0022"></a>
-                    </div>
-                    <div class="product-meta-data clearfix">
-                        <a href="#">
-                            <h3>Blue Denim Shoe</h3>
-
-
-
-                            <span class="price"><span class="amount">£49.99</span></span>
-                        </a>
-                        <div class="button_ajax_wrapper clearfix">
-                            <a href="#" rel="nofollow" data-product_id="1470" data-product_sku="W012" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
-                        </div>
-                        <a href="#">
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="last post-2749 product type-product status-publish has-post-thumbnail product_cat-accessories product_cat-footwear shipping-taxable purchasable product-type-simple product-cat-accessories product-cat-footwear instock">
-
-
-                    <a href="#">
-
-                    </a>
-                    <div class="product-thumbnail-image-wrap">
-                        <a href="#"><img width="255" height="360" src="../upload/oshin-shop-0000-255x360.jpg" class="attachment-shop_catalog wp-post-image" alt="oshin-shop-0000"></a>
-                    </div>
-                    <div class="product-meta-data clearfix">
-                        <a href="#">
-                            <h3>Brown Leather Shoe</h3>
-
-
-
-                            <span class="price"><span class="amount">£29.99</span></span>
-                        </a>
-                        <div class="button_ajax_wrapper clearfix">
-                            <a href="#" rel="nofollow" data-product_id="2749" data-product_sku="W004" data-quantity="1" class="button add_to_cart_button product_type_simple"></a>
-                        </div>
-                        <a href="#">
-                        </a>
-
-                    </div>
-                </li>
-
-            </ul>
         </div>
 
 
-        <meta itemprop="url" content="#">
-
     </div>
+    <!-- .summary -->
+
+
+    <div id="product-tabs" style="border:0;">
+        <ul style="border:0; background-color:#FFF">
+            <li><a href="#tabs-1">問與答</a></li>
+            <li><a href="#tabs-2">使用心得</a></li>
+        </ul>
+        <div id="tabs-1">
+            @if (Model.Messages.Count() == 0)
+            {
+                <div style="text-align:center;">目前尚未有提問</div>
+            }
+            else
+            {
+
+                foreach (var item in Model.Messages)
+                {
+                    <div class="full-width tabs-review-div">
+                        <div class="customer-reviews-name">@item.C_Name :</div>
+                        <div class="customer-reviews-date"> @item.FormattedAddDate</div>
+                        <div class="reviews-content">@item.Content</div>
+                        @if (!string.IsNullOrEmpty(item.ReplyContent))
+                        {
+                            <div class="reviews-reply reviews-content" style=""><b>回覆：</b><br /> <span style="padding:10px 20px;">@item.ReplyContent</span></div>
+                        }
+                    </div>
+                    <hr />
+                }
+
+
+            }
+            @Html.PagedListPager(Model.Messages, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+            {
+                LinkToFirstPageFormat = "第一頁",
+                LinkToLastPageFormat = "最末頁",
+                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                ContainerDivClasses = new string[] { "message-paged-div" }
+
+            })
+
+
+        </div>
+        <div id="tabs-2">
+            <p>2</p>
+        </div>
+    </div>
+
+    @Html.Action("_AddMessage", new { p_id = Model.Soap.Id })
+    <meta itemprop="url" content="#">
     <!-- #product-2754 -->
 
 
@@ -228,7 +156,11 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("body").addClass("woocommerce woocommerce-page");
+            $("#product-tabs").tabs({
+                classes: {
+                    "ui-tabs": "highlight"
+                }
+            });
             $("#content-wrap").addClass("be-wrap clearfix");
             $("#content").addClass("right-sidebar-page").removeClass("no-sidebar-page");
 
@@ -237,6 +169,8 @@
                 AddToCart(id);
                 return false;
             });
+
+            @Html.Raw(TempData["AddMsg"])
         });
 
         function AddToCart(id) {
@@ -250,11 +184,11 @@
                 }
             )
                 .done(function () {
-                    alert("已加入購物車");                   
+                    alert("已加入購物車");
                 })
                 .fail(function () {
                     alert("錯誤! 請稍候再試");
                 });
         }
     </script>
-    }
+}

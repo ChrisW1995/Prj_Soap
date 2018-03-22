@@ -7,6 +7,7 @@ using Prj_Soap.Service;
 
 namespace Prj_Soap.Controllers
 {
+    [CustomAuthorization(LoginPage = "/Account/Login", Roles = "User")]
     public class CartController : Controller
     {
         private CartService cartService = new CartService();

@@ -1,10 +1,12 @@
-﻿using Prj_Soap.Service;
+﻿using Prj_Soap.Models.ViewModels;
+using Prj_Soap.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Prj_Soap.Controllers
 {
@@ -19,10 +21,32 @@ namespace Prj_Soap.Controllers
             return View(list);
         }
 
-        public ActionResult Detail(string id)
+        public ActionResult AddMessage(NewMessagesViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["AddMsg"] = "alert('發問字數為200字內！');";
+
+                return RedirectToAction("Detail", new { id = model.P_Id });
+            }
+            var c_id = Request.Cookies["IdCookie"].Values["customer_id"];
+            var result = productService.CreateMessage(c_id, model);
+            if (result.Success == false)
+                TempData["AddMsg"] = "alert('提問失敗, 請稍後再試');";
+
+            return RedirectToAction("Detail", new { id = model.P_Id });
+        }
+
+        public ActionResult Detail(string id, int? page)
         {
             var instance = soapService.GetSoap(id);
-            return View(instance);
+            var messageList = productService.GetMessages(id);
+            var model = new SoapDetailViewModel()
+            {
+                Soap = instance,
+                Messages = messageList.ToPagedList(page ?? 1, 5)
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -36,6 +60,15 @@ namespace Prj_Soap.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+        }
+
+        public ActionResult _AddMessage(string p_id)
+        {
+            var model = new NewMessagesViewModel
+            {
+                P_Id = p_id
+            };
+            return PartialView("_AddMessage", model);
         }
     }
 }

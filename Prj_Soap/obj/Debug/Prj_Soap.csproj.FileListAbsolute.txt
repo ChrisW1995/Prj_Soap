@@ -324,3 +324,4 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.init.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.csproj.GenerateResource.cache
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddAdminTable.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddMessagesTable.resources
