@@ -1,0 +1,70 @@
+﻿<section class="content-header">
+    <h1>
+        <b>公告管理</b>
+    </h1>
+
+</section>
+
+@Html.Partial("_ReplyMessage")
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            @Html.Partial("_Messages")
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script>
+        @TempData["ReplyStatus"]
+        $(document).ready(function () {
+            $("#reply-dialog").dialog({
+                autoOpen: false,
+                show: "blind",
+                modal: true,
+                dialogClass: "dlg-no-close",
+                buttons: [
+                    {
+                        text: "儲存",
+                        type: "submit",
+                        click: function () {
+                            $("#reply-dialog").submit();
+                        }
+                    },
+                    {
+                        text: "取消",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            $(".rdo-status").change(function () {
+                $("#msg-status-form").submit();
+            });
+
+            $(".msg-link").on("click", function () {
+                $("#reply-dialog").dialog("open");
+
+                var id = $(this).data("msgid");
+
+                $.ajax({
+                    method: "GET",
+                    url: "/Admin/Message/GetMessage/" + id
+                })
+                    .done(function (json) {
+                        $("#msg-id").val(json.Id);
+                        $("#msg-content").text(json.Content);
+                        $("#reply-msg").val(json.ReplyContent);
+                    })
+                    .fail(function () {
+                        alert("Error");
+                    });
+                return false;
+            });
+        });
+    </script>
+}

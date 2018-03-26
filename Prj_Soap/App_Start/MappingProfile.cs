@@ -17,6 +17,9 @@ namespace Prj_Soap.App_Start
             CreateMap<News, CreateNewsDTO>();
             CreateMap<CreateNewsDTO, News>();
 
+            CreateMap<News, CreateNewsViewModel>();
+            CreateMap<CreateNewsViewModel, News>();
+
             CreateMap<RegisterViewModel, Customers>();
             CreateMap<Customers, RegisterViewModel>();
 

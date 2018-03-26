@@ -23,6 +23,7 @@ namespace Prj_Soap.Controllers.Api
                 return Ok(news);
             return NotFound();
         }
+
         [HttpPost]
         public IHttpActionResult Create(CreateNewsDTO dto)
         {

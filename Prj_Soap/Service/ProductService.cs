@@ -102,6 +102,11 @@ namespace Prj_Soap.Service
 
         }
 
+        /// <summary>
+        /// Get messages by id of product
+        /// </summary>
+        /// <param name="p_id"></param>
+        /// <returns></returns>
         public IEnumerable<MessageListViewModel> GetMessages(string p_id)
         {
             var list = db.Messages.Join(db.Customers,
@@ -114,5 +119,52 @@ namespace Prj_Soap.Service
                 }).OrderByDescending(x=>x.AddTime);
             return list;
         }
+
+        /// <summary>
+        /// Get all of the messages
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<MessageWithSoapNameViewModel> GetMessages()
+        {
+            var list = db.Messages.Join(db.Customers,
+                m => m.C_Id, c => c.Id,
+                (m, c) => new { m, c}).Join(db.Soaps, 
+                mc => mc.m.P_Id,
+                s => s.Id,
+                (mc, s) => new MessageWithSoapNameViewModel {
+                    AddTime = mc.m.AddTime,
+                    P_Id = s.Id,
+                    P_Name = s.ItemName,
+                    C_Name = mc.c.Name,
+                    Content = mc.m.Content,
+                    ReplyContent = mc.m.ReplyContent,
+                    Id = mc.m.Id
+                }).ToList();
+            return list;
+        }
+
+        public Messages GetMessage(int id)
+        {
+            return msgRepository.Get(x => x.Id == id);
+        }
+
+        public IResult ReplyMessage(ReplyMessageViewModel model)
+        {
+            IResult result = new Result();
+            try
+            {
+                var instance = msgRepository.Get(x => x.Id == model.Id);
+                instance.ReplyContent = model.ReplyContent;
+                msgRepository.Update(instance);
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = e.ToString();
+
+            }
+            return result;
+        }
+
     }
 }

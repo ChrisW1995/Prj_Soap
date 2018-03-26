@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Prj_Soap.Models.ViewModels.MessageWithSoapNameViewModel>
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">問與答管理</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Index", "Message", FormMethod.Get, new { @style = "padding:5px;", @id="msg-status-form" }))
+                {
+                    @Html.RadioButton("status", "all", true, new { @class ="rdo-status"})<text>所有</text>
+                    @Html.RadioButton("status", "uncheck", new { @style = "margin-left:10px;", @class = "rdo-status" })<text>未回覆</text>
+                    @Html.RadioButton("status", "checked", new { @style = "margin-left:10px;", @class = "rdo-status" })<text>已回覆</text>
+                }
+                <table id="tb-news" class="table table-hover">
+                    <tr>
+                        <th>狀態</th>
+                        <th>姓名</th>
+                        <th>商品</th>
+                        <th>內容</th>
+                        <th>時間</th>
+                    </tr>
+                    @if (Model == null)
+                    {
+                        <tr>
+                            <td colspan="4">無資料</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            string statusImg = string.IsNullOrEmpty(item.ReplyContent) ? "/images/question.png" : "/images/checked.png";
+                            string content = item.Content.Length >= 10 ? item.Content.Substring(0, 10) + ".." : item.Content;
+                            <tr>
+                                <td><img style="width:18px;" src="@statusImg" /></td>
+                                <td>@Html.DisplayFor(modelitem => item.C_Name)</td>
+                                <td><a href="/Product/Detail/@item.P_Id">@item.P_Name</a></td>
+                                <td><a class="msg-link" data-msgid="@item.Id" href="#">@content</a></td>
+                                <td>@Html.DisplayFor(modelitem => item.FormattedAddDate)</td>
+                            </tr>
+                        }
+                    }
+                </table>
+                @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+            </div>
+
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.box-body -->
+</div>

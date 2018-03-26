@@ -29,4 +29,12 @@ namespace Prj_Soap.Models.ViewModels
         [StringLength(250)]
         public string Content { get; set; }
     }
+
+    public class CreateNewsViewModel
+    {
+        [MaxLength(25)]
+        public string Title { get; set; }
+
+        public string Content { get; set; }
+    }
 }

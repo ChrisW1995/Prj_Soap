@@ -210,6 +210,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SoapController.cs" />
     <Compile Include="Areas\Admin\Models\AdminLoginViewModel.cs" />
@@ -394,7 +395,9 @@
     <Content Include="Areas\Admin\Views\Soap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Soap\_UploadSoap.cshtml" />
     <Content Include="Areas\Admin\Views\Soap\_SoapList.cshtml" />
+    <Content Include="Images\checked.png" />
     <Content Include="Images\nature-logo.png" />
+    <Content Include="Images\question.png" />
     <Content Include="Scripts\AdminLogin\animsition.js" />
     <Content Include="Scripts\AdminLogin\countdowntime.js" />
     <Content Include="Scripts\AdminLogin\daterangepicker.js" />
@@ -412,6 +415,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\Message\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Message\_Messages.cshtml" />
+    <Content Include="Areas\Admin\Views\Message\_ReplyMessage.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

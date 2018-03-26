@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using PagedList;
 using Prj_Soap.Models.ViewModels;
 using Prj_Soap.Service;
+using AutoMapper;
+using Prj_Soap.Models;
 
 namespace Prj_Soap.Areas.Admin.Controllers
 {
@@ -36,6 +38,28 @@ namespace Prj_Soap.Areas.Admin.Controllers
             }
             TempData["msg"] = "alert('修改完成');";
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CreateNews(CreateNewsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["AddNewsStatus"] = "alert('標題長度限制為25字以內');";
+                
+            }
+            else
+            {
+                var instance = Mapper.Map<CreateNewsViewModel, News>(model);
+                var result = newsService.CreateNews(instance);
+
+                if (!result.Success)
+                {
+                    TempData["AddNewsStatus"] = "alert('新增失敗, 請稍後再試');";
+                }
+
+            }
+            return RedirectToAction("Index");
+
         }
     }
 }
