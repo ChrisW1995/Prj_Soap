@@ -16,6 +16,7 @@ namespace Prj_Soap.Controllers
     public class AccountController : Controller
     {
         private AccountService accountService = new AccountService();
+        private ProductService productService = new ProductService();
         // GET: Account
         public ActionResult Registe()
         {
@@ -98,12 +99,14 @@ namespace Prj_Soap.Controllers
             };
             return registVM;
         }
+
+
         public ActionResult Login()
         {
             return View();
         }
 
-        [CustomAuthorization(LoginPage = "/Account/Login", Roles = "User")]
+        
         public ActionResult SignOut()
         {
             Response.Cookies.Clear();
@@ -171,6 +174,14 @@ namespace Prj_Soap.Controllers
             TempData["accStatus"] = "alert('修改完成，下次請以新密碼登入')";
 
             return RedirectToAction("AccountInfo");
+        }
+
+        [CustomAuthorization(LoginPage = "/Account/Login", Roles = "User")]
+        public ActionResult Messages()
+        {
+            var c_id = Request.Cookies["IdCookie"].Values["customer_id"];
+            var list = productService.GetUserMessages(c_id);
+            return View(list);
         }
         
     }

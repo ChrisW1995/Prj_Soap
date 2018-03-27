@@ -63,7 +63,7 @@
 
 .reviews-reply {
     height: 110px;
-    background-color: #fff6e9;
+    background-color: #e4e4e4;
     position: absolute;
     bottom: 0;
     width: 70%;
@@ -82,4 +82,10 @@
     text-align:center;
 }
 
+.custom-dialog .ui-widget-header {
+    background-color: #4c4c4c;
+}
 
+.custom-dialog .ui-dialog-title{
+    color:#fff;
+}

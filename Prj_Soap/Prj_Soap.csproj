@@ -216,6 +216,7 @@
     <Compile Include="Areas\Admin\Models\AdminLoginViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SoapViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\MessageController.cs" />
     <Compile Include="Controllers\Api\NewsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -532,6 +533,7 @@
     <Content Include="Views\Account\_AccountMenu.cshtml" />
     <Content Include="Views\Account\AccountInfo.cshtml" />
     <Content Include="Views\Product\_AddMessage.cshtml" />
+    <Content Include="Views\Account\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -63,6 +63,7 @@ namespace Prj_Soap
                 "~/Scripts/FrontJS/bb-press.js",
                 "~/Scripts/FrontJS/be-slider.js",
                 "~/Scripts/FrontJS/jquery-ui-1.8.22.custom.min.js",
+                "~/Scripts/jquery-ui-{version}.js",
                 "~/Scripts/FrontJS/masterslider.min.js",
                 "~/Scripts/FrontJS/jquery.easing.min.js",
                 "~/Scripts/FrontJS/chosen/chosen.jquery.min.js",

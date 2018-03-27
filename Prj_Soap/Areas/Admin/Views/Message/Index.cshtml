@@ -24,7 +24,7 @@
                 autoOpen: false,
                 show: "blind",
                 modal: true,
-                dialogClass: "dlg-no-close",
+                dialogClass: "custom-dialog-red",
                 buttons: [
                     {
                         text: "儲存",
@@ -53,7 +53,7 @@
 
                 $.ajax({
                     method: "GET",
-                    url: "/Admin/Message/GetMessage/" + id
+                    url: "/api/Message/GetMessage/" + id
                 })
                     .done(function (json) {
                         $("#msg-id").val(json.Id);

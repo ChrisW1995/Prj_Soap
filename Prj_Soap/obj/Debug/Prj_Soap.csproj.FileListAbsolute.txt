@@ -246,16 +246,7 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\Owin.
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\PagedList.dll
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\PagedList.Mvc.dll
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Diagnostics.DiagnosticSource.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Net.Http.Formatting.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.Helpers.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.Http.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.Http.WebHost.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.Mvc.dll
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.Optimization.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.Razor.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.WebPages.Deployment.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.WebPages.dll
-C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\System.Web.WebPages.Razor.dll
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\WebGrease.dll
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\Antlr3.Runtime.pdb
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\bin\AutoMapper.xml

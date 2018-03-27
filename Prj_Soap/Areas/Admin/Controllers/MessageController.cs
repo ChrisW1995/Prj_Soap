@@ -15,14 +15,16 @@ namespace Prj_Soap.Areas.Admin.Controllers
         public ActionResult Index(string status)
         {
             var list = productService.GetMessages();
-
+            TempData["status"] = "";
             switch (status)
             {
                 case "checked":
                     list = list.Where(x => !string.IsNullOrEmpty(x.ReplyContent));
+                    TempData["status"] = "checked";
                     break;
                 case "uncheck":
                     list = list.Where(x => string.IsNullOrEmpty(x.ReplyContent));
+                    TempData["status"] = "uncheck";
                     break;
 
             }
@@ -41,16 +43,17 @@ namespace Prj_Soap.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Reply(ReplyMessageViewModel model)
         {
+
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { status = TempData["status"] });
             }
             var result = productService.ReplyMessage(model);
 
             if (!result.Success)
                 TempData["ReplyStatus"] = "alert('Error, 請稍後再試');";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { status = TempData["status"] });
         }
     }
 }

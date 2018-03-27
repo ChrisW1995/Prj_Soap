@@ -103,13 +103,13 @@ namespace Prj_Soap.Service
         }
 
         /// <summary>
-        /// Get messages by id of product
+        /// Get messages by product id
         /// </summary>
-        /// <param name="p_id"></param>
+        /// <param name="p_id">product id</param>
         /// <returns></returns>
         public IEnumerable<MessageListViewModel> GetMessages(string p_id)
         {
-            var list = db.Messages.Join(db.Customers,
+            var list = db.Messages.Where(x=>x.P_Id==p_id).Join(db.Customers,
                 m => m.C_Id, c => c.Id,
                 (m, c) => new MessageListViewModel() {
                     AddTime = m.AddTime,
@@ -117,6 +117,31 @@ namespace Prj_Soap.Service
                     C_Name = c.Name,
                     ReplyContent = m.ReplyContent
                 }).OrderByDescending(x=>x.AddTime);
+            return list;
+        }
+
+        /// <summary>
+        /// Get messages by user id
+        /// </summary>
+        /// <param name="c_id">user id</param>
+        /// <returns></returns>
+        public IEnumerable<MessageWithSoapNameViewModel> GetUserMessages(string c_id)
+        {
+            var list = db.Messages.Where(x=>x.C_Id == c_id).Join(db.Customers,
+                m => m.C_Id, c => c.Id,
+                (m, c) => new { m, c }).Join(db.Soaps,
+                mc => mc.m.P_Id,
+                s => s.Id,
+                (mc, s) => new MessageWithSoapNameViewModel
+                {
+                    AddTime = mc.m.AddTime,
+                    P_Id = s.Id,
+                    P_Name = s.ItemName,
+                    C_Name = mc.c.Name,
+                    Content = mc.m.Content,
+                    ReplyContent = mc.m.ReplyContent,
+                    Id = mc.m.Id
+                }).OrderByDescending(x=>x.AddTime).ToList();
             return list;
         }
 
@@ -139,7 +164,7 @@ namespace Prj_Soap.Service
                     Content = mc.m.Content,
                     ReplyContent = mc.m.ReplyContent,
                     Id = mc.m.Id
-                }).ToList();
+                }).OrderByDescending(x => x.AddTime).ToList();
             return list;
         }
 

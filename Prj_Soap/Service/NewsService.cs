@@ -19,6 +19,8 @@ namespace Prj_Soap.Service
             IResult result = new Result();
             try
             {
+                LocalDateTimeService timeService = new LocalDateTimeService();
+                news.AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME);
                 repository.Create(news);
 
                 result.Success = true;
