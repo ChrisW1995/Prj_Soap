@@ -32,5 +32,7 @@ namespace Prj_Soap.Models
         public ICollection<Carts> Carts { get; set; }
 
         public ICollection<Messages> Messages { get; set; }
+
+        public ICollection<Reviews> Reviews { get; set; }
     }
 }

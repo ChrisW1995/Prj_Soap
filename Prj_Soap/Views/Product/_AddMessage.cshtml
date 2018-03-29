@@ -5,7 +5,7 @@
     using (Html.BeginForm("AddMessage", "Product", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.P_Id)
-        @Html.TextAreaFor(m => m.Content, new { @placeholder = "提出問題(限200字以內).." })
+        @Html.TextAreaFor(m => m.Content, new { @placeholder = "提出問題(限200字以內)..", @style= "border: 1px solid #dadada;" })
 
         <button type="submit" style="display:block; margin:0 auto;">送出</button>
     }

@@ -209,13 +209,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AboutController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SoapController.cs" />
     <Compile Include="Areas\Admin\Models\AdminLoginViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SoapViewModel.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\AboutController.cs" />
     <Compile Include="Controllers\Api\MessageController.cs" />
     <Compile Include="Controllers\Api\NewsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -240,7 +243,24 @@
     <Compile Include="Migrations\201803211521097_AddMessagesTable.Designer.cs">
       <DependentUpon>201803211521097_AddMessagesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803270820329_AddReviewsTable.cs" />
+    <Compile Include="Migrations\201803270820329_AddReviewsTable.Designer.cs">
+      <DependentUpon>201803270820329_AddReviewsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803270841209_AddOrderAndDetailTable.cs" />
+    <Compile Include="Migrations\201803270841209_AddOrderAndDetailTable.Designer.cs">
+      <DependentUpon>201803270841209_AddOrderAndDetailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803270848105_AddAboutTable.cs" />
+    <Compile Include="Migrations\201803270848105_AddAboutTable.Designer.cs">
+      <DependentUpon>201803270848105_AddAboutTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803281437054_ChangeFBColumnName.cs" />
+    <Compile Include="Migrations\201803281437054_ChangeFBColumnName.Designer.cs">
+      <DependentUpon>201803281437054_ChangeFBColumnName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\About.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Areas.cs" />
     <Compile Include="Models\Carts.cs" />
@@ -251,7 +271,11 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\OrderDetails.cs" />
+    <Compile Include="Models\Orders.cs" />
+    <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Soap.cs" />
+    <Compile Include="Models\ViewModels\AboutContentViewModel.cs" />
     <Compile Include="Models\ViewModels\AccountViewModel.cs" />
     <Compile Include="Models\ViewModels\CartViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
@@ -261,6 +285,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\SetTimeRepository.cs" />
+    <Compile Include="Service\AboutService.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\CustomAuthorization.cs" />
@@ -377,7 +402,6 @@
     <Content Include="Areas\Admin\Views\News\_CreateNews.cshtml" />
     <Content Include="Areas\Admin\Views\News\_NewsList.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\News\_NewsContent.cshtml" />
     <Content Include="Content\FrontCss\fonts\fontawesome-webfont.eot" />
@@ -419,6 +443,8 @@
     <Content Include="Areas\Admin\Views\Message\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Message\_Messages.cshtml" />
     <Content Include="Areas\Admin\Views\Message\_ReplyMessage.cshtml" />
+    <Content Include="Areas\Admin\Views\About\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\About\_AboutContent.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -534,6 +560,7 @@
     <Content Include="Views\Account\AccountInfo.cshtml" />
     <Content Include="Views\Product\_AddMessage.cshtml" />
     <Content Include="Views\Account\Messages.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -551,6 +578,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803211521097_AddMessagesTable.resx">
       <DependentUpon>201803211521097_AddMessagesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270820329_AddReviewsTable.resx">
+      <DependentUpon>201803270820329_AddReviewsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270841209_AddOrderAndDetailTable.resx">
+      <DependentUpon>201803270841209_AddOrderAndDetailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270848105_AddAboutTable.resx">
+      <DependentUpon>201803270848105_AddAboutTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803281437054_ChangeFBColumnName.resx">
+      <DependentUpon>201803281437054_ChangeFBColumnName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

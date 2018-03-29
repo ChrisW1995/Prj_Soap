@@ -46,5 +46,7 @@ namespace Prj_Soap.Models
 
         public ICollection<Messages> Messages { get; set; }
 
+        public ICollection<Reviews> Reviews { get; set; }
+
     }
 }

@@ -316,3 +316,7 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.csproj.GenerateResource.cache
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddAdminTable.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddMessagesTable.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddReviewsTable.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddOrderAndDetailTable.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddAboutTable.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.ChangeFBColumnName.resources

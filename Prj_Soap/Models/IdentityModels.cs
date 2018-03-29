@@ -26,6 +26,8 @@ namespace Prj_Soap.Models
         {
         }
 
+        public DbSet<Reviews> Reviews { get; set; }
+
         public DbSet<Messages> Messages { get; set; }
 
         public DbSet<Admin> Admin { get; set; }
@@ -37,6 +39,12 @@ namespace Prj_Soap.Models
         public DbSet<News> News { get; set; }
 
         public DbSet<Carts> Carts { get; set; }
+
+        public DbSet<Orders> Orders { get; set; }
+
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
+        public DbSet<About> About { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -66,18 +74,21 @@ namespace Prj_Soap.Models
                 .WithMany(a => a.Messages)
                 .HasForeignKey(f => f.P_Id);
 
+            modelBuilder.Entity<Reviews>()
+                .HasRequired(s => s.Soap)
+                .WithMany(r => r.Reviews)
+                .HasForeignKey(s => s.P_Id);
 
-            //modelBuilder.Entity<Customers>()
-            //    .HasRequired(c => c.Counties)
-            //    .WithMany(c => c.Customers)
-            //    .HasForeignKey(f => f.CountyId)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Reviews>()
+               .HasRequired(c => c.Customer)
+               .WithMany(r => r.Reviews)
+               .HasForeignKey(c => c.C_Id);
 
-            //modelBuilder.Entity<Customers>()
-            //    .HasRequired(a => a.Areas)
-            //    .WithMany(c => c.Customers)
-            //    .HasForeignKey(f => f.AreaId)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<OrderDetails>()
+               .HasRequired(o => o.Order)
+               .WithMany(od => od.OrderDetails)
+               .HasForeignKey(o => o.OrderId);
+
         }
 
         public static ApplicationDbContext Create()

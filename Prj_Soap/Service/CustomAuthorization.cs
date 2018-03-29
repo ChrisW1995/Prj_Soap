@@ -13,7 +13,8 @@ namespace Prj_Soap.Service
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated||
+                filterContext.HttpContext.User.Identity.IsAuthenticated && LoginPage != "")
             {
                 filterContext.HttpContext.Response.Redirect(LoginPage);
             }

@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 @using (Html.BeginForm("Index", "Message", FormMethod.Get, new { @style = "padding:5px;", @id="msg-status-form" }))
                 {
-                    @Html.RadioButton("status", "all", true, new { @class ="rdo-status"})<text>所有</text>
+                    @Html.RadioButton("status", "all", new { @class ="rdo-status"})<text>所有</text>
                     @Html.RadioButton("status", "uncheck", new { @style = "margin-left:10px;", @class = "rdo-status" })<text>未回覆</text>
                     @Html.RadioButton("status", "checked", new { @style = "margin-left:10px;", @class = "rdo-status" })<text>已回覆</text>
                 }

@@ -104,48 +104,47 @@
         </ul>
         <div id="tabs-1">
             @if (Model.Messages.Count() == 0)
-            {
-                <div style="text-align:center;">目前尚未有提問</div>
-            }
-            else
-            {
+    {
+        <div style="text-align:center;">目前尚未有提問</div>
+}
+else
+{
 
-                foreach (var item in Model.Messages)
-                {
-                    <div class="full-width tabs-review-div">
-                        <div class="customer-reviews-name">@item.C_Name :</div>
-                        <div class="customer-reviews-date"> @item.FormattedAddDate</div>
-                        <div class="reviews-content">@item.Content</div>
-                        @if (!string.IsNullOrEmpty(item.ReplyContent))
-                        {
-                            <div class="reviews-reply reviews-content" style=""><b>回覆：</b><br /> <span style="padding:10px 20px;">@item.ReplyContent</span></div>
-                        }
-                    </div>
-                    <hr />
-                }
+foreach (var item in Model.Messages)
+{
+        <div class="full-width tabs-review-div">
+            <div class="customer-reviews-name">@item.C_Name :</div>
+            <div class="customer-reviews-date"> @item.FormattedAddDate</div>
+            <div class="reviews-content">@item.Content</div>
+            @if (!string.IsNullOrEmpty(item.ReplyContent))
+    {
+        <div class="reviews-reply reviews-content" style=""><b>回覆：</b><br /> <span style="padding:10px 20px;">@item.ReplyContent</span></div>
+}
+        </div>
+        <hr />
+}
 
 
-            }
+}
             @Html.PagedListPager(Model.Messages, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-            {
-                LinkToFirstPageFormat = "第一頁",
-                LinkToLastPageFormat = "最末頁",
-                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                ContainerDivClasses = new string[] { "message-paged-div" }
+    {
+        LinkToFirstPageFormat = "第一頁",
+        LinkToLastPageFormat = "最末頁",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        ContainerDivClasses = new string[] { "message-paged-div" }
 
-            })
-
-
+    })
+            @Html.Action("_AddMessage", new { p_id = Model.Soap.Id })
         </div>
         <div id="tabs-2">
             <p>2</p>
         </div>
     </div>
 
-    @Html.Action("_AddMessage", new { p_id = Model.Soap.Id })
+    
     <meta itemprop="url" content="#">
     <!-- #product-2754 -->
 
