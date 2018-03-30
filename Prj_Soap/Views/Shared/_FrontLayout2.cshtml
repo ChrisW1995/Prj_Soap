@@ -80,36 +80,36 @@
                         </div>
 
                         <div id="header-controls-right">
-                           
-                            <div class="header-cart-controls">
-                                
-                                   
-                                    @if (Request.IsAuthenticated && User.Identity.Name!="Admin")
-                                    {
-                                        using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav navbar-right" }))
-                                        {
-                                            @Html.AntiForgeryToken()
 
-                                            <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-                                                <li><!--User.Identity.Name-->
-                                                    @Html.ActionLink("會員專區", "Profile", "Account", routeValues: null, htmlAttributes: new {@class = "nav-member", title = "Manage", style="display:block;" })
-                                                </li>
-                                                <li><a class="nav-member" href="javascript:document.getElementById('logoutForm').submit()" title="會員專區">登出</a></li>
-                                            </ul>
-                                        }
-                                    }
-                                    else
+                            <div class="header-cart-controls">
+
+
+                                @if (Request.IsAuthenticated && User.Identity.Name != "Admin")
+                                {
+                                    using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav navbar-right" }))
                                     {
-                                        if (Request.IsAuthenticated)
-                                        {
-                                            Response.Cookies.Clear();
-                                            FormsAuthentication.SignOut();
-                                        }
-                                        <ul class="nav-hover">
-                                            <li style="list-style: none; font-size: 14px;">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+                                        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
+                                            <li>
+                                                <!--User.Identity.Name-->
+                                                @Html.ActionLink("會員專區", "Profile", "Account", routeValues: null, htmlAttributes: new { @class = "nav-member", title = "Manage", style = "display:block;" })
+                                            </li>
+                                            <li><a class="nav-member" href="javascript:document.getElementById('logoutForm').submit()" title="會員專區">登出</a></li>
                                         </ul>
                                     }
-                               
+                                }
+                                else
+                                {
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        Response.Cookies.Clear();
+                                        FormsAuthentication.SignOut();
+                                    }
+                                    <ul class="nav-hover">
+                                        <li style="list-style: none; font-size: 14px;">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                    </ul>
+                                }
+
                                 <div class="widget_shopping_cart_wrap">
                                     <div class="widget woocommerce widget_shopping_cart">
                                         <h2 class="widgettitle">Cart</h2>
@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="header-cart-controls">
                                 <a class="cart-contents" href="/Cart" title="View your shopping cart">
                                     <i class="font-icon icon-icon_bag_alt"></i>
@@ -147,37 +147,37 @@
                                         <li id="menu-item-2895" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2694 current_page_item menu-item-has-children menu-item-2895">
                                             <a href="/Home">首頁</a>
                                             <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
-                                            
+
                                         </li>
                                         <li id="menu-item-2896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2896">
                                             <a href="/Product">商品列表</a>
                                             <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
                                             @*<ul class="sub-menu clearfix">
-                                                <li id="menu-item-2898" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
-                                                <li id="menu-item-2897" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
-                                            </ul>*@
+                                                    <li id="menu-item-2898" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
+                                                    <li id="menu-item-2897" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
+                                                </ul>*@
                                         </li>
                                         @*<li id="menu-item-2904" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2904">
-                                            <a href="#">Shop Categories</a>
-                                            <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
-                                            <ul class="sub-menu clearfix">
-                                                <li id="menu-item-2902" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2902"><a href="product-category/men.html">Men</a></li>
-                                                <li id="menu-item-2903" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2903"><a href="product-category/women.html">Women</a></li>
-                                                <li id="menu-item-2901" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2901"><a href="product-category/casuals.html">Casuals</a></li>
-                                                <li id="menu-item-2900" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2900"><a href="product-category/accessories.html">Accessories</a></li>
-                                                <li id="menu-item-2943" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2943">
-                                                    <a href="#">Product Variations</a>
-                                                    <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
-                                                    <ul class="sub-menu clearfix">
-                                                        <li id="menu-item-2942" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2942"><a href="product/blue-lenin-shirt.html">Simple</a></li>
-                                                        <li id="menu-item-2941" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2941"><a href="product/black-leather.html">Variable</a></li>
-                                                        <li id="menu-item-2947" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2947"><a href="product/sporty-wear.html">Grouped</a></li>
-                                                        <li id="menu-item-2948" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2948"><a href="product/leather-card-case.html">External/Affiliate</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>*@
-                                        <li id="menu-item-2735" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2735"><a href="#">關於我們</a></li>
+                                                <a href="#">Shop Categories</a>
+                                                <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                                <ul class="sub-menu clearfix">
+                                                    <li id="menu-item-2902" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2902"><a href="product-category/men.html">Men</a></li>
+                                                    <li id="menu-item-2903" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2903"><a href="product-category/women.html">Women</a></li>
+                                                    <li id="menu-item-2901" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2901"><a href="product-category/casuals.html">Casuals</a></li>
+                                                    <li id="menu-item-2900" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2900"><a href="product-category/accessories.html">Accessories</a></li>
+                                                    <li id="menu-item-2943" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2943">
+                                                        <a href="#">Product Variations</a>
+                                                        <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                                        <ul class="sub-menu clearfix">
+                                                            <li id="menu-item-2942" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2942"><a href="product/blue-lenin-shirt.html">Simple</a></li>
+                                                            <li id="menu-item-2941" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2941"><a href="product/black-leather.html">Variable</a></li>
+                                                            <li id="menu-item-2947" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2947"><a href="product/sporty-wear.html">Grouped</a></li>
+                                                            <li id="menu-item-2948" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2948"><a href="product/leather-card-case.html">External/Affiliate</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>*@
+                                        <li id="menu-item-2735" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2735"><a href="/About">我們的故事</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -195,13 +195,13 @@
                                     </ul>
                                 </li>
                                 @*<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2896">
-                                    <a href="shop.html">Shop</a>
-                                    <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
-                                    <ul class="sub-menu clearfix">
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
-                                    </ul>
-                                </li>*@
+                                        <a href="shop.html">Shop</a>
+                                        <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
+                                        <ul class="sub-menu clearfix">
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
+                                        </ul>
+                                    </li>*@
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2904">
                                     <a href="/Product">商品列表</a>
                                 </li>
@@ -217,8 +217,8 @@
             <div id="content" class="no-sidebar-page right-sidebar-page">
                 <div id="content-wrap" class="page-builder be-wrap clearfix">
 
-                    
-                    
+
+
                     @RenderBody()
 
                 </div>
@@ -238,8 +238,8 @@
                                 <p id="bottom-addr">
                                 </p>
                                 <p id="bottom-phone">
-                                    <br /> 
-                                <div id="bottom-email"></div>
+                                    <br />
+                                    <div id="bottom-email"></div>
                                 </p>
                             </div>
                         </div>
@@ -288,11 +288,11 @@
     </script>
     @Scripts.Render("~/bundles/frontmain2")
     @RenderSection("scripts", required: false)
-        <script>
-        (function($) {
+    <script>
+        (function ($) {
             "use strict";
 
-            $(function() {
+            $(function () {
                 var masterslider_af9f = new MasterSlider();
 
                 // slider controls
@@ -337,33 +337,34 @@
                 window.masterslider_instances["1_af9f"] = masterslider_af9f;
             });
 
-            })(jQuery);
+        })(jQuery);
 
-            $(function () {
+        $(function () {
 
-                $.ajax({
-                    method: "GET",
-                    url: "/api/About/GetSettings",
+            $.ajax({
+                method: "GET",
+                url: "/api/About/GetSettings",
+            })
+                .done(function (json) {
+                    $("#twitter-link").attr("href", json.TwitterUrl);
+                    $("#fb-link").attr("href", json.FacebookUrl);
+                    $("#twitter-link-bottom").attr("href", json.TwitterUrl);
+                    $("#fb-link-bottom").attr("href", json.FacebookUrl);
+                    $("#twitter-link-footer").attr("href", json.TwitterUrl);
+                    $("#fb-link-footer").attr("href", json.FacebookUrl);
+                    $("#bottom-addr").text(json.Address);
+                    $("#bottom-email").html(json.Email);
+                    $("#bottom-phone").text(json.PhoneNumber);
+
+
                 })
-                    .done(function (json) {
-                        $("#twitter-link").attr("href", json.TwitterUrl);
-                        $("#fb-link").attr("href", json.FacebookUrl);
-                        $("#twitter-link-bottom").attr("href", json.TwitterUrl);
-                        $("#fb-link-bottom").attr("href", json.FacebookUrl);
-                        $("#twitter-link-footer").attr("href", json.TwitterUrl);
-                        $("#fb-link-footer").attr("href", json.FacebookUrl);
-                        $("#bottom-addr").text(json.Address);
-                        $("#bottom-email").html(json.Email);
-                        $("#bottom-phone").text(json.PhoneNumber);
+                .fail(function () {
 
-
-                    })
-                    .fail(function () {
-                        
-                    });
-            });
+                });
+        });
     </script>
 
-
+    <div class="process-dialog"><!-- For process dialog --></div>
 </body>
+
 </html>

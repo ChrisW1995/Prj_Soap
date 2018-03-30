@@ -20,5 +20,15 @@ namespace Prj_Soap.Controllers.Api
                 return NotFound();
             return Ok(msg);
         }
+
+        [HttpPost]
+        public IHttpActionResult Delete([FromBody]int id)
+        {
+            var result = productService.DeleteMessage(id);
+            if (!result.Success)
+                return InternalServerError();
+
+            return Ok();
+        }
     }
 }

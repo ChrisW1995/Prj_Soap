@@ -65,6 +65,26 @@
                     });
                 return false;
             });
+
+            $(".del-msg").on("click", function () {
+                
+                var id = $(this).data("del-msgid");
+
+                $.ajax({
+                    method: "POST",
+                    url: "/api/Message/Delete/",
+                    contentType: "application/json",
+                    data: id.toString()
+                })
+                    .done(function (json) {
+                        alert("已封存一則垃圾問題");
+                        window.location.reload();
+                    })
+                    .fail(function () {
+                        alert("錯誤，請稍後再試");
+                    });
+                return false;
+            });
         });
     </script>
 }

@@ -19,7 +19,5 @@ namespace Prj_Soap.Models
 
         public DateTime UpdateTime { get; set; }
 
-        public ICollection<OrderDetails> OrderDetails { get; set; }
-
     }
 }

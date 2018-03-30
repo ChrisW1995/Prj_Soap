@@ -8,7 +8,9 @@ namespace Prj_Soap.Models.ViewModels
 
     public class SoapInCartListViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+
+        public string P_Id { get; set; }
 
         public string ItemName { get; set; }
 

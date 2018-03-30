@@ -65,6 +65,6 @@ namespace Prj_Soap.Models.ViewModels
 
         public string FormattedAddDate => AddTime.ToString("yyyy/MM/dd HH:mm");
 
-
+        public bool Flg { get; set; }
     }
 }

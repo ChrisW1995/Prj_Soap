@@ -320,3 +320,5 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddOrderAndDetailTable.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddAboutTable.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.ChangeFBColumnName.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.AddMessageFlgStatus.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Debug\Prj_Soap.Migrations.ChangeOrderRelationShips.resources

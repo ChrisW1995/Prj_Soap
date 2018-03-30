@@ -4,6 +4,7 @@ using Prj_Soap.Interface;
 using Prj_Soap.Models;
 using Prj_Soap.Models.ViewModels;
 using Prj_Soap.Repository;
+using Prj_Soap.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +22,41 @@ namespace Prj_Soap.Service
         SoapService soapService = new SoapService();
         LocalDateTimeService timeService = new LocalDateTimeService();
         
+        public IResult ChangeItemCount(UpdateAddCountDTO model)
+        {
+            var result = new Result();
+
+            try
+            {
+                var instance = repository.Get(x => x.Id == model.Id);
+                instance.AddCount = model.AddCount;
+                repository.Update(instance);
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = e.ToString();
+            }
+            return result;
+        }
+        public IResult DeleteCart(int id)
+        {
+            var result = new Result();
+            try
+            {
+                var instance = repository.Get(x => x.Id == id);
+                repository.Delete(instance);
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = "系統錯誤, 請稍後再試";
+                
+            }
+            return result;
+
+        }
+
         public IResult AddToCart(string soapId, string c_id)
         {
             var result = new Result();
@@ -87,8 +123,8 @@ namespace Prj_Soap.Service
                     C_Id = c_id,
                     P_Id = model.P_Id,
                     Content = model.Content,
-                    AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME)
-
+                    AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME),
+                    Flg = true
                 };
                 msgRepository.Create(instance);
                 result.Success = true;
@@ -109,7 +145,7 @@ namespace Prj_Soap.Service
         /// <returns></returns>
         public IEnumerable<MessageListViewModel> GetMessages(string p_id)
         {
-            var list = db.Messages.Where(x=>x.P_Id==p_id).Join(db.Customers,
+            var list = db.Messages.Where(x=>x.P_Id==p_id && x.Flg == true).Join(db.Customers,
                 m => m.C_Id, c => c.Id,
                 (m, c) => new MessageListViewModel() {
                     AddTime = m.AddTime,
@@ -140,7 +176,8 @@ namespace Prj_Soap.Service
                     C_Name = mc.c.Name,
                     Content = mc.m.Content,
                     ReplyContent = mc.m.ReplyContent,
-                    Id = mc.m.Id
+                    Id = mc.m.Id,
+                    Flg = mc.m.Flg
                 }).OrderByDescending(x=>x.AddTime).ToList();
             return list;
         }
@@ -151,7 +188,7 @@ namespace Prj_Soap.Service
         /// <returns></returns>
         public IEnumerable<MessageWithSoapNameViewModel> GetMessages()
         {
-            var list = db.Messages.Join(db.Customers,
+            var list = db.Messages.Where(x => x.Flg == true).Join(db.Customers,
                 m => m.C_Id, c => c.Id,
                 (m, c) => new { m, c}).Join(db.Soaps, 
                 mc => mc.m.P_Id,
@@ -191,5 +228,22 @@ namespace Prj_Soap.Service
             return result;
         }
 
+        public IResult DeleteMessage(int id)
+        {
+            IResult result = new Result();
+            try
+            {
+                var instance = msgRepository.Get(x => x.Id == id);
+                instance.Flg = false;
+                msgRepository.Update(instance);
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = e.ToString();
+
+            }
+            return result;
+        }
     }
 }

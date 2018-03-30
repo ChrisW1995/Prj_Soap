@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "資料維護";
+}
+
+<section class="content">
+
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            @Html.Partial("_AboutContent")
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        @Html.Raw(TempData["SaveResutl"]);
+
+        $(function(){
+            $("#btn-info-save").on("click", function () {
+                $("#about-form").submit();
+                return false;
+            });
+        });
+    </script>
+}

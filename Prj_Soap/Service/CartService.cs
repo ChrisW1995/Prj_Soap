@@ -20,7 +20,8 @@ namespace Prj_Soap.Service
                 s => s.Id,
                 (c, s) => new SoapInCartListViewModel
                 {
-                   Id = s.Id,
+                   Id = c.Id,
+                   P_Id = s.Id,
                    ImageUrl = s.ImageUrl,
                    IsInStock = s.IsInStock,
                    Price = s.Price,

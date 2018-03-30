@@ -1,0 +1,76 @@
+﻿@model Prj_Soap.Models.About
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">網站資料維護</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+        <div class="row">
+            
+            <div class="col-md-12">
+                @using (Html.BeginForm("SaveChange", "About", FormMethod.Post, new { @id = "about-form"}))
+                {
+                @Html.HiddenFor(m => m.Id)
+                    <div class="row">
+                        <div class="form-group col-md-4 col-md-offset-2">
+                            <label>電話號碼</label>
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label>地址</label>
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label>Email</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label>Facebook網址</label>
+                            @Html.TextBoxFor(m => m.FacebookUrl, new { @class = "form-control", @placeholder = "http://" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label>Twitter網址</label>
+                            @Html.TextBoxFor(m => m.TwitterUrl, new { @class = "form-control", @placeholder = "http://" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-8 col-md-offset-2">
+                            <label>關於我們</label>
+                            @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "5" })
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.box-body -->
+
+    <div class="box-footer">
+        <button type="submit" id="btn-info-save" class="btn btn-warning" onclick="">儲存</button>
+    </div>
+</div>
+

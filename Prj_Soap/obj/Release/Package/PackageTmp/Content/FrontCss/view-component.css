@@ -1,4 +1,8 @@
-﻿td {
+﻿html {
+    font-family: "微軟正黑體";
+}
+
+td {
     border: 0;
    
 }
@@ -88,4 +92,28 @@
 
 .custom-dialog .ui-dialog-title{
     color:#fff;
+}
+
+.process-dialog {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 255, 255, 255, .45 ) url('/Images/ajax-loader.gif') 50% 50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .process-dialog {
+
+    overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .process-dialog {
+    display: block;
 }

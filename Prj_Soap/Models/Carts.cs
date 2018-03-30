@@ -22,5 +22,6 @@ namespace Prj_Soap.Models
         public Soap Soap { get; set; }
 
         public Customers Customer { get; set; }
+
     }
 }

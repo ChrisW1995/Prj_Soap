@@ -22,6 +22,8 @@ namespace Prj_Soap.Models
 
         public DateTime AddTime { get; set; }
 
+        public bool Flg { get; set; }
+
         public Customers Customer { get; set; }
 
         public Soap Soap { get; set; }

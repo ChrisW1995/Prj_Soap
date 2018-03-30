@@ -27,13 +27,26 @@
             {
                 foreach(var item in Model)
                 {
-                    var statusImg = string.IsNullOrEmpty(item.ReplyContent) ? "/Images/question.png" : "/Images/checked.png";
-                    var content = item.Content.Length >= 12 ? item.Content.Substring(0, 12) + ".." : item.Content;
-                <tr>
+                    var statusImg = "";
+                    var color = "";
+                    var content = "";
+
+                    if (item.Flg == true)
+                    {
+                        content = item.Content.Length >= 12 ? item.Content.Substring(0, 12) + ".." : item.Content;
+                        statusImg = string.IsNullOrEmpty(item.ReplyContent) ? "/Images/question.png" : "/Images/checked.png";
+                    }
+                    else
+                    {
+                        color = "#000";
+                        content = "提問已被商家刪除";
+                        statusImg = "/Images/cancel.png";
+                    }
+                    <tr>
                    
                     <td style="text-align:center;"><img style="width:20px " src="@statusImg" /></td>
                     <td><a href="/Product/Detail/@item.P_Id">@item.P_Name</a></td>
-                    <td><a class="msg-link" href="#" data-msgid="@item.Id">@content</a></td>
+                    <td><a class="msg-link" style="color:@color" href="#" data-msgid="@item.Id">@content</a></td>
                     <td>@item.FormattedAddDate</td>
                 </tr>
 
@@ -75,9 +88,15 @@
                     url: "/api/Message/GetMessage/" + msgid
                 })
                     .done(function (json) {
-                        var reply = json.ReplyContent;
-                        if (reply == null)
-                            reply = "賣家尚未回覆!";
+                        var reply = "";
+                        if (json.Flg == true) {
+                            reply = json.ReplyContent;
+                            if (reply == null)
+                                reply = "賣家尚未回覆!";
+                        } else {
+                            reply = "提問已被刪除！如有疑問請直接洽詢賣家。"
+                            
+                        }
                         $("#user-msg").text(json.Content);
                         $("#user-msg-reply").text(reply);
                     })

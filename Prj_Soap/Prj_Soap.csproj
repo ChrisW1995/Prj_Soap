@@ -219,6 +219,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AboutController.cs" />
+    <Compile Include="Controllers\Api\CartController.cs" />
     <Compile Include="Controllers\Api\MessageController.cs" />
     <Compile Include="Controllers\Api\NewsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -259,6 +260,14 @@
     <Compile Include="Migrations\201803281437054_ChangeFBColumnName.Designer.cs">
       <DependentUpon>201803281437054_ChangeFBColumnName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803291509495_AddMessageFlgStatus.cs" />
+    <Compile Include="Migrations\201803291509495_AddMessageFlgStatus.Designer.cs">
+      <DependentUpon>201803291509495_AddMessageFlgStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803301535277_ChangeOrderRelationShips.cs" />
+    <Compile Include="Migrations\201803301535277_ChangeOrderRelationShips.Designer.cs">
+      <DependentUpon>201803301535277_ChangeOrderRelationShips.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -266,12 +275,12 @@
     <Compile Include="Models\Carts.cs" />
     <Compile Include="Models\Counties.cs" />
     <Compile Include="Models\Customers.cs" />
+    <Compile Include="Models\DTO\CartsDTO.cs" />
     <Compile Include="Models\DTO\NewsDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\News.cs" />
-    <Compile Include="Models\OrderDetails.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Soap.cs" />
@@ -420,6 +429,8 @@
     <Content Include="Areas\Admin\Views\Soap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Soap\_UploadSoap.cshtml" />
     <Content Include="Areas\Admin\Views\Soap\_SoapList.cshtml" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\cancel.png" />
     <Content Include="Images\checked.png" />
     <Content Include="Images\nature-logo.png" />
     <Content Include="Images\question.png" />
@@ -590,6 +601,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803281437054_ChangeFBColumnName.resx">
       <DependentUpon>201803281437054_ChangeFBColumnName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803291509495_AddMessageFlgStatus.resx">
+      <DependentUpon>201803291509495_AddMessageFlgStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803301535277_ChangeOrderRelationShips.resx">
+      <DependentUpon>201803301535277_ChangeOrderRelationShips.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

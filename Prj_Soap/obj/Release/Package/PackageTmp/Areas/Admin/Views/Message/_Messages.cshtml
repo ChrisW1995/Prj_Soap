@@ -27,6 +27,7 @@
                         <th>商品</th>
                         <th>內容</th>
                         <th>時間</th>
+                        <th></th>
                     </tr>
                     @if (Model == null)
                     {
@@ -46,6 +47,7 @@
                                 <td><a href="/Product/Detail/@item.P_Id">@item.P_Name</a></td>
                                 <td><a class="msg-link" data-msgid="@item.Id" href="#">@content</a></td>
                                 <td>@Html.DisplayFor(modelitem => item.FormattedAddDate)</td>
+                                <td><img style="width:18px; cursor: pointer;" class="del-msg" data-del-msgid="@item.Id" src="~/Images/cancel.png" /></td>
                             </tr>
                         }
                     }

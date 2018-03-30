@@ -18,5 +18,6 @@ namespace Prj_Soap.Controllers
             var list = cartService.GetListInCart(c_id);
             return View(list);
         }
+
     }
 }

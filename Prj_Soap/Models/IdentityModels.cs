@@ -42,8 +42,6 @@ namespace Prj_Soap.Models
 
         public DbSet<Orders> Orders { get; set; }
 
-        public DbSet<OrderDetails> OrderDetails { get; set; }
-
         public DbSet<About> About { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -84,10 +82,6 @@ namespace Prj_Soap.Models
                .WithMany(r => r.Reviews)
                .HasForeignKey(c => c.C_Id);
 
-            modelBuilder.Entity<OrderDetails>()
-               .HasRequired(o => o.Order)
-               .WithMany(od => od.OrderDetails)
-               .HasForeignKey(o => o.OrderId);
 
         }
 
