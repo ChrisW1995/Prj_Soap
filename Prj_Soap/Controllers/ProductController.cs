@@ -71,5 +71,7 @@ namespace Prj_Soap.Controllers
             };
             return PartialView("_AddMessage", model);
         }
+
+
     }
 }

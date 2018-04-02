@@ -51,7 +51,7 @@
                                 <p class="itemNumber">@item.P_Id</p>
                                 <h3>@item.ItemName</h3>
 
-                                <p> <input  type="number" class="qty" data-row-id="@item.Id" data-item-price="@item.Price" placeholder="" style="width:100%" value="@item.AddCount"/> x @item.Price</p>
+                                <p> <input  type="number" class="qty" data-row-id="@item.Id" data-item-price="@item.Price" placeholder="" style="width:100%" value="@item.AddCount"/> x NT @item.Price</p>
 
                                 <p class="stockStatus" style="color:@color"> @stockStatus</p>
                             </div>
@@ -79,14 +79,14 @@
     </div>*@
 
     <div class="subtotal cf">
-        <ul>
+        <ul style="list-style:none;">
             @*<li class="totalRow"><span class="label">Subtotal</span><span class="value">$35.00</span></li>*@
 
           <!--  <li class="totalRow"><span class="label">Shipping</span><span class="value">$5.00</span></li>
 
             <li class="totalRow"><span class="label">Tax</span><span class="value">$4.00</span></li>-->
             <li class="totalRow final"><span class="label">總金額</span><span id="sum" class="value">NT @sum</span></li>
-            <li class="totalRow"><a href="#" class="btn continue">結帳去</a></li>
+            <li class="totalRow"><a href="/Cart/CheckOut" class="btn continue">結帳去</a></li>
         </ul>
     </div>
 </div>
@@ -115,7 +115,7 @@
                         alert("發生錯誤，請稍後重試");
                         disableProcessDialog();
                     });
-                $("#sum").html("NT " + itemCount * price);
+                window.location.reload();
                 return false;
             });
 

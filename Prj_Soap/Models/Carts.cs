@@ -19,6 +19,9 @@ namespace Prj_Soap.Models
 
         public DateTime AddTime { get; set; }
 
+        [StringLength(25)]
+        public string OrderId { get; set; }
+
         public Soap Soap { get; set; }
 
         public Customers Customer { get; set; }

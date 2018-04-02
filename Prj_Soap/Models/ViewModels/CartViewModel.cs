@@ -25,4 +25,11 @@ namespace Prj_Soap.Models.ViewModels
         public int TotoalPrice { get; set; }
 
     }
+
+    public class CheckOutIdListViewModel
+    {
+        public List<int> Id { get; set; }
+
+
+    }
 }
