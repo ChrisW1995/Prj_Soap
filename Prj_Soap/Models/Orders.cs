@@ -11,13 +11,18 @@ namespace Prj_Soap.Models
         [Key, StringLength(25)]
         public string Id { get; set; }
 
+        public string C_Id { get; set; }
+
         public int TotalPrice { get; set; }
 
-        public string CheckStatus { get; set; }
+        public int StatusId { get; set; }
 
         public DateTime AddTime { get; set; }
 
         public DateTime UpdateTime { get; set; }
 
+        public OrderStatus OrderStatus { get; set; }
+
+        public Customers Customers { get; set; }
     }
 }

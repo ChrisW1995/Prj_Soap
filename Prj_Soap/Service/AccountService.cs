@@ -16,6 +16,8 @@ namespace Prj_Soap.Service
     public class AccountService
     {
         private IRepository<Customers> repository = new GenericRepository<Customers>(new ApplicationDbContext());
+        private IRepository<Orders> orderRepo = new GenericRepository<Orders>(new ApplicationDbContext());
+
         private LocalDateTimeService timeService = new LocalDateTimeService();
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -123,6 +125,8 @@ namespace Prj_Soap.Service
             return result;
         }
 
+        
+
         public IResult SaveAccountChange(EditAccountViewModel model)
         {
             IResult result = new Result();
@@ -141,5 +145,24 @@ namespace Prj_Soap.Service
 
             return result;
         }
+        public IEnumerable<OrderHistoryViewModel> GetOrderHistory(string c_id)
+        {
+            var orderIds = db.Carts.GroupBy(x => x.OrderId).Select(g => new { Id = g.Key }).Select(x=>x.Id).ToList();
+            var orders = db.Orders.Where(x => orderIds.Contains(x.Id)).Join(db.OrderStatus,
+                o => o.StatusId,
+                os => os.Id,
+                (o, os) => new OrderHistoryViewModel {
+                    OrderId = o.Id,
+                    AddTime = o.AddTime,
+                    UpdateTime = o.UpdateTime,
+                    CheckStatus = os.StatusName,
+                    Sum = o.TotalPrice
+                }).OrderByDescending(x => x.AddTime).ToList();
+                
+
+            return orders;
+        }
+
+
     }
 }

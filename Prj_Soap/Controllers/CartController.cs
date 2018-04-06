@@ -31,11 +31,16 @@ namespace Prj_Soap.Controllers
         [HttpPost]
         public ActionResult CheckOut(List<int> Id)
         {
-            var result = cartService.CheckOut(Id);
+            var c_id = Request.Cookies["IdCookie"].Values["customer_id"];
+            var result = cartService.CheckOut(Id, c_id);
             if (!result.Success)
-                TempData["checkResult"] = "系統錯誤，請稍後再試";
+            {
+                TempData["checkResult"] = "alert('"+ result.Message + "');";
+                return RedirectToAction("Index");
+            }
+            else
+                TempData["checkResult"] = "感謝您的訂購!";
 
-            TempData["checkResult"] = "感謝您的訂購!";
             return RedirectToAction("Result");
         }
 

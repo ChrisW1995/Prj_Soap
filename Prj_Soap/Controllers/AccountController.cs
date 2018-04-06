@@ -9,6 +9,7 @@ using Prj_Soap.Models.ViewModels;
 using Prj_Soap.Service;
 using AutoMapper;
 using Prj_Soap.Models;
+using PagedList;
 
 namespace Prj_Soap.Controllers
 {
@@ -183,6 +184,13 @@ namespace Prj_Soap.Controllers
             var list = productService.GetUserMessages(c_id);
             return View(list);
         }
-        
+
+        [CustomAuthorization(LoginPage = "/Account/Login", Roles = "User")]
+        public ActionResult Orders(int? page)
+        {
+            var c_id = Request.Cookies["IdCookie"].Values["customer_id"];
+            var list = accountService.GetOrderHistory(c_id).ToPagedList(page ?? 1, 10);
+            return View(list);
+        }
     }
 }

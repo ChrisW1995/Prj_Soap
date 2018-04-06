@@ -1,0 +1,56 @@
+﻿<section class="content-header">
+    <h1>
+        <b>公告管理</b>
+    </h1>
+
+</section>
+@Html.Partial("_OrderDialog")
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            @Html.Partial("_Orders")
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#order-dialog").dialog({
+                autoOpen: false,
+                show: "blind",
+                modal: true,
+                dialogClass: "custom-dialog",
+                buttons: [
+                    {
+                        text: "關閉",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+
+            $(".msg-link").on("click", function () {
+
+                $("#order-dialog").dialog("open");
+                //$.ajax({
+                //    method: "GET",
+                //    url: "/api/Message/GetMessage/" + msgid
+                //})
+                //    .done(function (json) {
+                        
+                //    })
+                //    .fail(function () {
+                //        alert("Error");
+                //    });
+                return false;
+            });
+        });
+
+    </script>
+}

@@ -16,7 +16,7 @@ namespace Prj_Soap.Models.ViewModels
 
         public int Price { get; set; }
 
-        public bool IsInStock { get; set; }
+        public int StockCount { get; set; }
 
         public string ImageUrl { get; set; }
 

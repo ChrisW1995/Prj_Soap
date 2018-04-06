@@ -25,17 +25,17 @@
                     {
                         @Html.Hidden("Id", item.Id)
                         sum += item.TotoalPrice;
-                        bool isInStock = item.IsInStock == true;
                         string color = "", stockStatus;
-                        if (isInStock)
+                        if (@item.StockCount==0)
                         {
-                            stockStatus = "有庫存";
+                            color = "red";
+                            stockStatus = "無庫存";
                         }
                         else
                         {
-                            stockStatus = "無庫存";
-                            color = "red";
+                            stockStatus = "庫存量 = " + item.StockCount;
                         }
+
                         string className = "";
                         if (count % 2 != 0)
                         {

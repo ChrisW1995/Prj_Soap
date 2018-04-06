@@ -104,6 +104,25 @@ namespace Prj_Soap.Models.ViewModels
         [Compare("Password", ErrorMessage = "兩次輸入密碼不一致!")]
         public string CheckPassword { get; set; }
 
+    }
+
+    public class OrderHistoryViewModel
+    {
+        public string OrderId { get; set; }
+
+        public string CheckStatus { get; set; }
+
+
+        public DateTime AddTime { get; set; }
+
+        public string FormattedAddTime => AddTime.ToString();
+
+        public DateTime UpdateTime { get; set; }
+
+        public string FormattedUpdateTime => UpdateTime.ToString();
+
+        public int Sum { get; set; }
+
 
     }
 }

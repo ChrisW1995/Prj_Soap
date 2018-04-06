@@ -213,6 +213,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MessageController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\SoapController.cs" />
     <Compile Include="Areas\Admin\Models\AdminLoginViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SoapViewModel.cs" />
@@ -272,6 +273,34 @@
     <Compile Include="Migrations\201804021519464_AddOrderIdInCarts.Designer.cs">
       <DependentUpon>201804021519464_AddOrderIdInCarts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804051558449_AddStatusTable.cs" />
+    <Compile Include="Migrations\201804051558449_AddStatusTable.Designer.cs">
+      <DependentUpon>201804051558449_AddStatusTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804051609242_AddRecordToOrderStatusTb.cs" />
+    <Compile Include="Migrations\201804051609242_AddRecordToOrderStatusTb.Designer.cs">
+      <DependentUpon>201804051609242_AddRecordToOrderStatusTb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804051616230_AddRecordToOrderStatusTb1.cs" />
+    <Compile Include="Migrations\201804051616230_AddRecordToOrderStatusTb1.Designer.cs">
+      <DependentUpon>201804051616230_AddRecordToOrderStatusTb1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804061221548_AddRecordToOrderStatusTb2.cs" />
+    <Compile Include="Migrations\201804061221548_AddRecordToOrderStatusTb2.Designer.cs">
+      <DependentUpon>201804061221548_AddRecordToOrderStatusTb2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804061242089_AddRecords.cs" />
+    <Compile Include="Migrations\201804061242089_AddRecords.Designer.cs">
+      <DependentUpon>201804061242089_AddRecords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804061345110_AddCustomerIdinOrders.cs" />
+    <Compile Include="Migrations\201804061345110_AddCustomerIdinOrders.Designer.cs">
+      <DependentUpon>201804061345110_AddCustomerIdinOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804061357482_ChangeSoapTbStockCount.cs" />
+    <Compile Include="Migrations\201804061357482_ChangeSoapTbStockCount.Designer.cs">
+      <DependentUpon>201804061357482_ChangeSoapTbStockCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -286,6 +315,7 @@
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Orders.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Soap.cs" />
     <Compile Include="Models\ViewModels\AboutContentViewModel.cs" />
@@ -304,6 +334,7 @@
     <Compile Include="Service\CustomAuthorization.cs" />
     <Compile Include="Service\LocalDateTimeService.cs" />
     <Compile Include="Service\NewsService.cs" />
+    <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\Result.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\SoapService.cs" />
@@ -436,6 +467,7 @@
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\cancel.png" />
     <Content Include="Images\checked.png" />
+    <Content Include="Images\edit.png" />
     <Content Include="Images\nature-logo.png" />
     <Content Include="Images\question.png" />
     <Content Include="Scripts\AdminLogin\animsition.js" />
@@ -460,6 +492,9 @@
     <Content Include="Areas\Admin\Views\Message\_ReplyMessage.cshtml" />
     <Content Include="Areas\Admin\Views\About\Index.cshtml" />
     <Content Include="Areas\Admin\Views\About\_AboutContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\_Orders.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\_OrderDialog.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -578,6 +613,7 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Cart\Result.cshtml" />
+    <Content Include="Views\Account\Orders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -616,6 +652,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804021519464_AddOrderIdInCarts.resx">
       <DependentUpon>201804021519464_AddOrderIdInCarts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051558449_AddStatusTable.resx">
+      <DependentUpon>201804051558449_AddStatusTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051609242_AddRecordToOrderStatusTb.resx">
+      <DependentUpon>201804051609242_AddRecordToOrderStatusTb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051616230_AddRecordToOrderStatusTb1.resx">
+      <DependentUpon>201804051616230_AddRecordToOrderStatusTb1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804061221548_AddRecordToOrderStatusTb2.resx">
+      <DependentUpon>201804061221548_AddRecordToOrderStatusTb2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804061242089_AddRecords.resx">
+      <DependentUpon>201804061242089_AddRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804061345110_AddCustomerIdinOrders.resx">
+      <DependentUpon>201804061345110_AddCustomerIdinOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804061357482_ChangeSoapTbStockCount.resx">
+      <DependentUpon>201804061357482_ChangeSoapTbStockCount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

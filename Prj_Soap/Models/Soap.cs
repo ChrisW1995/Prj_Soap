@@ -23,7 +23,7 @@ namespace Prj_Soap.Models
         public int Price { get; set; }
 
         [Required]
-        public bool IsInStock { get; set; }
+        public int StockCount { get; set; }
 
         public string ImageUrl { get; set; }
 

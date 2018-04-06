@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -25,6 +26,7 @@ namespace Prj_Soap.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
 
         public DbSet<Reviews> Reviews { get; set; }
 
@@ -82,6 +84,15 @@ namespace Prj_Soap.Models
                .WithMany(r => r.Reviews)
                .HasForeignKey(c => c.C_Id);
 
+            modelBuilder.Entity<Orders>()
+               .HasRequired(o => o.OrderStatus)
+               .WithMany(o => o.Orders)
+               .HasForeignKey(s => s.StatusId);
+
+            modelBuilder.Entity<Orders>()
+               .HasRequired(c => c.Customers)
+               .WithMany(o => o.Orders)
+               .HasForeignKey(c => c.C_Id);
 
         }
 

@@ -29,12 +29,11 @@
             <input id="edt-soap-price" name="Price" class="form-control" rows="3" placeholder="商品售價" />
         </div>
 
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" id="edt-chk-soap-instock"> 可購買
-            </label>
+        <div class="form-group">
+            <label>庫存量</label>
+            <input name="StockCount" class="form-control" type="number" id="edt-soap-stockcount"/>
+  
         </div>
-        <br />
 
         <div class="">
             <label>商品圖片</label>
@@ -109,7 +108,7 @@
                 data.append("ItemName", $("#txt-soap-name").val());
                 data.append("ItemContent", $("#txt-soap-content").val());
                 data.append("Price", $("#txt-soap-price").val());
-                data.append("IsInStock", $("#chk-soap-instock").is(":checked"))
+                data.append("StockCount", $("#edt-soap-stockcount").val());           
                 $.ajax({
                     type: "POST",
                     url: '/Soap/SoapUpload',
@@ -194,6 +193,7 @@
                             <td>\
                                 <a class='item-soap' href='#' data-id='"+ data.Id + "'>" + data.ItemName + "</a>\
                             </td>\
+                            <td>庫存量 = "+ data.StockCount + "</td>\
                             <td>" + data.FormattedDate + "</td>\
                             <td><button class='btn-soap-delete btn btn-xs btn-danger' data-id='"+ data.Id +"'><i style='font-size:22px' class='fa fa-remove'></button></i></td>\
                             </tr>"
@@ -220,12 +220,7 @@
                                 $("#edt-soap-content").val(data.ItemContent);
                                 $("#edt-soap-price").val(data.Price);
                                 $("#edit-targetImg").attr("src", data.ImageUrl);
-                                var isInStock = data.IsInStock;
-                                if (isInStock) {
-                                    $("#edt-chk-soap-instock").prop("checked", true);
-                                } else {
-                                    $("#edt-chk-soap-instock").prop("checked", false);
-                                }
+                                $("#edt-soap-stockcount").val(data.StockCount);
 
                             });
 

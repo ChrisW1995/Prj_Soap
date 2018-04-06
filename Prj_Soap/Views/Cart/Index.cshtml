@@ -22,11 +22,11 @@
                 foreach (var item in Model)
                 {
                     sum += item.TotoalPrice;
-                    bool isInStock = item.IsInStock == true;
+                    int stockCount = item.StockCount;
                     string color = "", stockStatus;
-                    if (isInStock)
+                    if (stockCount!=0)
                     {
-                        stockStatus = "有庫存";
+                        stockStatus = "庫存量 = " + stockCount;
                     }
                     else
                     {
@@ -51,14 +51,14 @@
                                 <p class="itemNumber">@item.P_Id</p>
                                 <h3>@item.ItemName</h3>
 
-                                <p> <input  type="number" class="qty" data-row-id="@item.Id" data-item-price="@item.Price" placeholder="" style="width:100%" value="@item.AddCount"/> x NT @item.Price</p>
+                                <p> <input  type="number" class="qty" data-row-id="@item.Id" data-item-price="@item.Price" placeholder="" style="width:100%" value="@item.AddCount"/> x NT$ @item.Price</p>
 
                                 <p class="stockStatus" style="color:@color"> @stockStatus</p>
                             </div>
 
 
                             <div class="prodTotal cartSection">
-                                <p>NT @item.TotoalPrice</p>
+                                <p>NT$ @item.TotoalPrice</p>
                             </div>
                             <div class="cartSection removeWrap">
                                 <a href="#" data-row-id="@item.Id" class="remove">x</a>
@@ -85,7 +85,7 @@
           <!--  <li class="totalRow"><span class="label">Shipping</span><span class="value">$5.00</span></li>
 
             <li class="totalRow"><span class="label">Tax</span><span class="value">$4.00</span></li>-->
-            <li class="totalRow final"><span class="label">總金額</span><span id="sum" class="value">NT @sum</span></li>
+            <li class="totalRow final"><span class="label">總金額</span><span id="sum" class="value">NT$ @sum</span></li>
             <li class="totalRow"><a href="/Cart/CheckOut" class="btn continue">結帳去</a></li>
         </ul>
     </div>
@@ -94,6 +94,7 @@
 @section scripts{
     <script>
         $(function () {
+            @Html.Raw(TempData["checkResult"])
             $(".qty").on("change", function () {
                 getProcessDialog();
                 var id = $(this).data("row-id");

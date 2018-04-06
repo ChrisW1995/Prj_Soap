@@ -23,7 +23,7 @@ namespace Prj_Soap.Areas.Admin.Models
         [Display(Name = "售價")]
         public int Price { get; set; }
 
-        public bool IsInStock { get; set; }
+        public int StockCount { get; set; }
 
         public HttpPostedFileBase ImageFile { get; set; }
     }
@@ -46,7 +46,7 @@ namespace Prj_Soap.Areas.Admin.Models
 
         public int Price { get; set; }
 
-        public bool IsInStock { get; set; }
+        public int StockCount { get; set; }
 
         public string ImageUrl { get; set; }
 

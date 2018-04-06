@@ -322,3 +322,10 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Relea
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddMessageFlgStatus.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.ChangeOrderRelationShips.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddOrderIdInCarts.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddStatusTable.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddRecordToOrderStatusTb.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddRecordToOrderStatusTb1.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddRecordToOrderStatusTb2.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddRecords.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddCustomerIdinOrders.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.ChangeSoapTbStockCount.resources
