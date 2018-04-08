@@ -24,7 +24,7 @@
                     sum += item.TotoalPrice;
                     int stockCount = item.StockCount;
                     string color = "", stockStatus;
-                    if (stockCount!=0)
+                    if (stockCount != 0)
                     {
                         stockStatus = "庫存量 = " + stockCount;
                     }
@@ -51,7 +51,7 @@
                                 <p class="itemNumber">@item.P_Id</p>
                                 <h3>@item.ItemName</h3>
 
-                                <p> <input  type="number" class="qty" data-row-id="@item.Id" data-item-price="@item.Price" placeholder="" style="width:100%" value="@item.AddCount"/> x NT$ @item.Price</p>
+                                <p> <input type="number" class="qty" data-row-id="@item.Id" data-item-price="@item.Price" placeholder="" style="width:100%" value="@item.AddCount" /> x NT$ @item.Price</p>
 
                                 <p class="stockStatus" style="color:@color"> @stockStatus</p>
                             </div>
@@ -74,25 +74,28 @@
     </div>
 
     @*<div class="promoCode">
-        <label for="promo">Have A Promo Code?</label><input type="text" name="promo" placholder="Enter Code" />
-        <a href="#" class="btn"></a>
-    </div>*@
+            <label for="promo">Have A Promo Code?</label><input type="text" name="promo" placholder="Enter Code" />
+            <a href="#" class="btn"></a>
+        </div>*@
 
     <div class="subtotal cf">
         <ul style="list-style:none;">
             @*<li class="totalRow"><span class="label">Subtotal</span><span class="value">$35.00</span></li>*@
 
-          <!--  <li class="totalRow"><span class="label">Shipping</span><span class="value">$5.00</span></li>
+            <!--  <li class="totalRow"><span class="label">Shipping</span><span class="value">$5.00</span></li>
 
-            <li class="totalRow"><span class="label">Tax</span><span class="value">$4.00</span></li>-->
+              <li class="totalRow"><span class="label">Tax</span><span class="value">$4.00</span></li>-->
             <li class="totalRow final"><span class="label">總金額</span><span id="sum" class="value">NT$ @sum</span></li>
             <li class="totalRow"><a href="/Cart/CheckOut" class="btn continue">結帳去</a></li>
         </ul>
     </div>
 </div>
 
+@Scripts.Render("~/bundles/process-dialog")
 @section scripts{
     <script>
+
+
         $(function () {
             @Html.Raw(TempData["checkResult"])
             $(".qty").on("change", function () {
@@ -100,7 +103,7 @@
                 var id = $(this).data("row-id");
                 var itemCount = $(this).val();
                 var price = $(this).data("item-price");
-                
+
                 $.ajax({
                     url: "/api/Cart/UpdateCount",
                     method: "POST",
@@ -110,11 +113,11 @@
                     }
                 })
                     .done(function () {
-                        disableProcessDialog();
+                        disableProcessDialog(1500);
                     })
                     .fail(function () {
                         alert("發生錯誤，請稍後重試");
-                        disableProcessDialog();
+                        disableProcessDialog(1500);
                     });
                 window.location.reload();
                 return false;
@@ -123,6 +126,7 @@
             $(".remove").on("click", function () {
                 getProcessDialog();
                 var id = $(this).data("row-id");
+
                 $.ajax({
                     method: "POST",
                     url: "/api/Cart/Delete/",
@@ -130,28 +134,29 @@
                     data: id.toString()
                 })
                     .done(function () {
-                        disableProcessDialog();
+
+                        disableProcessDialog(1500);
                         window.location.reload();
                     })
                     .fail(function () {
                         alert("發生錯誤，請稍後重試");
-                        disableProcessDialog();
+                        disableProcessDialog(1500);
                     });
                 return false;
             });
-        
+
         });
 
-        function getProcessDialog() {
-            $body = $("body");
-            $("html").css("overflow", "hidden");
-            $body.addClass("loading");
-        }
+        //function getProcessDialog() {
+        //    $body = $("body");
+        //    $("html").css("overflow", "hidden");
+        //    $body.addClass("loading");
+        //}
 
-        function disableProcessDialog() {
-            $body = $("body");
-            $("html").css("overflow", "");
-            $body.removeClass("loading");
-        }
+        //function disableProcessDialog() {
+        //    $body = $("body");
+        //    $("html").css("overflow", "");
+        //    $body.removeClass("loading");
+        //}
     </script>
-    }
+}

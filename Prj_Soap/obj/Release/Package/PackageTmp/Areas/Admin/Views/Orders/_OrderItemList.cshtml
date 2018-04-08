@@ -1,0 +1,42 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Prj_Soap.Areas.Admin.Models.AdminOrdersViewModel>
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">訂單內容</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+        <div class="">
+
+            <div class="col-md-12">
+                <p id="order-id-title" style="font-weight:700;">訂單編號：</p>
+                <table id="tb-order-detail" class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>商品編號</th>
+                        <th>商品名</th>
+                        <th>商品價格</th>
+                        <th>購買數量</th>
+                    </tr>
+                
+                </table>
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+</div>
+

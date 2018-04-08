@@ -1,6 +1,6 @@
 ﻿<section class="content-header">
     <h1>
-        <b>公告管理</b>
+        <b>訂單管理</b>
     </h1>
 
 </section>
@@ -14,43 +14,47 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+
+            @Html.Partial("_OrderItemList")
+        </div>
+    </div>
+
 </section>
 
 @section scripts{
     <script>
         $(function () {
-            $("#order-dialog").dialog({
-                autoOpen: false,
-                show: "blind",
-                modal: true,
-                dialogClass: "custom-dialog",
-                buttons: [
-                    {
-                        text: "關閉",
-                        click: function () {
-                            $(this).dialog("close");
-                        }
-                    }
-                ]
-            });
-
-
-            $(".msg-link").on("click", function () {
-
-                $("#order-dialog").dialog("open");
-                //$.ajax({
-                //    method: "GET",
-                //    url: "/api/Message/GetMessage/" + msgid
-                //})
-                //    .done(function (json) {
-                        
-                //    })
-                //    .fail(function () {
-                //        alert("Error");
-                //    });
+            $(".order-link").on("click", function () {
+                $('.order-item-row').remove();
+                var orderId = $(this).text();
+                $.ajax({
+                    method: "GET",
+                    url: "/api/Order/GetOrder/" + orderId
+                })
+                    .done(function (data) {
+                        DisplayItemRows(data);
+                    })
+                    .fail(function() {
+                        alert("讀取訂單失敗，請稍後再試");
+                    });
                 return false;
             });
         });
 
+        function DisplayItemRows(data) {
+            $.each(data.Items, function (index, data) {
+                var row = "<tr class='order-item-row'>\
+                <td>"+ data.SoapId + "</td>\
+                <td>"+ data.ItmeName + "</td>\
+                <td>"+ data.ItemPrice + "</td>\
+                <td>"+ data.AddCount + "</td>\
+                </tr>";
+                $('#tb-order-detail tr:last').after(row);
+            });
+            $('#tb-order-detail tr:last').after("<tr class='order-item-row'><td style='text-align:right; padding-right:35px; font-weight:700;' colspan='4'>總金額：" + data.TotalPrice + "</td></tr>");
+            $('#order-id-title').text("訂單編號："+data.OrderId);
+        }
     </script>
 }

@@ -12,7 +12,9 @@ namespace Prj_Soap.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         AccountService accountService = new AccountService();
+
         // GET: Admin/Home
+        [CustomAuthorization(LoginPage = "~/Admin/Home/Login", Roles = "Admin")]
         public ActionResult Index()
         {
             return View();

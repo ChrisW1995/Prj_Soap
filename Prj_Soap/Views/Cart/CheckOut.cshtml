@@ -52,12 +52,12 @@
                                     <img src="@item.ImageUrl" alt="" class="itemImg" />
                                     <p class="itemNumber">@item.P_Id</p>
                                     <h3>@item.ItemName</h3>
-                                    <p> <div style="font-weight:700;">數量：@item.AddCount</div> x NT @item.Price</p>
+                                    <p> <div style="font-weight:700;">數量：@item.AddCount</div> x NT$ @item.Price</p>
                                     <p class="stockStatus" style="color:@color"> @stockStatus</p>
                                 </div>
 
                                 <div class="prodTotal cartSection">
-                                    <p>NT @item.TotoalPrice</p>
+                                    <p>NT$ @item.TotoalPrice</p>
                                 </div>
 
                             </div>
@@ -79,7 +79,7 @@
             <!--  <li class="totalRow"><span class="label">Shipping</span><span class="value">$5.00</span></li>
 
               <li class="totalRow"><span class="label">Tax</span><span class="value">$4.00</span></li>-->
-            <li class="totalRow final"><span class="label">總金額</span><span id="sum" class="value">NT @sum</span></li>
+            <li class="totalRow final"><span class="label">總金額</span><span id="sum" class="value">NT$ @sum</span></li>
             <li class="totalRow"><a id="checkout-link" href="#" class="btn continue">送出</a></li>
         </ul>
     </div>
@@ -90,6 +90,7 @@
         $(function () {
             $("#checkout-link").on("click", function () {
                 $("#checkout-form").submit();
+                return false;
             });
         });
     </script>

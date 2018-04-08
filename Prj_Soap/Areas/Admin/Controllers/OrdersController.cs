@@ -8,6 +8,7 @@ using PagedList;
 
 namespace Prj_Soap.Areas.Admin.Controllers
 {
+    [CustomAuthorization(LoginPage = "~/Admin/Home/Login", Roles = "Admin")]
     public class OrdersController : Controller
     {
         private OrderService orderService = new OrderService();

@@ -216,6 +216,7 @@
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\SoapController.cs" />
     <Compile Include="Areas\Admin\Models\AdminLoginViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminOrdersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SoapViewModel.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Controllers\Api\CartController.cs" />
     <Compile Include="Controllers\Api\MessageController.cs" />
     <Compile Include="Controllers\Api\NewsController.cs" />
+    <Compile Include="Controllers\Api\OrderController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -310,6 +312,7 @@
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\DTO\CartsDTO.cs" />
     <Compile Include="Models\DTO\NewsDTO.cs" />
+    <Compile Include="Models\DTO\OrderDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Messages.cs" />
@@ -495,6 +498,7 @@
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\_Orders.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\_OrderDialog.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\_OrderItemList.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -507,6 +511,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\process-dialog.js" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLoginLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />

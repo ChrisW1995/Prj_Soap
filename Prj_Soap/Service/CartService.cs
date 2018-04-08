@@ -34,7 +34,7 @@ namespace Prj_Soap.Service
 
         public Carts GetCart(string soapId, string c_Id)
         {
-            var instance = repository.Get(x => x.SoapId.Equals(soapId) && x.CustomerId.Equals(c_Id));
+            var instance = repository.Get(x => x.SoapId.Equals(soapId) && x.CustomerId.Equals(c_Id) && string.IsNullOrEmpty(x.OrderId));
             return instance;
         }
 
@@ -64,11 +64,12 @@ namespace Prj_Soap.Service
                 var items = db.Carts.Where(x =>Id.Contains(x.Id)).ToList();
                 if (!CheckItemStock(items))
                 {
-                    result.Message = "有商品庫存 = 0，請下單前重新確認庫存量是否足夠";
+                    result.Message = "有商品庫存不足，請下單前確認庫存量是否足夠";
                     return result;
                 }
-                var sumPrice = items.Join(db.Soaps, c => c.SoapId,
-                    s => s.Id,(c, s) => new { c,s }).Sum(x => x.c.AddCount * x.s.Price);
+                var cartsWithSoapList = items.Join(db.Soaps, c => c.SoapId,
+                    s => s.Id,(c, s) => new { c,s }).ToList();
+                var sumPrice = cartsWithSoapList.Sum(x => x.c.AddCount * x.s.Price);
 
                 var instance = new Orders
                 {
@@ -80,6 +81,13 @@ namespace Prj_Soap.Service
                     C_Id = c_id
                 };
                 db.Orders.Add(instance);
+                bool stockNotEnough = cartsWithSoapList.Where(x => x.s.StockCount - x.c.AddCount < 0).SingleOrDefault() != null;
+                if(stockNotEnough)
+                {
+                    result.Message = "有商品庫存不足，請下單前確認庫存量是否足夠";
+                    return result;
+                }
+                cartsWithSoapList.ForEach(x => x.s.StockCount = x.s.StockCount - x.c.AddCount);
                 items.ForEach(x => x.OrderId = orderId);
                 db.SaveChanges();
                 result.Success = true;
