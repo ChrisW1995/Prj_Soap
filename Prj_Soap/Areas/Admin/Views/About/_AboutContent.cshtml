@@ -55,7 +55,14 @@
 
                     <div class="row">
                         <div class="form-group col-md-8 col-md-offset-2">
-                            <label>關於我們</label>
+                            <label>頁尾-關於我們</label>
+                            @Html.TextAreaFor(m => m.FooterContent, new { @class = "form-control", @rows = "5" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-8 col-md-offset-2">
+                            <label>我們的故事</label>
                             @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "5" })
                         </div>
                     </div>

@@ -12,6 +12,8 @@ namespace Prj_Soap.Models
         [StringLength(15)]
         public string Id { get; set; }
 
+        public int CategoryId { get; set; }
+
         [Required]
         [StringLength(50)]
         public string ItemName { get; set; }
@@ -28,6 +30,8 @@ namespace Prj_Soap.Models
         public string ImageUrl { get; set; }
 
         public DateTime UploadTime { get; set; }
+
+        public bool Flg { get; set; }
 
         public ICollection<Carts> Carts { get; set; }
 

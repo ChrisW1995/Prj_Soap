@@ -15,7 +15,7 @@ namespace Prj_Soap.Models
 
         public string Content { get; set; }
 
-        public string ReviewImgUrl { get; set; }
+        public int Score { get; set; }
 
         public DateTime AddTime { get; set; }
 

@@ -15,6 +15,7 @@ namespace Prj_Soap.Service
         public About GetAboutSettings()
         {
             var instance = repository.GetList().SingleOrDefault();
+            
             return instance;
         }
 

@@ -14,6 +14,12 @@ namespace Prj_Soap.App_Start
     {
         public MappingProfile()
         {
+            CreateMap<OrderStatus, OrderStatusList>();
+            CreateMap<OrderStatusList, OrderStatus>();
+
+            CreateMap<Reviews, ReviewContentViewModel>();
+            CreateMap<ReviewContentViewModel, Reviews>();
+            
             CreateMap<News, CreateNewsDTO>();
             CreateMap<CreateNewsDTO, News>();
 

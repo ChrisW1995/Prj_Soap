@@ -1,0 +1,48 @@
+﻿@model Prj_Soap.Models.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="be-section clearfix" data-headerscheme="background--light" style="">
+    <div class="be-section-pad clearfix" style="padding-top:90px;padding-bottom:80px;">
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="special-heading-wrap style1 0" data-animation="fadeIn">
+                        <div class="special-heading align-center">
+                            <h5 class="special-h-tag" style="margin-bottom: 10px;">會員登入</h5>
+                            <hr class="separator margin-bottom " style="background-color:#919191;border-color:#919191;color:#919191;height:2px;width:70px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="woocommerce columns-4">
+                        <div id="login-div" style="">
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @style = "width:100%" }))
+                            {
+
+
+                                @Html.TextBoxFor(model => model.Account, new { @class = "form-control", @placeholder = "登入帳號", @style= "width:30%;" })
+                                @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                                <div class="linebreak " style="height:20px;"></div>
+                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "登入密碼", @type = "password", @style = "width:30%;" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @style = "display: block; text-align:center;" })
+                                <div class="linebreak " style="height:20px;"></div>
+                                <input type="submit" value="登入" class="" style="border: none; display: block;" />
+                                <div class="linebreak " style="height:20px;"></div>  
+                                
+                            }
+                            <p>@Html.ActionLink("還沒有帳號? 點擊此處註冊新會員", "Registe", "Account", new { style = "display: block; text-align:center;" })</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

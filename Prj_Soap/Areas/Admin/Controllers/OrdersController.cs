@@ -13,10 +13,9 @@ namespace Prj_Soap.Areas.Admin.Controllers
     {
         private OrderService orderService = new OrderService();
         // GET: Admin/Orders
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
-            var orders = orderService.GetAllOrders().ToPagedList(page ?? 1, 15);
-            return View(orders);
+            return View();
         }
     }
 }

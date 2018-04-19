@@ -1,0 +1,279 @@
+﻿
+
+@{
+    ViewBag.Title = "公告管理";
+}
+<section class="content-header">
+    <h1>
+        <b>公告管理</b>
+    </h1>
+ 
+</section>
+
+
+    @using (Html.BeginForm("Edit", "Soap", FormMethod.Post, new { @id = "dialog_div", @title="編輯", @enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" id="edit-soap-id" name="Id">
+        <div class="form-group">
+            <label>商品名稱</label>
+            <input id="edt-soap-name" name="ItemName" type="text" class="form-control" placeholder="商品名稱 ...">
+        </div>
+
+        <div class="form-group">
+            <label>商品內容</label>
+            <textarea id="edt-soap-content" name="ItemContent" class="form-control" rows="3" placeholder="商品內容 ..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>售價</label>
+            <input id="edt-soap-price" name="Price" class="form-control" rows="3" placeholder="商品售價" />
+        </div>
+
+        <div class="form-group">
+            <label>庫存量</label>
+            <input name="StockCount" class="form-control" type="number" id="edt-soap-stockcount"/>
+  
+        </div>
+
+        <div class="">
+            <label>商品圖片</label>
+            <input id="edit-image-file" name="ImageFile" type="file" class="">
+        </div>
+
+
+        <div id="edt-imgPreview" class="thumbnail">
+            <img class="edit-img-responsive" id="edit-targetImg" />
+            <div class="caption">
+                <span id="edit-image-description"></span>
+            </div>
+        </div>
+    }
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Partial("_UploadSoap")
+        </div>
+        <div class="col-md-9">
+            @Html.Partial("_SoapList")
+        </div>
+    </div>
+    
+    @*<div class="row">
+        <div class="col-md-12">
+          
+        </div>
+    </div>*@
+</section>
+
+@section scripts
+{
+    <script>
+        @Html.Raw(TempData["editStatus"]);
+        $(document).ready(function () {
+            $("#image-file, #edit-image-file").change(function () {
+                var _file = this.files;
+                var fileId = $(this).attr('id');
+                if (_file && _file[0]) {
+                    ReadImage(_file[0], fileId);
+                }
+            });
+
+            $("#dialog_div").dialog({
+                autoOpen: false,
+                show: "blind",
+                modal: true,
+                dialogClass: "dlg-no-close",
+                buttons: [
+                    {
+                        text: "修改",
+                        type: "submit",
+                        click: function () {
+                            $("#dialog_div").submit();
+                        }
+                    },
+                    {
+                        text: "取消",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            }); 
+
+            $("#btn-soap-upload").on("click", function () {
+                var file = $("#image-file").get(0).files;
+                var data = new FormData();
+                data.append("ImageFile", file[0]);
+                data.append("ItemName", $("#txt-soap-name").val());
+                data.append("ItemContent", $("#txt-soap-content").val());
+                data.append("Price", $("#txt-soap-price").val());
+                data.append("StockCount", $("#edt-soap-stockcount").val());           
+                $.ajax({
+                    type: "POST",
+                    url: '/Soap/SoapUpload',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (result) {
+                        alert("上傳成功");
+                        $("#uploaded-soap-img").append("");
+                        ClearPreview();
+                        ClearText();
+                        GetItemList(1);
+                    }
+                });
+            });
+           
+            GetItemList(1);
+            
+        });
+
+        var ReadImage = function(file, fileId) {
+            var reader = new FileReader();
+            var image = new Image();
+            var editString = "";
+            if (fileId.includes("edit")) {
+                editString = "edit-";
+            }
+            reader.readAsDataURL(file);
+            reader.onload = function(file2) {
+
+                image.src = file2.target.result;
+                image.onload = function() {
+
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+                    var size = ~~(file.size / 1024) + "KB";
+
+                    $("#" + editString+"targetImg").attr("src", file2.target.result);
+                    $("#" + editString+"image-description").text("圖片大小: " + size + ", " + height + "x" + width + ", " + type + "");
+                    $("#" + editString+"imgPreview").show();
+                }
+            }
+        }
+
+        var ClearPreview = function() {
+            $("#image-file").val("");
+            $("#image-description").text("");
+            $("#imgPreview").hide();
+        }
+
+        function ClearText() {
+            $("#txt-soap-content").val("");
+            $("#txt-soap-name").val("");
+            $("#txt-soap-price").val("");
+        }
+
+
+        function UploadSoap() {
+            var file = $("#image-file").get(0).files;
+        }
+
+        function GetItemList(page) {
+            $.ajax(
+                {
+                    method: "GET",
+                    data: {
+                        page: page
+                    },
+                    url: "/Soap/GetSoapList"
+                }
+            )
+                .done(function (data) {                   
+                    $('#tb-soaplist').html('');
+                    $.each(data.Soaps, function (index, data) {
+                        $('#tb-soaplist').append("<tr> \
+                            <td style= 'width:30%;'> \
+                               <div class='crop-soap-img'> <img class='img-responsive thumbnail' src='"
+                            + data.ImageUrl + "'/>\
+                               </div>\
+                            </td>\
+                            <td>\
+                                <a class='item-soap' href='#' data-id='"+ data.Id + "'>" + data.ItemName + "</a>\
+                            </td>\
+                            <td>庫存量 = "+ data.StockCount + "</td>\
+                            <td>" + data.FormattedDate + "</td>\
+                            <td><button class='btn-soap-delete btn btn-xs btn-danger' data-id='"+ data.Id +"'><i style='font-size:22px' class='fa fa-remove'></button></i></td>\
+                            </tr>"
+                        );
+                    });
+
+                    $(".btn-soap-delete").on("click", function () {
+                        var soapId = $(this).data('id');
+                        DeleteSoap(soapId);
+                        return false;
+                    });
+
+                    $(".item-soap").on("click", function () {
+                        $("#dialog_div").dialog("open");
+                        $("#edit-image-description").text("");
+                        var id = $(this).data('id');
+                        $.ajax({
+                            method: "GET",
+                            url: "/Soap/GetSoap/" + id
+                        })
+                            .done(function (data) {
+                                $("#edit-soap-id").val(data.Id);
+                                $("#edt-soap-name").val(data.ItemName);
+                                $("#edt-soap-content").val(data.ItemContent);
+                                $("#edt-soap-price").val(data.Price);
+                                $("#edit-targetImg").attr("src", data.ImageUrl);
+                                $("#edt-soap-stockcount").val(data.StockCount);
+
+                            });
+
+                        return false; 
+                    });
+
+                    GetPagination(data.Total, page);
+                    
+                });
+        }
+
+        function GetPagination(total, currentPage) {
+            var pageNumber = Math.ceil(total / 3);
+            var startNum = 1, endNum = pageNumber+1;
+            $("#soap-list-pagination").html("");
+            if (pageNumber >= 5) {
+                startNum = currentPage - 2;
+                endNum = currentPage + 2;
+            }
+            for (var i = startNum; i < endNum; i++) {
+                if (i == currentPage) {
+                    $("#soap-list-pagination")
+                        .append("<li class='active'><a class='soaplistpage' href='#' data-page='" + i + "'>" + i + "</a></li>")
+                } else {
+                    $("#soap-list-pagination")
+                        .append("<li><a class='soaplistpage' href='#' data-page='" + i + "'>" + i + "</a></li>")
+                }
+                
+            }
+
+            $(".soaplistpage").click(function () {
+                var pageNum = $(this).data("page");
+                GetItemList(pageNum);
+            });
+        }
+
+        function DeleteSoap(id) {
+            $.ajax(
+                {
+                    method: "POST",
+                    data: {
+                        id: id
+                    },
+                    url: "/Soap/DeleteSoap"
+                }
+            )
+                .done(function (data) {
+                    alert("刪除成功");
+                    GetItemList(1);
+                })
+                .fail(function () {
+                    alert("錯誤! 請稍候再試");
+                });
+        }
+    </script>
+}

@@ -29,7 +29,7 @@
                                 foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td style="width: 50%; padding: 12px 0px;">@Html.ActionLink(item.Title, "NewsDetail", new { @id = item.Id })</td>
+                                        <td style="width: 50%; padding: 12px 0px;"><a href="/News/Detail/@item.Id">@item.Title</a></td>
                                         <td>@item.AddTime</td>
                                     </tr>
                                 }

@@ -18,7 +18,19 @@
         <div class="">
 
             <div class="col-md-12">
-                <p id="order-id-title" style="font-weight:700;">訂單編號：</p>
+                <p style="font-weight:700; float:left;">訂單編號：<div id="order-id-title"></div></p>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-1">狀態</label>
+                        <div class="col-md-2">
+                            <select id="sele-order-status" class="form-control">
+
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
                 <table id="tb-order-detail" class="table table-striped table-bordered table-hover">
                     <tr>
                         <th>商品編號</th>

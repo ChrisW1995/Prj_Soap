@@ -19,5 +19,11 @@ namespace Prj_Soap.Controllers
             return View(list);
         }
 
+        public ActionResult Detail(string Id)
+        {
+            var news = newsService.GetNews(Id);
+            return View(news);
+        }
+
     }
 }

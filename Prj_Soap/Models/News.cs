@@ -8,7 +8,8 @@ namespace Prj_Soap.Models
 {
     public class News
     {
-        public int Id { get; set; }
+        [Key, StringLength(20)]
+        public string Id { get; set; }
 
         [StringLength(25)]
         public string Title { get; set; }

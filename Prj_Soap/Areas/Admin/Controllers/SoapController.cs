@@ -85,5 +85,10 @@ namespace Prj_Soap.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult Category()
+        {
+            return PartialView("_Category");
+        }
     }
 }

@@ -26,6 +26,8 @@ namespace Prj_Soap.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Category> Categories { get; set; }
+
         public DbSet<OrderStatus> OrderStatus { get; set; }
 
         public DbSet<Reviews> Reviews { get; set; }

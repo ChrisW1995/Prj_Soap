@@ -33,6 +33,7 @@ namespace Prj_Soap
                 "~/Scripts/AdminJS/demo.js"
             ));
 
+
             bundles.Add(new ScriptBundle("~/bundles/admin/login").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/AdminLogin/animsition.js",
@@ -113,7 +114,9 @@ namespace Prj_Soap
                 "~/Content/AdminCss/jquery-jvectormap-1.2.2.css",
                 "~/Content/AdminCss/AdminLTE.css",
                 "~/Content/AdminCss/skin-yellow-light.css",
-                "~/Content/AdminCss/component.css"
+                "~/Content/AdminCss/component.css",
+                "~/Content/AdminCss/process-dialog.css"
+              
             ));
 
             bundles.Add(new StyleBundle("~/Content/css/adminlogin").Include(

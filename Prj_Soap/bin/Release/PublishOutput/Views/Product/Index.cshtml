@@ -1,0 +1,71 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<Prj_Soap.Models.ViewModels.SoapListViewModel>
+
+        <h1 class="page-title">產品列表</h1>
+
+        <p class="woocommerce-result-count">
+           共 @Model.Count() 筆商品
+        </p>
+
+        <div class="clear"></div>
+        <div class="products-wrap">
+            <hr class="separator style-1">
+            <ul class="products">
+
+                @if (Model.Count() != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <li class="first post-2809 product type-product status-publish has-post-thumbnail product_cat-casuals product_cat-men shipping-taxable purchasable product-type-simple product-cat-casuals product-cat-men instock">
+
+                            <a href="#">
+
+                            </a>
+                            <div class="product-thumbnail-image-wrap">
+                                <a href="/Product/Detail/@item.Id"><img width="255" height="360" src="@item.ImageUrl" class="attachment-shop_catalog wp-post-image" alt="@item.ItemName"></a>
+                            </div>
+                            <div class="product-meta-data clearfix">
+                                <a href="#">
+                                    <h3>@item.ItemName</h3>
+
+
+
+                                    <span class="price"><span class="amount">NTD @item.Price</span></span>
+                                </a>
+                                <div class="button_ajax_wrapper clearfix">
+                                    <a href="/Product/Detail/@item.Id" rel="nofollow" data-product_id="@item.Id" data-product_sku="" data-quantity="1" class=""></a>
+                                </div>
+                                <a href="#">
+                                </a>
+
+                            </div>
+                        </li>
+                    }
+
+                }
+              
+
+            </ul>
+            @*<nav class="woocommerce-pagination">
+                <ul class="page-numbers">
+                    <li><span class="page-numbers current">1</span></li>
+                    <li><a class="page-numbers" href="#">2</a></li>
+                    <li><a class="page-numbers" href="#">3</a></li>
+                    <li><a class="next page-numbers" href="#">→</a></li>
+                </ul>
+            </nav>*@
+        </div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#page-content").addClass("content-single-sidebar three-col-product");
+            $("#page-content").css("width", "100%");
+            $('#content-wrap').addClass('be-wrap clearfix').removeClass('page-builder'); 
+        });
+        
+    </script>
+    }

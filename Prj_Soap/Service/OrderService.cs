@@ -8,6 +8,7 @@ using Prj_Soap.Models;
 using Prj_Soap.Areas.Admin.Models;
 using Prj_Soap.Models.ViewModels;
 using Prj_Soap.Models.DTO;
+using AutoMapper;
 
 namespace Prj_Soap.Service
 {
@@ -40,6 +41,7 @@ namespace Prj_Soap.Service
 
         public OrderDetailDTO GetOrder(string id)
         {
+            var statusId = db.Orders.Where(x => x.Id == id).SingleOrDefault().StatusId;
             var items = db.Carts.Where(x => x.OrderId.Equals(id)).Join(db.Soaps,
                 c => c.SoapId,
                 s => s.Id,
@@ -48,15 +50,36 @@ namespace Prj_Soap.Service
                     ItmeName = s.ItemName,
                     ItemPrice = s.Price,
                     AddCount = c.AddCount
-                });
+                }).ToList();
 
             var detail = new OrderDetailDTO
             {
                 Items = items,
                 TotalPrice = items.Sum(x => x.ItemPrice * x.AddCount),
-                OrderId = id
+                OrderId = id,
+                StatusId = statusId,
+                Status = db.OrderStatus.Select(Mapper.Map<OrderStatus, OrderStatusList>)
             };
             return detail;
+        }
+
+        public IResult ChangeStatus(string orderId, int statusId)
+        {
+            IResult result = new Result();
+            try
+            {
+                var order = orderRepo.Get(x => x.Id == orderId);
+                order.StatusId = statusId;
+                orderRepo.Update(order);
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = e.ToString();
+                throw;
+            }
+            return result;
+
         }
     }
 }

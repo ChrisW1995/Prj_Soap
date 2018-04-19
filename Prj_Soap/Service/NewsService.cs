@@ -20,7 +20,9 @@ namespace Prj_Soap.Service
             try
             {
                 LocalDateTimeService timeService = new LocalDateTimeService();
-                news.AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME);
+                var now = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME);
+                news.AddTime = now;
+                news.Id = now.ToString("yyyyMMddHHmmss");
                 repository.Create(news);
 
                 result.Success = true;
@@ -58,7 +60,7 @@ namespace Prj_Soap.Service
             return list;
         }
 
-        public News GetNews(int id)
+        public News GetNews(string id)
         {
             return repository.Get(i => i.Id == id);
         }

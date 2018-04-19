@@ -11,7 +11,7 @@ namespace Prj_Soap.Models.ViewModels
         [Required]
         public string P_Id { get; set; }
 
-        [StringLength(200)]
+        [StringLength(200), Required]
         public string Content { get; set; }
 
     }

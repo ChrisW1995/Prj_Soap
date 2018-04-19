@@ -23,10 +23,56 @@
 
 </section>
 
+@section css{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
+}
+
+@Scripts.Render("~/bundles/process-dialog")
 @section scripts{
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <script>
         $(function () {
-            $(".order-link").on("click", function () {
+
+            var table = $("#tb-order-list").DataTable({
+                "language": {
+                    "lengthMenu": "每頁顯示 _MENU_ 筆紀錄",
+                    "zeroRecords": "無資料",
+                    "info": "當前頁數 _PAGE_ of _PAGES_",
+                    "infoEmpty": "抱歉, 無資料可顯示",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "search": "搜尋",
+                    "paginate": {
+                        "first": "第一頁",
+                        "last": "最後一頁",
+                        "next": "下一頁",
+                        "previous": "前一頁"
+                    }
+                },
+                ajax: {
+                    "url": "/api/Order/OrderList",
+                    "type": "GET",
+                    "dataSrc": function (json) {
+                        return json;
+                    },
+
+                },
+                columns: [
+                    {
+                        data: 'Id',
+                        render: function (data) {
+                            return "<a class='order-link' style='cursor:pointer;'>" + data + "</a>";
+                        }
+                    },
+                    { data: 'C_Name' },
+                    { data: 'C_Address' },
+                    { data: 'C_Phone' },
+                    { data: 'C_Email' },
+                    { data: 'CheckStatus' },
+                    { data: 'FormattedAddTime' }
+                ]
+            });
+
+            $("#tb-order-list").on("click", ".order-link", function () {
                 $('.order-item-row').remove();
                 var orderId = $(this).text();
                 $.ajax({
@@ -36,7 +82,30 @@
                     .done(function (data) {
                         DisplayItemRows(data);
                     })
-                    .fail(function() {
+                    .fail(function () {
+                        alert("讀取訂單失敗，請稍後再試");
+                    });
+                return false;
+            });
+
+            $("#sele-order-status").on("change", function () {
+                getProcessDialog();
+                var status_id = $(this).val();
+                var order_id = $("#order-id-title").text();
+                $.ajax({
+                    method: "POST",
+                    url: "/api/Order/ChangeStatus",
+                    data: {
+                        OrderId: order_id,
+                        StatusId: status_id
+                    }
+                })
+                    .done(function (data) {
+                        disableProcessDialog(500);
+                        table.ajax.reload();
+                    })
+                    .fail(function () {
+                        disableProcessDialog(500);
                         alert("讀取訂單失敗，請稍後再試");
                     });
                 return false;
@@ -44,17 +113,23 @@
         });
 
         function DisplayItemRows(data) {
+            $select = $("#sele-order-status");
             $.each(data.Items, function (index, data) {
                 var row = "<tr class='order-item-row'>\
-                <td>"+ data.SoapId + "</td>\
-                <td>"+ data.ItmeName + "</td>\
-                <td>"+ data.ItemPrice + "</td>\
-                <td>"+ data.AddCount + "</td>\
-                </tr>";
+                        <td>"+ data.SoapId + "</td>\
+                        <td>"+ data.ItmeName + "</td>\
+                        <td>"+ data.ItemPrice + "</td>\
+                        <td>"+ data.AddCount + "</td>\
+                        </tr>";
                 $('#tb-order-detail tr:last').after(row);
             });
+            $select.empty();
+            $.each(data.Status, function (index, data) {
+                $select.append("<option value='" + data.Id + "'>" + data.StatusName + "</option>");
+            });
+            $select.val(data.StatusId);
             $('#tb-order-detail tr:last').after("<tr class='order-item-row'><td style='text-align:right; padding-right:35px; font-weight:700;' colspan='4'>總金額：" + data.TotalPrice + "</td></tr>");
-            $('#order-id-title').text("訂單編號："+data.OrderId);
+            $('#order-id-title').text(data.OrderId);
         }
     </script>
 }

@@ -1,0 +1,48 @@
+﻿@model IPagedList<Prj_Soap.Models.ViewModels.SoapReviewsViewModel>
+@using PagedList.Mvc
+@using PagedList
+
+@if (Model.Count() == 0)
+{
+        <div style="text-align:center;">目前尚未有評論</div>
+}
+else
+{
+
+    foreach (var item in Model)
+    {
+        <div class="full-width tabs-review-div">
+            <div class="customer-reviews-name">@item.C_Name :</div>
+            <br />
+            <div style="padding: 7px 5px;">
+            @for(int i = 0; i< item.Score; i++)
+            {         
+                <span style="float:left;font-size:18px;" class="star fa fa-star checked"></span>             
+            }
+            @for(int i = 0; i< 5-item.Score; i++)
+            {         
+                <span style="float:left;font-size:18px;" class="star fa fa-star-o"></span>             
+            }
+                <div class="customer-reviews-date" style="float:left; position:absolute; right:0;"> @item.FormattedAddTime</div>
+            </div>
+            
+            <div style="clear:both;"></div>
+            <div class="reviews-content">@item.Content</div>
+        </div>
+            <hr />
+        }
+
+
+    }
+    @Html.PagedListPager(Model, page => Url.Action("_Reviews", new { page }), new PagedListRenderOptions
+    {
+        LinkToFirstPageFormat = "第一頁",
+        LinkToLastPageFormat = "最末頁",
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        ContainerDivClasses = new string[] { "message-paged-div" }
+
+    })
+

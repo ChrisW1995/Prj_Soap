@@ -21,6 +21,8 @@ namespace Prj_Soap.Models
 
         public string Content { get; set; }
 
+        public string FooterContent { get; set; }
+
         public string FacebookUrl { get; set; }
 
         public string GoogPlusUrl { get; set; }

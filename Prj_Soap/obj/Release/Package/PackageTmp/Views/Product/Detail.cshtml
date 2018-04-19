@@ -100,20 +100,21 @@
 
             }
             @Html.PagedListPager(Model.Messages, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-            {
-                LinkToFirstPageFormat = "第一頁",
-                LinkToLastPageFormat = "最末頁",
-                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                ContainerDivClasses = new string[] { "message-paged-div" }
+       {
+           LinkToFirstPageFormat = "第一頁",
+           LinkToLastPageFormat = "最末頁",
+           DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+           DisplayLinkToLastPage = PagedListDisplayMode.Always,
+           DisplayLinkToNextPage = PagedListDisplayMode.Always,
+           DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+           ContainerDivClasses = new string[] { "message-paged-div" }
 
-            })
+       })
             @Html.Action("_AddMessage", new { p_id = Model.Soap.Id })
         </div>
         <div id="tabs-2">
-            <p>2</p>
+            @Html.Action("_Reviews", "Product", new { id = TempData["item_id"] })
+            @Html.Action("_AddReview", new { p_id = Model.Soap.Id })
         </div>
     </div>
 
@@ -121,10 +122,35 @@
     <!-- #product-2754 -->
 
 </section>
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <style>
+        .star, .checked {
+            color: #FFBC42;
+        }
+    </style>
+    
+}
+
 @Scripts.Render("~/bundles/process-dialog")
 @section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
         $(document).ready(function () {
+            var $rateYo = $("#rateYo").rateYo({
+                rating: $("#Score").val(),
+                starWidth: "25px",
+                fullStar: true
+            });
+
+            $("#rateYo").click(function () {
+                /* get rating */
+                var rating = $rateYo.rateYo("rating");
+                $("#Score").val(rating);
+            });
+
+
+
             $("#product-tabs").tabs({
                 classes: {
                     "ui-tabs": "highlight"
@@ -141,12 +167,15 @@
             });
 
             @Html.Raw(TempData["AddMsg"])
+            @Html.Raw(TempData["AddReview"])
         });
 
         function AddToCart(id) {
+
             $.ajax(
                 {
                     method: "POST",
+
                     data: {
                         id: id
                     },
@@ -157,16 +186,21 @@
                     disableProcessDialog(850);
                     setTimeout(
                         function () {
-                            alert("已加入購物車");
-                        }, 1000);
+                        alert("已加入購物車");
+                    }, 1000);
 
                 })
-                .fail(function () {
+                .fail(function (jqXHR, textStatus, errorThrown) {
                     disableProcessDialog(850);
                     setTimeout(
                         function () {
-                            alert("已加入購物車");
-                        }, 1000);
+                            if (jqXHR.status == 404) {
+                                window.location = "/Account/Login";
+                            }
+                            else {
+                                alert("加入失敗，請稍後再試");
+                            }
+                    }, 1000);
                 });
         }
     </script>

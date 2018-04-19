@@ -17,6 +17,7 @@ namespace Prj_Soap.Service
     {
         IRepository<Carts> repository = new GenericRepository<Carts>(new ApplicationDbContext());
         IRepository<Messages> msgRepository = new GenericRepository<Messages>(new ApplicationDbContext());
+        IRepository<Reviews> reviewRepository = new GenericRepository<Reviews>(new ApplicationDbContext());
         ApplicationDbContext db = new ApplicationDbContext();
         CartService cartService = new CartService();
         SoapService soapService = new SoapService();
@@ -138,6 +139,49 @@ namespace Prj_Soap.Service
 
         }
 
+        public IResult CreateReview(string c_id, ReviewContentViewModel model)
+        {
+            IResult result = new Result();
+            try
+            {
+                var review = GetReview(model.P_Id, c_id);
+                if(review != null)
+                {
+                    review.Score = model.Score;
+                    review.Content = model.Content;
+                    review.AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME);
+                    reviewRepository.Update(review);
+                }
+                else
+                {
+                    var instance = new Reviews
+                    {
+                        C_Id = c_id,
+                        P_Id = model.P_Id,
+                        Content = model.Content,
+                        Score = model.Score,
+                        AddTime = timeService.GetLocalDateTime(LocalDateTimeService.CHINA_STANDARD_TIME),
+                    };
+                    reviewRepository.Create(instance);
+                }
+               
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Message = e.ToString();
+                throw;
+            }
+            return result;
+
+        }
+
+        public Reviews GetReview(string p_id, string c_id)
+        {
+            var instance = reviewRepository.Get(x => x.C_Id == c_id && x.P_Id == p_id);
+            return instance;
+        }
+
         /// <summary>
         /// Get messages by product id
         /// </summary>
@@ -153,6 +197,22 @@ namespace Prj_Soap.Service
                     C_Name = c.Name,
                     ReplyContent = m.ReplyContent
                 }).OrderByDescending(x=>x.AddTime);
+            return list;
+        }
+
+        public IEnumerable<SoapReviewsViewModel> GetAllReviews(string p_id)
+        {
+            var list = db.Reviews.Where(x => x.P_Id == p_id).Join(db.Customers,
+                r => r.C_Id,
+                c => c.Id,
+                (r, c) => new SoapReviewsViewModel()
+                {
+                    C_Name = c.Name,
+                    Content = r.Content,
+                    AddTime = r.AddTime,
+                    Score = r.Score
+                }).OrderByDescending(x => x.AddTime).ToList();
+
             return list;
         }
 

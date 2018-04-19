@@ -1,0 +1,90 @@
+﻿<section class="content-header">
+    <h1>
+        <b>公告管理</b>
+    </h1>
+
+</section>
+
+@Html.Partial("_ReplyMessage")
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            @Html.Partial("_Messages")
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script>
+        @TempData["ReplyStatus"]
+        $(document).ready(function () {
+            $("#reply-dialog").dialog({
+                autoOpen: false,
+                show: "blind",
+                modal: true,
+                dialogClass: "custom-dialog-red",
+                buttons: [
+                    {
+                        text: "儲存",
+                        type: "submit",
+                        click: function () {
+                            $("#reply-dialog").submit();
+                        }
+                    },
+                    {
+                        text: "取消",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            $(".rdo-status").change(function () {
+                $("#msg-status-form").submit();
+            });
+
+            $(".msg-link").on("click", function () {
+                $("#reply-dialog").dialog("open");
+
+                var id = $(this).data("msgid");
+
+                $.ajax({
+                    method: "GET",
+                    url: "/api/Message/GetMessage/" + id
+                })
+                    .done(function (json) {
+                        $("#msg-id").val(json.Id);
+                        $("#msg-content").text(json.Content);
+                        $("#reply-msg").val(json.ReplyContent);
+                    })
+                    .fail(function () {
+                        alert("Error");
+                    });
+                return false;
+            });
+
+            $(".del-msg").on("click", function () {
+                
+                var id = $(this).data("del-msgid");
+
+                $.ajax({
+                    method: "POST",
+                    url: "/api/Message/Delete/",
+                    contentType: "application/json",
+                    data: id.toString()
+                })
+                    .done(function (json) {
+                        alert("已封存一則垃圾問題");
+                        window.location.reload();
+                    })
+                    .fail(function () {
+                        alert("錯誤，請稍後再試");
+                    });
+                return false;
+            });
+        });
+    </script>
+}

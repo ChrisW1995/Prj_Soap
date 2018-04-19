@@ -1,0 +1,86 @@
+﻿@model Prj_Soap.Models.ViewModels.EditProfileViewModel
+
+@Html.Partial("_AccountMenu")
+
+<section id="page-content" class="content-single-sidebar three-col-product" style="margin-right:0; margin-left:40px;">
+
+    <div class="clear"></div>
+    <div class="account-info-div">
+        @using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { @style = "width:100%" }))
+    {
+        @*<div class="form-group" style="padding-bottom: 20px;">
+            @Html.LabelFor(m => m.Account, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DisplayFor(m => m.Account)
+
+            </div>
+        </div>
+        <div class="linebreak " style="height:25px;"></div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @style = "width:40%", @type = "password" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CheckPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CheckPassword, new { @class = "form-control", @style = "width:40%", @type = "password" })
+                @Html.ValidationMessageFor(model => model.CheckPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @style = "width:40%" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.DetailAddress, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.DetailAddress, new { @class = "form-control", @style = "width:40%" })
+                @Html.ValidationMessageFor(model => model.DetailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "width:40%" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @style = "width:40%" })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <input type="submit" value="修改" class="" style="border: none; display: block;" />
+        @*<div class="linebreak " style="height:20px;"></div>*@
+
+}
+    </div>
+  
+
+
+</section>
+
+@section scripts{
+    <script>
+        
+        $(document).ready(function () {
+            //$('#content').addClass('right-sidebar-page').removeClass('no-sidebar-page');
+            //$('#content-wrap').addClass('be-wrap clearfix').removeClass('page-builder');
+            
+        });
+        @Html.Raw(TempData["profileStatus"])
+    </script>
+}

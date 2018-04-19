@@ -52,25 +52,84 @@
 <section class="content">
     <div class="row">
         <div class="col-md-3">
-            @Html.Partial("_UploadSoap")
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">商品</a></li>
+                    <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">類別</a></li>
+                
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+
+                        @Html.Partial("_UploadSoap")
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_2">
+                        @Html.Partial("_Category")
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            
+
+            
         </div>
         <div class="col-md-9">
             @Html.Partial("_SoapList")
         </div>
     </div>
     
-    @*<div class="row">
-        <div class="col-md-12">
-          
-        </div>
-    </div>*@
+
 </section>
 
 @section scripts
 {
     <script>
-        @Html.Raw(TempData["editStatus"]);
+        
+        @Html.Raw(TempData["editStatus"])
         $(document).ready(function () {
+            GetCategories();
+
+            $("#tb-category").on("click", ".del-category", function () {
+                var $row = $(this).closest("tr");
+                var id = $(this).data("del-id");
+                if (confirm("確定要刪除此類別?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/Soap/DelCategory',
+                        contentType: "application/json",
+                        data: id.toString()
+                    }).done(function (data) {
+                        $row.remove();
+                    }).fail(function () {
+                        alert("Error");
+                    });
+                }
+                
+                return false;
+            });
+
+            $("#btn-add-category").on("click", function () {
+                
+                $.ajax({
+                    type: "POST",
+                    url: '/api/Soap/NewCategory',
+                    data: {
+                        Name: $("#category-name").val()
+                    }
+                }).done(function (data) {
+                    var row = "<tr>\
+                                    <td>" + data.CategoryName + "</td>\
+                                    <td><img style='width:16px; cursor:pointer;' class='del-category' src='/Images/cancel.png' data-del-id='"+ data.Id + "'/></td>\
+                                </tr>";
+                    $("#tb-category tr:last").after(row);
+                    $("#category-name").val()
+                    });
+                return false;
+            });
+
+           
             $("#image-file, #edit-image-file").change(function () {
                 var _file = this.files;
                 var fileId = $(this).attr('id');
@@ -166,6 +225,25 @@
             $("#txt-soap-price").val("");
         }
 
+        function GetCategories() {
+            $.ajax({
+                type: "GET",
+                url: '/api/Soap/GetCatgories'
+
+            }).done(function (json) {
+                $.each(json, function (index, data) {
+                    var row = "<tr>\
+                                    <td>" + data.CategoryName + "</td>\
+                                    <td><img style='width:16px; cursor:pointer;' class='del-category' src='/Images/cancel.png' data-del-id='"+data.Id+"'/></td>\
+                                </tr>";
+                    $('#tb-category tr:last').after(row);
+                    
+                });
+               
+            });
+            
+
+        }
 
         function UploadSoap() {
             var file = $("#image-file").get(0).files;
@@ -201,8 +279,11 @@
                     });
 
                     $(".btn-soap-delete").on("click", function () {
-                        var soapId = $(this).data('id');
-                        DeleteSoap(soapId);
+                        if (confirm("確定要下架此商品?")) {
+                            var soapId = $(this).data('id');
+                            DeleteSoap(soapId);
+                        }
+                        
                         return false;
                     });
 

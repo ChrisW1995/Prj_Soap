@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Prj_Soap.Models.ViewModels.MessageWithSoapNameViewModel>
+@Html.Partial("_AccountMenu")
+<div id="user-msg-dialog" title="回覆">
+    <p style="font-weight:700;"><b>問題內容</b></p>
+    <p id="user-msg" style="color:#5a5a5a;"></p>
+    <p style="font-weight:700;"><b>賣家回覆</b></p>
+    <p id="user-msg-reply" style="color:#5a5a5a;"></p>
+
+</div>
+<section id="page-content" class="content-single-sidebar three-col-product" style="margin-right:0; margin-left:40px;">
+    <div class="clear"></div>
+    <div class="account-info-div">
+        <table class="table table-hover">
+            <tr>
+                <th style="width:10%;">回覆狀態</th>
+                <th style="width:25%;">商品名</th>
+                <th style="width:40%;">內容</th>
+                <th>發問日期</th>
+            </tr>
+            @if(Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4">無資料</td>
+                </tr>
+            }
+            else
+            {
+                foreach(var item in Model)
+                {
+                    var statusImg = "";
+                    var color = "";
+                    var content = "";
+
+                    if (item.Flg == true)
+                    {
+                        content = item.Content.Length >= 12 ? item.Content.Substring(0, 12) + ".." : item.Content;
+                        statusImg = string.IsNullOrEmpty(item.ReplyContent) ? "/Images/question.png" : "/Images/checked.png";
+                    }
+                    else
+                    {
+                        color = "#000";
+                        content = "提問已被商家刪除";
+                        statusImg = "/Images/cancel.png";
+                    }
+                    <tr>
+                   
+                    <td style="text-align:center;"><img style="width:20px " src="@statusImg" /></td>
+                    <td><a href="/Product/Detail/@item.P_Id">@item.P_Name</a></td>
+                    <td><a class="msg-link" style="color:@color" href="#" data-msgid="@item.Id">@content</a></td>
+                    <td>@item.FormattedAddDate</td>
+                </tr>
+
+                }
+            }
+        </table>
+    </div>
+
+
+</section>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#user-msg-dialog").dialog({
+                autoOpen: false,
+                show: "blind",
+                modal: true,
+                dialogClass: "custom-dialog",
+                buttons: [
+                    {
+                        text: "關閉",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            @Html.Raw(TempData["accStatus"])
+
+
+            $(".msg-link").on("click", function () {
+                var msgid = $(this).data("msgid");
+                $("#user-msg-dialog").dialog("open");
+                $.ajax({
+                    method: "GET",
+                    url: "/api/Message/GetMessage/" + msgid
+                })
+                    .done(function (json) {
+                        var reply = "";
+                        if (json.Flg == true) {
+                            reply = json.ReplyContent;
+                            if (reply == null)
+                                reply = "賣家尚未回覆!";
+                        } else {
+                            reply = "提問已被刪除！如有疑問請直接洽詢賣家。"
+                            
+                        }
+                        $("#user-msg").text(json.Content);
+                        $("#user-msg-reply").text(reply);
+                    })
+                    .fail(function () {
+                        alert("Error");
+                    });
+                return false;
+            });
+        });
+
+    </script>
+}

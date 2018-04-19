@@ -16,7 +16,7 @@ namespace Prj_Soap.Controllers.Api
         LocalDateTimeService timeService = new LocalDateTimeService();
         NewsService newsService = new NewsService();
 
-        public IHttpActionResult GetNews(int id)
+        public IHttpActionResult GetNews(string id)
         {
             var news = newsService.GetNews(id);
             if (news != null)

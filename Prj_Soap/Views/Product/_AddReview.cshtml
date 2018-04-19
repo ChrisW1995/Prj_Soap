@@ -1,0 +1,22 @@
+﻿@model Prj_Soap.Models.ViewModels.ReviewContentViewModel
+
+@if (Request.IsAuthenticated)
+{
+    <h4 style="font-family:'微軟正黑體'; font-weight:700; text-align:center;">撰寫評論</h4>
+    <div id="rateYo" style="margin: 0 auto; padding-bottom:25px;"></div>
+    using (Html.BeginForm("AddReview", "Product", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.P_Id)
+        @Html.HiddenFor(m => m.Score)
+        @Html.TextAreaFor(m => m.Content, new { @placeholder = "使用心得...", @style = "border: 1px solid #dadada;" })
+
+        <button type="submit" style="display:block; margin:0 auto;">送出</button>
+    }
+
+}
+else
+{
+    <div style="text-align:center">
+        請先 <a href="/Account/Login">登入</a> 後再進行留言
+    </div>
+}

@@ -1,0 +1,35 @@
+﻿@model Prj_Soap.Models.News
+
+
+<div class="be-section clearfix" data-headerscheme="background--light" style="">
+    <div class="be-section-pad clearfix" style="padding-top:50px;padding-bottom:50px;">
+        <div class="be-row be-wrap clearfix">
+            <div class="one-col column-block clearfix" data-animation="" style="  ">
+                <div class="be-custom-column-inner">
+                    <div class="special-heading-wrap style1 0" data-animation="fadeIn">
+                        <div class="special-heading align-center">
+                            <h3 class="special-h-tag" style="color: ">最新消息</h3>
+                            <hr class="separator margin-bottom " style="background-color:#919191;border-color:#919191;color:#919191;height:2px;width:70px;" />
+                        </div>
+                    </div>
+                    <div class="special-subtitle-wrap  0" style="margin-bottom: 30px;" data-animation="fadeIn">
+                        <div class="align-center">
+                            <div>
+                                <div style="float:left; font-weight:700; padding:0px 50px 50px 100px;font-size:22px; color:#000;">@Model.Title</div>
+                                <div style="float:left; position:absolute; right:0; color:##a2a2a2">@Model.AddTime</div>
+                            </div>
+                            <div style=" clear:both;"></div>
+                            <div class="" style="color: ##7F8684; font-size: 18px ; text-align:left; padding:0px 100px; width: 100%; font-family:'微軟正黑體';">
+                                
+                                @if (!string.IsNullOrEmpty(Model.Content))
+                                {
+                                    @Model.Content
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

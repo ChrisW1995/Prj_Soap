@@ -329,3 +329,8 @@ C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Relea
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddRecords.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddCustomerIdinOrders.resources
 C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.ChangeSoapTbStockCount.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.ChangeNewsTbKey.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.CahngeRVTableAddScore.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AboutTBAddFooterContent.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddTBCategory.resources
+C:\Users\RD_CW\Documents\Visual Studio 2017\Projects\Prj_Soap\Prj_Soap\obj\Release\Prj_Soap.Migrations.AddFlgToProductTB.resources

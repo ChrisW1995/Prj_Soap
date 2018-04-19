@@ -22,5 +22,21 @@ namespace Prj_Soap.Controllers.Api
             return Ok(items);
         }
 
+        [HttpGet]
+        public IHttpActionResult OrderList()
+        {
+            var orders = orderService.GetAllOrders();
+            return Ok(orders);
+        }
+
+        [HttpPost]
+        public IHttpActionResult ChangeStatus(ChangeOrderStatusDTO model)
+        {
+            var result = orderService.ChangeStatus(model.OrderId, model.StatusId);
+            if (!result.Success)
+                return InternalServerError();
+            return Ok();
+        }
+
     }
 }

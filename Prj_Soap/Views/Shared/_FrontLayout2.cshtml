@@ -15,15 +15,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
     <![endif]-->
 
-    <title>Soap</title>
+    <title>幸福手工皂</title>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+
     @Styles.Render("~/Content/css")
     <link rel='stylesheet' id='redux-google-fonts-be_themes_data-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A700%2C400%7CCrimson+Text%3A400italic%7CRaleway%3A400%2C600%7CSource+Sans+Pro%3A400&#038;subset=latin&#038;ver=1428407938' type='text/css' media='all' />
+
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/frontmain")
-    @*<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">*@
+    @RenderSection("css", required: false)
+
 
 </head>
 
@@ -104,6 +106,8 @@
                                     {
                                         Response.Cookies.Clear();
                                         FormsAuthentication.SignOut();
+                                        var c = new HttpCookie("IdCookie");
+                                        c.Expires = DateTime.Now.AddDays(-1);
                                     }
                                     <ul class="nav-hover">
                                         <li style="list-style: none; font-size: 14px;">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
@@ -194,14 +198,7 @@
                                         <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2894"><a href="home-modern.html">Home Modern</a></li>
                                     </ul>
                                 </li>
-                                @*<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2896">
-                                        <a href="shop.html">Shop</a>
-                                        <span class="mobile-sub-menu-controller"><i class="icon-icon_plus"></i></span>
-                                        <ul class="sub-menu clearfix">
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2898"><a href="#">Cart</a></li>
-                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2897"><a href="#">Checkout</a></li>
-                                        </ul>
-                                    </li>*@
+
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2904">
                                     <a href="/Product">商品列表</a>
                                 </li>
@@ -214,7 +211,7 @@
             <!-- END HEADER -->
 
             <div class="header-hero-section"></div>
-            <div id="content" class="no-sidebar-page right-sidebar-page">
+            <section id="content" class="no-sidebar-page right-sidebar-page">
                 <div id="content-wrap" class="page-builder be-wrap clearfix">
 
 
@@ -222,13 +219,13 @@
                     @RenderBody()
 
                 </div>
-            </div>
+            </section>
             <footer id="bottom-widgets">
                 <div id="bottom-widgets-wrap" class="be-wrap be-row clearfix">
                     <div class="one-third column-block clearfix">
                         <div class="widget_text widget">
-                            <h6 style="color:#fff;">Text</h6>
-                            <div class="textwidget">Text TextText TextTextTextText TextText</div>
+                            <h6 style="color:#fff;">關於我們</h6>
+                            <div class="textwidget" id="footer-about">Text TextText TextTextTextText TextText</div>
                         </div>
                     </div>
                     <div class="one-third column-block clearfix">
@@ -355,7 +352,7 @@
                     $("#bottom-addr").text(json.Address);
                     $("#bottom-email").html(json.Email);
                     $("#bottom-phone").text(json.PhoneNumber);
-
+                    $("#footer-about").text(json.FooterContent);
 
                 })
                 .fail(function () {

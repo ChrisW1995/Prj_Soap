@@ -9,7 +9,7 @@ namespace Prj_Soap.Models.ViewModels
 {
     public class NewsListViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Title { get; set; }
 
@@ -19,7 +19,7 @@ namespace Prj_Soap.Models.ViewModels
     public class UpdateNewsViewModel
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [StringLength(25)]
